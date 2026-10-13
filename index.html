@@ -1,517 +1,1552 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>Guía 6 · AA1 Modelo de Base de Datos</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --sena-verde:#39a900;
-  --sena-naranja:#ff6b00;
-  --sena-azul:#0067ac;
-  --sena-morado:#7b2ff7;
-  --fondo:#f4f7f5;
-  --fondo-alt:#eef2ee;
-  --texto:#1c2b22;
-  --texto-dim:#5b6b61;
-  --tarjeta-bg:#0f2027;
-  --tarjeta-bg2:#1b3a2c;
-}
-*{box-sizing:border-box; margin:0; padding:0;}
-body{font-family:'DM Sans', sans-serif; background:var(--fondo); color:var(--texto); line-height:1.6;}
-h1,h2,h3,h4{font-family:'Syne', sans-serif;}
-.topbar{
-  background:linear-gradient(90deg, var(--sena-verde), var(--sena-azul));
-  color:#fff; padding:14px 32px; display:flex; justify-content:space-between; align-items:center;
-  position:sticky; top:0; z-index:50; box-shadow:0 2px 10px rgba(0,0,0,0.15);
-}
-.topbar .marca{font-weight:800; font-size:17px; letter-spacing:0.5px;}
-.topbar .marca span{color:#ffe29a;}
-.topbar .ficha{font-size:13px; opacity:0.9;}
-.slide{max-width:980px; margin:0 auto; padding:60px 28px;}
-.portada{
-  background:
-    radial-gradient(circle at 15% 20%, rgba(255,107,0,0.35), transparent 40%),
-    radial-gradient(circle at 85% 80%, rgba(0,103,172,0.4), transparent 45%),
-    linear-gradient(135deg, #103a22, #0b2a3d 60%, #1b0f3d);
-  color:#fff; text-align:center; padding:90px 30px; border-radius:0 0 40px 40px;
-}
-.portada .etiqueta{
-  display:inline-block; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.3);
-  padding:6px 18px; border-radius:30px; font-size:13px; letter-spacing:1px; margin-bottom:22px;
-}
-.portada h1{font-size:42px; margin-bottom:14px;}
-.portada p.sub{font-size:17px; opacity:0.88; max-width:680px; margin:0 auto;}
-.portada .chips{margin-top:30px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
-.portada .chip{background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.25); padding:8px 16px; border-radius:10px; font-size:13px;}
-.sec-header{margin-bottom:28px;}
-.sec-tag{
-  display:inline-block; background:var(--sena-verde); color:#fff; font-size:12px; font-weight:700;
-  padding:4px 12px; border-radius:20px; letter-spacing:0.5px; margin-bottom:12px;
-}
-.sec-tag.naranja{background:var(--sena-naranja);}
-.sec-tag.azul{background:var(--sena-azul);}
-.sec-tag.morado{background:var(--sena-morado);}
-.sec-titulo{font-size:28px; margin-bottom:8px;}
-.sec-intro{color:var(--texto-dim); font-size:15.5px; max-width:760px;}
+  <head>
+    <meta charset="UTF-8" />
+    <title>Guía 6 · AA1 Modelo de Base de Datos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --sena-verde: #39a900;
+        --sena-naranja: #ff6b00;
+        --sena-azul: #0067ac;
+        --sena-morado: #7b2ff7;
+        --fondo: #f4f7f5;
+        --fondo-alt: #eef2ee;
+        --texto: #1c2b22;
+        --texto-dim: #5b6b61;
+        --tarjeta-bg: #0f2027;
+        --tarjeta-bg2: #1b3a2c;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--fondo);
+        color: var(--texto);
+        line-height: 1.6;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Syne", sans-serif;
+      }
+      .topbar {
+        background: linear-gradient(90deg, var(--sena-verde), var(--sena-azul));
+        color: #fff;
+        padding: 14px 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      }
+      .topbar .marca {
+        font-weight: 800;
+        font-size: 17px;
+        letter-spacing: 0.5px;
+      }
+      .topbar .marca span {
+        color: #ffe29a;
+      }
+      .topbar .ficha {
+        font-size: 13px;
+        opacity: 0.9;
+      }
+      .slide {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 60px 28px;
+      }
+      .portada {
+        background:
+          radial-gradient(
+            circle at 15% 20%,
+            rgba(255, 107, 0, 0.35),
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 85% 80%,
+            rgba(0, 103, 172, 0.4),
+            transparent 45%
+          ),
+          linear-gradient(135deg, #103a22, #0b2a3d 60%, #1b0f3d);
+        color: #fff;
+        text-align: center;
+        padding: 90px 30px;
+        border-radius: 0 0 40px 40px;
+      }
+      .portada .etiqueta {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 6px 18px;
+        border-radius: 30px;
+        font-size: 13px;
+        letter-spacing: 1px;
+        color: #fff;
+        text-decoration: none;
+      }
+      .pdf-actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 22px;
+      }
+      .pdf-actions a:focus-visible {
+        outline: 3px solid #ffe29a;
+        outline-offset: 3px;
+      }
+      .pdf-download {
+        display: inline-block;
+        padding: 6px 18px;
+        border-radius: 30px;
+        background: var(--sena-verde);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .portada h1 {
+        font-size: 42px;
+        margin-bottom: 14px;
+      }
+      .portada p.sub {
+        font-size: 17px;
+        opacity: 0.88;
+        max-width: 680px;
+        margin: 0 auto;
+      }
+      .portada .chips {
+        margin-top: 30px;
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .portada .chip {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        padding: 8px 16px;
+        border-radius: 10px;
+        font-size: 13px;
+      }
+      .sec-header {
+        margin-bottom: 28px;
+      }
+      .sec-tag {
+        display: inline-block;
+        background: var(--sena-verde);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 4px 12px;
+        border-radius: 20px;
+        letter-spacing: 0.5px;
+        margin-bottom: 12px;
+      }
+      .sec-tag.naranja {
+        background: var(--sena-naranja);
+      }
+      .sec-tag.azul {
+        background: var(--sena-azul);
+      }
+      .sec-tag.morado {
+        background: var(--sena-morado);
+      }
+      .sec-titulo {
+        font-size: 28px;
+        margin-bottom: 8px;
+      }
+      .sec-intro {
+        color: var(--texto-dim);
+        font-size: 15.5px;
+        max-width: 760px;
+      }
 
-.grid-2{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
-.grid-3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px;}
-.grid-4{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
-@media(max-width:820px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}}
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 18px;
+      }
+      .grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+      }
+      @media (max-width: 820px) {
+        .grid-2,
+        .grid-3,
+        .grid-4 {
+          grid-template-columns: 1fr;
+        }
+      }
 
-.tarjeta{
-  background:linear-gradient(160deg, var(--tarjeta-bg), var(--tarjeta-bg2));
-  color:#e8f0ea; border-radius:14px; padding:22px; border:1px solid rgba(255,255,255,0.07);
-}
-.tarjeta h4{color:#9be78a; font-size:15px; margin-bottom:8px;}
-.tarjeta p{font-size:13.8px; color:#cfe0d4;}
-.tarjeta .num{
-  display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
-  border-radius:50%; background:var(--sena-naranja); color:#fff; font-weight:700; font-size:14px; margin-bottom:10px;
-}
+      .tarjeta {
+        background: linear-gradient(
+          160deg,
+          var(--tarjeta-bg),
+          var(--tarjeta-bg2)
+        );
+        color: #e8f0ea;
+        border-radius: 14px;
+        padding: 22px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+      }
+      .tarjeta h4 {
+        color: #9be78a;
+        font-size: 15px;
+        margin-bottom: 8px;
+      }
+      .tarjeta p {
+        font-size: 13.8px;
+        color: #cfe0d4;
+      }
+      .tarjeta .num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--sena-naranja);
+        color: #fff;
+        font-weight: 700;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
 
-.explicacion{
-  background:#fff; border-left:5px solid var(--sena-verde); border-radius:10px;
-  padding:18px 20px; margin:16px 0; box-shadow:0 2px 10px rgba(0,0,0,0.04);
-}
-.explicacion.naranja{border-left-color:var(--sena-naranja);}
-.explicacion.azul{border-left-color:var(--sena-azul);}
-.explicacion.morado{border-left-color:var(--sena-morado);}
-.explicacion h4{font-size:15px; margin-bottom:6px; color:var(--texto);}
-.explicacion p, .explicacion li{font-size:14.3px; color:#374a3e;}
+      .explicacion {
+        background: #fff;
+        border-left: 5px solid var(--sena-verde);
+        border-radius: 10px;
+        padding: 18px 20px;
+        margin: 16px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+      }
+      .explicacion.naranja {
+        border-left-color: var(--sena-naranja);
+      }
+      .explicacion.azul {
+        border-left-color: var(--sena-azul);
+      }
+      .explicacion.morado {
+        border-left-color: var(--sena-morado);
+      }
+      .explicacion h4 {
+        font-size: 15px;
+        margin-bottom: 6px;
+        color: var(--texto);
+      }
+      .explicacion p,
+      .explicacion li {
+        font-size: 14.3px;
+        color: #374a3e;
+      }
 
-.alert{
-  background:#fff6e8; border:1px solid #ffdca3; border-radius:10px; padding:16px 18px; margin:16px 0;
-  font-size:13.8px; color:#6b4b06;
-}
+      .alert {
+        background: #fff6e8;
+        border: 1px solid #ffdca3;
+        border-radius: 10px;
+        padding: 16px 18px;
+        margin: 16px 0;
+        font-size: 13.8px;
+        color: #6b4b06;
+      }
 
-.bloque-codigo{background:#0f1b14; border-radius:12px; padding:4px; margin:18px 0;}
-.linea-codigo{
-  background:#132a1d; border-left:4px solid var(--sena-verde); border-radius:8px;
-  padding:14px 16px; margin:6px; color:#dff2e4;
-}
-.linea-codigo.naranja{border-left-color:var(--sena-naranja);}
-.linea-codigo.azul{border-left-color:var(--sena-azul);}
-.linea-codigo.morado{border-left-color:var(--sena-morado);}
-.codigo-texto{font-family:'Courier New', monospace; font-size:13.3px; line-height:1.7; white-space:pre-wrap;}
-.codigo-texto .tag{color:#7fd8ff;}
-.codigo-texto .attr{color:#ffd166;}
-.codigo-texto .val{color:#9be78a;}
-.codigo-texto .comment{color:#6f8f7d; font-style:italic;}
+      .bloque-codigo {
+        background: #0f1b14;
+        border-radius: 12px;
+        padding: 4px;
+        margin: 18px 0;
+      }
+      .linea-codigo {
+        background: #132a1d;
+        border-left: 4px solid var(--sena-verde);
+        border-radius: 8px;
+        padding: 14px 16px;
+        margin: 6px;
+        color: #dff2e4;
+      }
+      .linea-codigo.naranja {
+        border-left-color: var(--sena-naranja);
+      }
+      .linea-codigo.azul {
+        border-left-color: var(--sena-azul);
+      }
+      .linea-codigo.morado {
+        border-left-color: var(--sena-morado);
+      }
+      .codigo-texto {
+        font-family: "Courier New", monospace;
+        font-size: 13.3px;
+        line-height: 1.7;
+        white-space: pre-wrap;
+      }
+      .codigo-texto .tag {
+        color: #7fd8ff;
+      }
+      .codigo-texto .attr {
+        color: #ffd166;
+      }
+      .codigo-texto .val {
+        color: #9be78a;
+      }
+      .codigo-texto .comment {
+        color: #6f8f7d;
+        font-style: italic;
+      }
 
-table{width:100%; border-collapse:collapse; margin:16px 0; font-size:13.8px; background:#fff; border-radius:10px; overflow:hidden;}
-table.comparativa th{background:var(--sena-verde); color:#fff; padding:10px 12px; text-align:left;}
-table.comparativa td{padding:10px 12px; border-bottom:1px solid #e3ebe5;}
-table.comparativa tr:nth-child(even){background:#f7faf7;}
-table.propiedades th{background:var(--sena-azul); color:#fff; padding:10px 12px; text-align:left;}
-table.propiedades td{padding:10px 12px; border-bottom:1px solid #e3ebe5;}
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 16px 0;
+        font-size: 13.8px;
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      table.comparativa th {
+        background: var(--sena-verde);
+        color: #fff;
+        padding: 10px 12px;
+        text-align: left;
+      }
+      table.comparativa td {
+        padding: 10px 12px;
+        border-bottom: 1px solid #e3ebe5;
+      }
+      table.comparativa tr:nth-child(even) {
+        background: #f7faf7;
+      }
+      table.propiedades th {
+        background: var(--sena-azul);
+        color: #fff;
+        padding: 10px 12px;
+        text-align: left;
+      }
+      table.propiedades td {
+        padding: 10px 12px;
+        border-bottom: 1px solid #e3ebe5;
+      }
 
-.pasos{list-style:none; counter-reset:paso; margin:16px 0;}
-.paso{counter-increment:paso; position:relative; padding-left:46px; margin-bottom:18px;}
-.paso::before{
-  content:counter(paso); position:absolute; left:0; top:0; width:32px; height:32px;
-  background:var(--sena-azul); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center;
-  font-weight:700; font-family:'Syne',sans-serif;
-}
-.paso h4{font-size:15px; margin-bottom:4px;}
-.paso p{font-size:13.8px; color:var(--texto-dim);}
+      .pasos {
+        list-style: none;
+        counter-reset: paso;
+        margin: 16px 0;
+      }
+      .paso {
+        counter-increment: paso;
+        position: relative;
+        padding-left: 46px;
+        margin-bottom: 18px;
+      }
+      .paso::before {
+        content: counter(paso);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 32px;
+        height: 32px;
+        background: var(--sena-azul);
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-family: "Syne", sans-serif;
+      }
+      .paso h4 {
+        font-size: 15px;
+        margin-bottom: 4px;
+      }
+      .paso p {
+        font-size: 13.8px;
+        color: var(--texto-dim);
+      }
 
-.entrega-list{list-style:none; margin:14px 0;}
-.entrega-list li{padding:9px 0 9px 30px; position:relative; font-size:14px; border-bottom:1px dashed #d8e2da;}
-.entrega-list li::before{content:"✔"; position:absolute; left:0; color:var(--sena-verde); font-weight:700;}
+      .entrega-list {
+        list-style: none;
+        margin: 14px 0;
+      }
+      .entrega-list li {
+        padding: 9px 0 9px 30px;
+        position: relative;
+        font-size: 14px;
+        border-bottom: 1px dashed #d8e2da;
+      }
+      .entrega-list li::before {
+        content: "✔";
+        position: absolute;
+        left: 0;
+        color: var(--sena-verde);
+        font-weight: 700;
+      }
 
-/* ER diagram boxes */
-.mer-wrap{display:flex; align-items:flex-start; justify-content:center; gap:10px; flex-wrap:wrap; margin:24px 0;}
-.mer-entidad{
-  background:#fff; border:2px solid var(--sena-azul); border-radius:10px; width:210px; overflow:hidden;
-  box-shadow:0 3px 10px rgba(0,0,0,0.06);
-}
-.mer-entidad .mer-titulo{background:var(--sena-azul); color:#fff; text-align:center; font-weight:700; padding:8px; font-size:14px;}
-.mer-entidad.naranja .mer-titulo{background:var(--sena-naranja);}
-.mer-entidad.verde .mer-titulo{background:var(--sena-verde);}
-.mer-entidad ul{list-style:none; padding:10px 14px;}
-.mer-entidad li{font-size:12.5px; padding:3px 0; color:#374a3e;}
-.mer-entidad li.pk{font-weight:700; color:var(--sena-azul);}
-.mer-entidad li.fk{font-style:italic; color:var(--sena-naranja);}
-.mer-cardinalidad{
-  align-self:center; display:flex; flex-direction:column; align-items:center; gap:4px;
-  font-family:'Courier New',monospace; font-size:12px; color:var(--texto-dim); min-width:70px; text-align:center;
-}
-.mer-cardinalidad .linea{width:100%; height:2px; background:var(--texto-dim); position:relative;}
+      /* ER diagram boxes */
+      .mer-wrap {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin: 24px 0;
+      }
+      .mer-entidad {
+        background: #fff;
+        border: 2px solid var(--sena-azul);
+        border-radius: 10px;
+        width: 210px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+      }
+      .mer-entidad .mer-titulo {
+        background: var(--sena-azul);
+        color: #fff;
+        text-align: center;
+        font-weight: 700;
+        padding: 8px;
+        font-size: 14px;
+      }
+      .mer-entidad.naranja .mer-titulo {
+        background: var(--sena-naranja);
+      }
+      .mer-entidad.verde .mer-titulo {
+        background: var(--sena-verde);
+      }
+      .mer-entidad ul {
+        list-style: none;
+        padding: 10px 14px;
+      }
+      .mer-entidad li {
+        font-size: 12.5px;
+        padding: 3px 0;
+        color: #374a3e;
+      }
+      .mer-entidad li.pk {
+        font-weight: 700;
+        color: var(--sena-azul);
+      }
+      .mer-entidad li.fk {
+        font-style: italic;
+        color: var(--sena-naranja);
+      }
+      .mer-cardinalidad {
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        font-family: "Courier New", monospace;
+        font-size: 12px;
+        color: var(--texto-dim);
+        min-width: 70px;
+        text-align: center;
+      }
+      .mer-cardinalidad .linea {
+        width: 100%;
+        height: 2px;
+        background: var(--texto-dim);
+        position: relative;
+      }
 
-.arbol-carpetas{font-family:'Courier New',monospace; font-size:12.5px; line-height:1.9; background:var(--fondo-alt); border-radius:8px; padding:16px; white-space:pre; overflow-x:auto;}
+      .arbol-carpetas {
+        font-family: "Courier New", monospace;
+        font-size: 12.5px;
+        line-height: 1.9;
+        background: var(--fondo-alt);
+        border-radius: 8px;
+        padding: 16px;
+        white-space: pre;
+        overflow-x: auto;
+      }
 
-.norm-tabla{border:2px dashed #d8e2da; border-radius:10px; padding:14px; margin:12px 0; background:#fafcfb;}
-.norm-tabla .titulo{font-weight:700; font-size:13px; color:var(--sena-azul); margin-bottom:8px;}
+      .norm-tabla {
+        border: 2px dashed #d8e2da;
+        border-radius: 10px;
+        padding: 14px;
+        margin: 12px 0;
+        background: #fafcfb;
+      }
+      .norm-tabla .titulo {
+        font-weight: 700;
+        font-size: 13px;
+        color: var(--sena-azul);
+        margin-bottom: 8px;
+      }
 
-footer{text-align:center; padding:30px; color:var(--texto-dim); font-size:12.5px;}
-</style>
-</head>
-<body>
+      footer {
+        text-align: center;
+        padding: 30px;
+        color: var(--texto-dim);
+        font-size: 12.5px;
+      }
 
-<div class="topbar">
-  <div class="marca">SENA · <span>Análisis y Desarrollo de Software</span></div>
-  <div class="ficha">Guía de Aprendizaje 6 · Fase de Ejecución</div>
-</div>
-
-<!-- PORTADA -->
-<div class="portada">
-  <div class="etiqueta">GUÍA DE APRENDIZAJE 6 · AP6</div>
-  <h1>Desarrollar la estructura de datos<br>y la interfaz de usuario del software</h1>
-  <p class="sub">Esta guía abre la fase de <strong>Ejecución</strong> del proyecto formativo: pasamos del diseño
-  a construir la base de datos, programar con el SMBD, y crear las interfaces gráficas y el front-end del software.</p>
-  <div class="chips">
-    <div class="chip">🧩 220501096 · Desarrollo de software</div>
-    <div class="chip">🏃 230101507 · Hábitos saludables</div>
-    <div class="chip">🗣️ 240202501 · Inglés B1.2+</div>
-  </div>
-</div>
-
-<!-- COMPETENCIAS -->
-<div class="slide">
-  <div class="sec-header">
-    <span class="sec-tag">Panorama general</span>
-    <h2 class="sec-titulo">Competencias técnicas que vamos a trabajar</h2>
-    <p class="sec-intro">La guía 6 gira alrededor de la competencia técnica <strong>220501096 – Desarrollar la solución
-    de software de acuerdo con el diseño y metodologías de desarrollo</strong>. Se concreta en 2 resultados de aprendizaje
-    y se despliega en 4 actividades de aprendizaje (AA1 a AA4). Esta es la hoja de ruta completa:</p>
-  </div>
-
-  <div class="explicacion azul">
-    <h4>📘 Resultados de aprendizaje de la competencia técnica</h4>
-    <p><strong>220501096-02</strong> — Construir la base de datos para el software a partir del modelo de datos.</p>
-    <p><strong>220501096-03</strong> — Crear componentes front-end del software de acuerdo con el diseño.</p>
-  </div>
-
-  <div class="grid-2" style="margin-top:22px;">
-    <div class="tarjeta">
-      <span class="num">1</span>
-      <h4>AA1 · Crear un modelo de base de datos</h4>
-      <p>Con base a los requerimientos del cliente. Modelo relacional, cardinalidad, normalización, modelo
-      entidad-relación y una primera mirada a bases NoSQL (MongoDB).</p>
-      <p style="margin-top:8px; color:#ffd166;">⏱ 64 horas · EV01 a EV04 · ← empezamos aquí</p>
+      .tabs {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        padding: 16px 20px 0;
+        background: #fff;
+        border-bottom: 1px solid #d8e2da;
+      }
+      .tab-button {
+        appearance: none;
+        border: 0;
+        border-bottom: 3px solid transparent;
+        background: transparent;
+        color: var(--texto-dim);
+        cursor: pointer;
+        flex: 1;
+        min-width: 0;
+        max-width: 280px;
+        font:
+          700 14px "DM Sans",
+          sans-serif;
+        padding: 12px 18px;
+        text-align: center;
+        line-height: 1.25;
+      }
+      .tab-button[aria-selected="true"] {
+        color: var(--sena-azul);
+        border-bottom-color: var(--sena-verde);
+      }
+      .tab-button:focus-visible {
+        outline: 3px solid var(--sena-naranja);
+        outline-offset: 2px;
+      }
+      .tab-panel[hidden] {
+        display: none;
+      }
+      @media (max-width: 520px) {
+        .topbar {
+          padding: 12px 16px;
+          flex-wrap: wrap;
+          gap: 4px;
+        }
+        .topbar .ficha {
+          font-size: 11px;
+        }
+        .tabs {
+          padding-inline: 8px;
+        }
+        .tab-button {
+          flex: 1;
+          padding: 12px 8px;
+          font-size: 13px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="marca">
+        SENA · <span>Análisis y Desarrollo de Software</span>
+      </div>
+      <div class="ficha">Guía de Aprendizaje 6 · Fase de Ejecución</div>
     </div>
-    <div class="tarjeta">
-      <span class="num">2</span>
-      <h4>AA2 · Manipular datos en el SMBD</h4>
-      <p>De acuerdo con el diseño: sentencias DDL (crear tablas) y DML (insertar, consultar, actualizar, eliminar)
-      usando MySQL Workbench u otro gestor.</p>
-      <p style="margin-top:8px; color:#ffd166;">⏱ 32 horas · EV01 a EV03</p>
+
+    <div class="tabs" role="tablist" aria-label="Secciones de la guía">
+      <button
+        class="tab-button"
+        id="tab-adso"
+        type="button"
+        role="tab"
+        aria-selected="true"
+        aria-controls="panel-adso"
+        tabindex="0"
+      >
+        Información GUIA APRENDIZAJE 6
+      </button>
+      <button
+        class="tab-button"
+        id="tab-aa1"
+        type="button"
+        role="tab"
+        aria-selected="false"
+        aria-controls="panel-aa1"
+        tabindex="-1"
+      >
+        Actividad 1 · AA1
+      </button>
+      <button
+        class="tab-button"
+        id="tab-ev03"
+        type="button"
+        role="tab"
+        aria-selected="false"
+        aria-controls="panel-ev03"
+        tabindex="-1"
+      >
+        EV03 · NoSQL
+      </button>
     </div>
-    <div class="tarjeta">
-      <span class="num">3</span>
-      <h4>AA3 · Crear interfaces gráficas de usuario</h4>
-      <p>En aplicaciones de escritorio, web y móviles, de acuerdo con el diseño ya prototipado en Figma.</p>
-      <p style="margin-top:8px; color:#ffd166;">⏱ 48 horas · EV01 a EV03</p>
-    </div>
-    <div class="tarjeta">
-      <span class="num">4</span>
-      <h4>AA4 · Generar plantillas y estilos</h4>
-      <p>Componentes front-end reutilizables, hojas de estilos y plantillas visuales coherentes con el diseño.</p>
-      <p style="margin-top:8px; color:#ffd166;">⏱ 48 horas · EV01 a EV03</p>
-    </div>
-  </div>
 
-  <div class="alert">
-    💡 Además de lo técnico, la guía incluye la competencia transversal <strong>230101507</strong> (hábitos saludables
-    y actividad física) y la competencia clave <strong>240202501</strong> (inglés, nivel B1.2+). Estas se trabajan en
-    paralelo, pero el eje central de la guía — y donde vamos a enfocarnos ahora — es la parte técnica de base de datos
-    e interfaz.
-  </div>
-</div>
+    <section
+      class="tab-panel"
+      id="panel-adso"
+      role="tabpanel"
+      aria-labelledby="tab-adso"
+      tabindex="0"
+    >
+      <!-- PORTADA -->
+      <div class="portada">
+        <div class="pdf-actions">
+          <a
+            class="etiqueta"
+            href="Guia_aprendizaje_6.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GUÍA DE APRENDIZAJE 6 · AP6 · Ver PDF</a
+          >
+          <a
+            class="pdf-download"
+            href="Guia_aprendizaje_6.pdf"
+            download="Guia_aprendizaje_6.pdf"
+            >Descargar PDF</a
+          >
+        </div>
+        <h1>
+          Desarrollar la estructura de datos<br />y la interfaz de usuario del
+          software
+        </h1>
+        <p class="sub">
+          Esta guía abre la fase de <strong>Ejecución</strong> del proyecto
+          formativo: pasamos del diseño a construir la base de datos, programar
+          con el SMBD, y crear las interfaces gráficas y el front-end del
+          software.
+        </p>
+        <div class="chips">
+          <div class="chip">🧩 220501096 · Desarrollo de software</div>
+          <div class="chip">🏃 230101507 · Hábitos saludables</div>
+          <div class="chip">🗣️ 240202501 · Inglés B1.2+</div>
+        </div>
+      </div>
 
-<!-- AA1 INTRO -->
-<div class="slide">
-  <div class="sec-header">
-    <span class="sec-tag naranja">Empezamos · AA1</span>
-    <h2 class="sec-titulo">GA6-220501096-AA1 · Crear un modelo de base de datos</h2>
-    <p class="sec-intro">"Crear un modelo de base de datos, con base a los requerimientos del cliente." Esta actividad
-    busca que antes de escribir una sola línea de SQL, sepas <strong>pensar los datos</strong>: qué entidades existen,
-    cómo se relacionan entre sí, y cómo evitar que la información quede duplicada o inconsistente.</p>
-  </div>
-  <table class="comparativa">
-    <tr><th>Evidencia</th><th>Qué pide</th></tr>
-    <tr><td>EV01</td><td>Resolución de problemas aplicando el modelo relacional, cardinalidad y normalización</td></tr>
-    <tr><td>EV02</td><td>Elaboración del modelo entidad-relación (MER) de un caso propuesto</td></tr>
-    <tr><td>EV03</td><td>Creación de objetos en una base de datos no relacional (estructura de un documento JSON)</td></tr>
-    <tr><td>EV04</td><td>Elaboración de una base de datos en MongoDB</td></tr>
-  </table>
-</div>
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag azul">Información de la guía</span>
+          <h2 class="sec-titulo">Guía de Aprendizaje 6 · AP6</h2>
+          <p class="sec-intro">
+            Esta guía del programa Análisis y Desarrollo de Software corresponde
+            a la fase de Ejecución del proyecto formativo.
+          </p>
+        </div>
+        <div class="grid-3">
+          <div class="tarjeta">
+            <h4>Propósito</h4>
+            <p>
+              Desarrollar la estructura de datos y la interfaz de usuario del
+              software, pasando del diseño a la construcción de bases de datos y
+              componentes front-end.
+            </p>
+          </div>
+          <div class="tarjeta">
+            <h4>Competencia técnica</h4>
+            <p>
+              <strong>220501096</strong> · Desarrollar la solución de software
+              de acuerdo con el diseño y metodologías de desarrollo.
+            </p>
+          </div>
+          <div class="tarjeta">
+            <h4>Resultados de aprendizaje</h4>
+            <p>
+              <strong>220501096-02:</strong> construir la base de datos a partir
+              del modelo de datos.
+            </p>
+            <p style="margin-top: 8px">
+              <strong>220501096-03:</strong> crear componentes front-end de
+              acuerdo con el diseño.
+            </p>
+          </div>
+        </div>
+      </div>
 
-<!-- MODELO RELACIONAL -->
-<div class="slide">
-  <div class="sec-header">
-    <span class="sec-tag azul">Concepto 1</span>
-    <h2 class="sec-titulo">¿Qué es el modelo relacional?</h2>
-    <p class="sec-intro">Es una forma de organizar la información en <strong>tablas</strong> (también llamadas
-    relaciones). Cada tabla representa una entidad del mundo real (un cliente, un producto, un pedido), cada columna
-    es un atributo, y cada fila es un registro concreto.</p>
-  </div>
+      <!-- COMPETENCIAS -->
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag">Panorama general</span>
+          <h2 class="sec-titulo">Competencias técnicas que vamos a trabajar</h2>
+          <p class="sec-intro">
+            La guía 6 gira alrededor de la competencia técnica
+            <strong
+              >220501096 – Desarrollar la solución de software de acuerdo con el
+              diseño y metodologías de desarrollo</strong
+            >. Se concreta en 2 resultados de aprendizaje y se despliega en 4
+            actividades de aprendizaje (AA1 a AA4). Esta es la hoja de ruta
+            completa:
+          </p>
+        </div>
 
-  <div class="explicacion">
-    <h4>🧱 Las piezas básicas de una tabla</h4>
-    <p><strong>Entidad</strong> → se convierte en una tabla (ej: Cliente, Producto).<br>
-    <strong>Atributo</strong> → se convierte en una columna (ej: nombre, precio).<br>
-    <strong>Llave primaria (PK)</strong> → columna que identifica de forma única cada fila (ej: id_producto).<br>
-    <strong>Llave foránea (FK)</strong> → columna que apunta a la llave primaria de otra tabla, y es lo que crea
-    la relación entre ambas.</p>
-  </div>
+        <div class="explicacion azul">
+          <h4>📘 Resultados de aprendizaje de la competencia técnica</h4>
+          <p>
+            <strong>220501096-02</strong> — Construir la base de datos para el
+            software a partir del modelo de datos.
+          </p>
+          <p>
+            <strong>220501096-03</strong> — Crear componentes front-end del
+            software de acuerdo con el diseño.
+          </p>
+        </div>
 
-  <div class="alert">
-    🍔 <strong>Ejemplo aplicado a tu proyecto "Fast Food Paradise":</strong> en vez de guardar todo en una sola
-    tabla gigante donde se repite el nombre del cliente en cada pedido, separamos la información en tres entidades
-    relacionadas: <strong>Clientes</strong>, <strong>Productos</strong> y <strong>Pedidos</strong>.
-  </div>
+        <div class="grid-2" style="margin-top: 22px">
+          <div class="tarjeta">
+            <span class="num">1</span>
+            <h4>AA1 · Crear un modelo de base de datos</h4>
+            <p>
+              Con base a los requerimientos del cliente. Modelo relacional,
+              cardinalidad, normalización, modelo entidad-relación y una primera
+              mirada a bases NoSQL (MongoDB).
+            </p>
+            <p style="margin-top: 8px; color: #ffd166">
+              ⏱ 64 horas · EV01 a EV04 · ← empezamos aquí
+            </p>
+          </div>
+          <div class="tarjeta">
+            <span class="num">2</span>
+            <h4>AA2 · Manipular datos en el SMBD</h4>
+            <p>
+              De acuerdo con el diseño: sentencias DDL (crear tablas) y DML
+              (insertar, consultar, actualizar, eliminar) usando MySQL Workbench
+              u otro gestor.
+            </p>
+            <p style="margin-top: 8px; color: #ffd166">
+              ⏱ 32 horas · EV01 a EV03
+            </p>
+          </div>
+          <div class="tarjeta">
+            <span class="num">3</span>
+            <h4>AA3 · Crear interfaces gráficas de usuario</h4>
+            <p>
+              En aplicaciones de escritorio, web y móviles, de acuerdo con el
+              diseño ya prototipado en Figma.
+            </p>
+            <p style="margin-top: 8px; color: #ffd166">
+              ⏱ 48 horas · EV01 a EV03
+            </p>
+          </div>
+          <div class="tarjeta">
+            <span class="num">4</span>
+            <h4>AA4 · Generar plantillas y estilos</h4>
+            <p>
+              Componentes front-end reutilizables, hojas de estilos y plantillas
+              visuales coherentes con el diseño.
+            </p>
+            <p style="margin-top: 8px; color: #ffd166">
+              ⏱ 48 horas · EV01 a EV03
+            </p>
+          </div>
+        </div>
 
-  <div class="bloque-codigo">
-    <div class="linea-codigo">
-      <div class="codigo-texto"><span class="comment">-- Tabla Clientes</span>
-<span class="tag">id_cliente</span> <span class="val">INT PK</span>
-<span class="tag">nombre</span>     <span class="val">VARCHAR(80)</span>
-<span class="tag">telefono</span>   <span class="val">VARCHAR(15)</span>
-<span class="tag">direccion</span>  <span class="val">VARCHAR(120)</span></div>
-    </div>
-    <div class="linea-codigo naranja">
-      <div class="codigo-texto"><span class="comment">-- Tabla Productos</span>
-<span class="tag">id_producto</span> <span class="val">INT PK</span>
-<span class="tag">nombre</span>      <span class="val">VARCHAR(60)</span>
-<span class="tag">precio</span>      <span class="val">DECIMAL(10,2)</span>
-<span class="tag">categoria</span>   <span class="val">VARCHAR(40)</span></div>
-    </div>
-    <div class="linea-codigo azul">
-      <div class="codigo-texto"><span class="comment">-- Tabla Pedidos (une a las otras dos)</span>
-<span class="tag">id_pedido</span>   <span class="val">INT PK</span>
-<span class="attr">id_cliente</span>  <span class="val">INT FK</span>  <span class="comment">→ referencia a Clientes</span>
-<span class="attr">id_producto</span> <span class="val">INT FK</span>  <span class="comment">→ referencia a Productos</span>
-<span class="tag">cantidad</span>    <span class="val">INT</span>
-<span class="tag">fecha</span>       <span class="val">DATE</span></div>
-    </div>
-  </div>
-</div>
+        <div class="alert">
+          💡 Además de lo técnico, la guía incluye la competencia transversal
+          <strong>230101507</strong> (hábitos saludables y actividad física) y
+          la competencia clave <strong>240202501</strong> (inglés, nivel B1.2+).
+          Estas se trabajan en paralelo, pero el eje central de la guía — y
+          donde vamos a enfocarnos ahora — es la parte técnica de base de datos
+          e interfaz.
+        </div>
+      </div>
+    </section>
 
-<!-- CARDINALIDAD -->
-<div class="slide">
-  <div class="sec-header">
-    <span class="sec-tag morado">Concepto 2</span>
-    <h2 class="sec-titulo">¿Qué es la cardinalidad?</h2>
-    <p class="sec-intro">La cardinalidad describe <strong>cuántas veces</strong> puede relacionarse un registro de
-    una entidad con registros de otra entidad. Es la regla de negocio detrás de la relación.</p>
-  </div>
+    <section
+      class="tab-panel"
+      id="panel-aa1"
+      role="tabpanel"
+      aria-labelledby="tab-aa1"
+      tabindex="0"
+      hidden
+    >
+      <!-- AA1 INTRO -->
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag naranja">Empezamos · AA1</span>
+          <h2 class="sec-titulo">
+            GA6-220501096-AA1 · Crear un modelo de base de datos
+          </h2>
+          <p class="sec-intro">
+            "Crear un modelo de base de datos, con base a los requerimientos del
+            cliente." Esta actividad busca que antes de escribir una sola línea
+            de SQL, sepas <strong>pensar los datos</strong>: qué entidades
+            existen, cómo se relacionan entre sí, y cómo evitar que la
+            información quede duplicada o inconsistente.
+          </p>
+        </div>
+        <table class="comparativa">
+          <tr>
+            <th>Evidencia</th>
+            <th>Qué pide</th>
+          </tr>
+          <tr>
+            <td>EV01</td>
+            <td>
+              Resolución de problemas aplicando el modelo relacional,
+              cardinalidad y normalización
+            </td>
+          </tr>
+          <tr>
+            <td>EV02</td>
+            <td>
+              Elaboración del modelo entidad-relación (MER) de un caso propuesto
+            </td>
+          </tr>
+          <tr>
+            <td>EV03</td>
+            <td>
+              Creación de objetos en una base de datos no relacional (estructura
+              de un documento JSON)
+            </td>
+          </tr>
+          <tr>
+            <td>EV04</td>
+            <td>Elaboración de una base de datos en MongoDB</td>
+          </tr>
+        </table>
+      </div>
 
-  <div class="grid-3">
-    <div class="tarjeta">
-      <h4>1 : 1 (uno a uno)</h4>
-      <p>Un registro de A se relaciona con exactamente un registro de B, y viceversa.</p>
-      <p style="margin-top:8px; color:#9be78a;">Ej: un Cliente tiene una única Cuenta de fidelización.</p>
-    </div>
-    <div class="tarjeta">
-      <h4>1 : N (uno a muchos)</h4>
-      <p>Un registro de A se relaciona con varios de B, pero cada B solo pertenece a un A.</p>
-      <p style="margin-top:8px; color:#9be78a;">Ej: un Cliente hace muchos Pedidos, pero cada Pedido es de un solo Cliente.</p>
-    </div>
-    <div class="tarjeta">
-      <h4>N : M (muchos a muchos)</h4>
-      <p>Varios registros de A se relacionan con varios de B. Se resuelve con una tabla intermedia.</p>
-      <p style="margin-top:8px; color:#9be78a;">Ej: un Pedido puede tener muchos Productos, y un Producto aparece en muchos Pedidos.</p>
-    </div>
-  </div>
+      <!-- MODELO RELACIONAL -->
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag azul">Concepto 1</span>
+          <h2 class="sec-titulo">¿Qué es el modelo relacional?</h2>
+          <p class="sec-intro">
+            Es una forma de organizar la información en
+            <strong>tablas</strong> (también llamadas relaciones). Cada tabla
+            representa una entidad del mundo real (un cliente, un producto, un
+            pedido), cada columna es un atributo, y cada fila es un registro
+            concreto.
+          </p>
+        </div>
 
-  <div class="explicacion naranja" style="margin-top:20px;">
-    <h4>🍔 Aplicado a Fast Food Paradise</h4>
-    <p><strong>Cliente → Pedido</strong> es <strong>1:N</strong> (un cliente hace muchos pedidos).<br>
-    <strong>Pedido → Producto</strong> en realidad es <strong>N:M</strong> (un pedido puede llevar varios productos
-    —una hamburguesa y una gaseosa— y un mismo producto, como la gaseosa, aparece en muchos pedidos distintos).
-    Para resolver ese N:M se crea una tabla intermedia, por ejemplo <strong>Detalle_Pedido</strong>, que guarda
-    id_pedido + id_producto + cantidad.</p>
-  </div>
-</div>
+        <div class="explicacion">
+          <h4>🧱 Las piezas básicas de una tabla</h4>
+          <p>
+            <strong>Entidad</strong> → se convierte en una tabla (ej: Cliente,
+            Producto).<br />
+            <strong>Atributo</strong> → se convierte en una columna (ej: nombre,
+            precio).<br />
+            <strong>Llave primaria (PK)</strong> → columna que identifica de
+            forma única cada fila (ej: id_producto).<br />
+            <strong>Llave foránea (FK)</strong> → columna que apunta a la llave
+            primaria de otra tabla, y es lo que crea la relación entre ambas.
+          </p>
+        </div>
 
-<!-- NORMALIZACION -->
-<div class="slide">
-  <div class="sec-header">
-    <span class="sec-tag">Concepto 3</span>
-    <h2 class="sec-titulo">¿Qué es la normalización?</h2>
-    <p class="sec-intro">Es el proceso de organizar las tablas para <strong>eliminar redundancia</strong> (datos
-    repetidos) e <strong>inconsistencias</strong>. Se aplica por niveles llamados "formas normales".</p>
-  </div>
+        <div class="alert">
+          🍔
+          <strong>Ejemplo aplicado a tu proyecto "Fast Food Paradise":</strong>
+          en vez de guardar todo en una sola tabla gigante donde se repite el
+          nombre del cliente en cada pedido, separamos la información en tres
+          entidades relacionadas: <strong>Clientes</strong>,
+          <strong>Productos</strong> y <strong>Pedidos</strong>.
+        </div>
 
-  <div class="pasos">
-    <li class="paso">
-      <h4>1FN — Primera Forma Normal</h4>
-      <p>Cada columna debe tener un solo valor (atómico), y no deben existir columnas repetidas o listas dentro
-      de una celda. Nada de guardar "hamburguesa, gaseosa, papas" en una sola casilla.</p>
-    </li>
-    <li class="paso">
-      <h4>2FN — Segunda Forma Normal</h4>
-      <p>Cumple 1FN, y además cada columna que no es llave debe depender de <strong>toda</strong> la llave primaria,
-      no solo de una parte (esto aplica cuando la llave primaria tiene varias columnas).</p>
-    </li>
-    <li class="paso">
-      <h4>3FN — Tercera Forma Normal</h4>
-      <p>Cumple 2FN, y además ninguna columna que no es llave puede depender de otra columna que tampoco es llave
-      (sin dependencias transitivas).</p>
-    </li>
-  </div>
+        <div class="bloque-codigo">
+          <div class="linea-codigo">
+            <div class="codigo-texto">
+              <span class="comment">-- Tabla Clientes</span>
+              <span class="tag">id_cliente</span>
+              <span class="val">INT PK</span> <span class="tag">nombre</span>
+              <span class="val">VARCHAR(80)</span>
+              <span class="tag">telefono</span>
+              <span class="val">VARCHAR(15)</span>
+              <span class="tag">direccion</span>
+              <span class="val">VARCHAR(120)</span>
+            </div>
+          </div>
+          <div class="linea-codigo naranja">
+            <div class="codigo-texto">
+              <span class="comment">-- Tabla Productos</span>
+              <span class="tag">id_producto</span>
+              <span class="val">INT PK</span> <span class="tag">nombre</span>
+              <span class="val">VARCHAR(60)</span>
+              <span class="tag">precio</span>
+              <span class="val">DECIMAL(10,2)</span>
+              <span class="tag">categoria</span>
+              <span class="val">VARCHAR(40)</span>
+            </div>
+          </div>
+          <div class="linea-codigo azul">
+            <div class="codigo-texto">
+              <span class="comment"
+                >-- Tabla Pedidos (une a las otras dos)</span
+              >
+              <span class="tag">id_pedido</span> <span class="val">INT PK</span>
+              <span class="attr">id_cliente</span>
+              <span class="val">INT FK</span>
+              <span class="comment">→ referencia a Clientes</span>
+              <span class="attr">id_producto</span>
+              <span class="val">INT FK</span>
+              <span class="comment">→ referencia a Productos</span>
+              <span class="tag">cantidad</span> <span class="val">INT</span>
+              <span class="tag">fecha</span> <span class="val">DATE</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <div class="alert">🍔 <strong>Ejemplo antes y después, con tu proyecto:</strong></div>
+      <!-- CARDINALIDAD -->
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag morado">Concepto 2</span>
+          <h2 class="sec-titulo">¿Qué es la cardinalidad?</h2>
+          <p class="sec-intro">
+            La cardinalidad describe <strong>cuántas veces</strong> puede
+            relacionarse un registro de una entidad con registros de otra
+            entidad. Es la regla de negocio detrás de la relación.
+          </p>
+        </div>
 
-  <div class="norm-tabla">
-    <div class="titulo">❌ SIN normalizar (una sola tabla "Pedido")</div>
-    <table class="propiedades">
-      <tr><th>id_pedido</th><th>cliente</th><th>telefono_cliente</th><th>productos</th></tr>
-      <tr><td>1</td><td>Ana Pérez</td><td>3001234567</td><td>Hamburguesa, Gaseosa</td></tr>
-      <tr><td>2</td><td>Ana Pérez</td><td>3001234567</td><td>Papas</td></tr>
-    </table>
-    <p style="font-size:12.8px; color:var(--texto-dim); margin-top:6px;">⚠️ El teléfono de Ana se repite en cada
-    pedido (redundancia) y la columna "productos" guarda varios valores en una celda (viola 1FN).</p>
-  </div>
+        <div class="grid-3">
+          <div class="tarjeta">
+            <h4>1 : 1 (uno a uno)</h4>
+            <p>
+              Un registro de A se relaciona con exactamente un registro de B, y
+              viceversa.
+            </p>
+            <p style="margin-top: 8px; color: #9be78a">
+              Ej: un Cliente tiene una única Cuenta de fidelización.
+            </p>
+          </div>
+          <div class="tarjeta">
+            <h4>1 : N (uno a muchos)</h4>
+            <p>
+              Un registro de A se relaciona con varios de B, pero cada B solo
+              pertenece a un A.
+            </p>
+            <p style="margin-top: 8px; color: #9be78a">
+              Ej: un Cliente hace muchos Pedidos, pero cada Pedido es de un solo
+              Cliente.
+            </p>
+          </div>
+          <div class="tarjeta">
+            <h4>N : M (muchos a muchos)</h4>
+            <p>
+              Varios registros de A se relacionan con varios de B. Se resuelve
+              con una tabla intermedia.
+            </p>
+            <p style="margin-top: 8px; color: #9be78a">
+              Ej: un Pedido puede tener muchos Productos, y un Producto aparece
+              en muchos Pedidos.
+            </p>
+          </div>
+        </div>
 
-  <div class="norm-tabla">
-    <div class="titulo">✅ Normalizada (3 tablas relacionadas)</div>
-    <table class="propiedades">
-      <tr><th>Clientes</th><th>Pedidos</th><th>Detalle_Pedido</th></tr>
-      <tr><td>id_cliente, nombre, telefono</td><td>id_pedido, id_cliente, fecha</td><td>id_pedido, id_producto, cantidad</td></tr>
-    </table>
-    <p style="font-size:12.8px; color:var(--texto-dim); margin-top:6px;">✔ El teléfono de Ana se guarda una sola
-    vez. Cada pedido puede tener varios productos sin repetir filas innecesarias.</p>
-  </div>
-</div>
+        <div class="explicacion naranja" style="margin-top: 20px">
+          <h4>🍔 Aplicado a Fast Food Paradise</h4>
+          <p>
+            <strong>Cliente → Pedido</strong> es <strong>1:N</strong> (un
+            cliente hace muchos pedidos).<br />
+            <strong>Pedido → Producto</strong> en realidad es
+            <strong>N:M</strong> (un pedido puede llevar varios productos —una
+            hamburguesa y una gaseosa— y un mismo producto, como la gaseosa,
+            aparece en muchos pedidos distintos). Para resolver ese N:M se crea
+            una tabla intermedia, por ejemplo <strong>Detalle_Pedido</strong>,
+            que guarda id_pedido + id_producto + cantidad.
+          </p>
+        </div>
+      </div>
 
-<!-- MER -->
-<div class="slide">
-  <div class="sec-header">
-    <span class="sec-tag azul">Concepto 4</span>
-    <h2 class="sec-titulo">Modelo Entidad-Relación (MER)</h2>
-    <p class="sec-intro">Es el diagrama que representa visualmente las entidades, sus atributos y cómo se conectan
-    entre sí mediante cardinalidades. Es el paso previo a crear las tablas en el SMBD (eso lo harás en AA2).</p>
-  </div>
+      <!-- NORMALIZACION -->
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag">Concepto 3</span>
+          <h2 class="sec-titulo">¿Qué es la normalización?</h2>
+          <p class="sec-intro">
+            Es el proceso de organizar las tablas para
+            <strong>eliminar redundancia</strong> (datos repetidos) e
+            <strong>inconsistencias</strong>. Se aplica por niveles llamados
+            "formas normales".
+          </p>
+        </div>
 
-  <div class="mer-wrap">
-    <div class="mer-entidad verde">
-      <div class="mer-titulo">CLIENTE</div>
-      <ul>
-        <li class="pk">🔑 id_cliente</li>
-        <li>nombre</li>
-        <li>telefono</li>
-        <li>direccion</li>
-      </ul>
-    </div>
-    <div class="mer-cardinalidad">
-      <div>1</div>
-      <div class="linea"></div>
-      <div>N</div>
-    </div>
-    <div class="mer-entidad">
-      <div class="mer-titulo">PEDIDO</div>
-      <ul>
-        <li class="pk">🔑 id_pedido</li>
-        <li class="fk">⤷ id_cliente</li>
-        <li>fecha</li>
-      </ul>
-    </div>
-    <div class="mer-cardinalidad">
-      <div>1</div>
-      <div class="linea"></div>
-      <div>N</div>
-    </div>
-    <div class="mer-entidad naranja">
-      <div class="mer-titulo">DETALLE_PEDIDO</div>
-      <ul>
-        <li class="fk">⤷ id_pedido</li>
-        <li class="fk">⤷ id_producto</li>
-        <li>cantidad</li>
-      </ul>
-    </div>
-    <div class="mer-cardinalidad">
-      <div>N</div>
-      <div class="linea"></div>
-      <div>1</div>
-    </div>
-    <div class="mer-entidad verde">
-      <div class="mer-titulo">PRODUCTO</div>
-      <ul>
-        <li class="pk">🔑 id_producto</li>
-        <li>nombre</li>
-        <li>precio</li>
-        <li>categoria</li>
-      </ul>
-    </div>
-  </div>
+        <div class="pasos">
+          <li class="paso">
+            <h4>1FN — Primera Forma Normal</h4>
+            <p>
+              Cada columna debe tener un solo valor (atómico), y no deben
+              existir columnas repetidas o listas dentro de una celda. Nada de
+              guardar "hamburguesa, gaseosa, papas" en una sola casilla.
+            </p>
+          </li>
+          <li class="paso">
+            <h4>2FN — Segunda Forma Normal</h4>
+            <p>
+              Cumple 1FN, y además cada columna que no es llave debe depender de
+              <strong>toda</strong> la llave primaria, no solo de una parte
+              (esto aplica cuando la llave primaria tiene varias columnas).
+            </p>
+          </li>
+          <li class="paso">
+            <h4>3FN — Tercera Forma Normal</h4>
+            <p>
+              Cumple 2FN, y además ninguna columna que no es llave puede
+              depender de otra columna que tampoco es llave (sin dependencias
+              transitivas).
+            </p>
+          </li>
+        </div>
 
-  <div class="explicacion">
-    <h4>📖 Cómo leer este diagrama</h4>
-    <p>Un <strong>Cliente (1)</strong> puede hacer <strong>muchos (N) Pedidos</strong>. Cada <strong>Pedido (1)</strong>
-    puede tener <strong>muchas (N) líneas en Detalle_Pedido</strong>, y cada línea apunta a <strong>un (1) Producto</strong>
-    — así se resuelve de forma limpia la relación N:M entre Pedido y Producto que vimos en el concepto de cardinalidad.</p>
-  </div>
-</div>
+        <div class="alert">
+          🍔 <strong>Ejemplo antes y después, con tu proyecto:</strong>
+        </div>
 
-<!-- NOSQL -->
-<div class="slide">
-  <div class="sec-header">
-    <span class="sec-tag morado">Concepto 5</span>
-    <h2 class="sec-titulo">Bases de datos NoSQL y MongoDB</h2>
-    <p class="sec-intro">No todo se modela en tablas. Una base de datos <strong>NoSQL</strong> como MongoDB guarda
-    la información en <strong>documentos</strong> con formato JSON, agrupados en <strong>colecciones</strong>
-    (el equivalente a una tabla, pero flexible: no todos los documentos tienen que tener las mismas columnas).</p>
-  </div>
+        <div class="norm-tabla">
+          <div class="titulo">❌ SIN normalizar (una sola tabla "Pedido")</div>
+          <table class="propiedades">
+            <tr>
+              <th>id_pedido</th>
+              <th>cliente</th>
+              <th>telefono_cliente</th>
+              <th>productos</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Ana Pérez</td>
+              <td>3001234567</td>
+              <td>Hamburguesa, Gaseosa</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Ana Pérez</td>
+              <td>3001234567</td>
+              <td>Papas</td>
+            </tr>
+          </table>
+          <p
+            style="font-size: 12.8px; color: var(--texto-dim); margin-top: 6px"
+          >
+            ⚠️ El teléfono de Ana se repite en cada pedido (redundancia) y la
+            columna "productos" guarda varios valores en una celda (viola 1FN).
+          </p>
+        </div>
 
-  <table class="comparativa">
-    <tr><th>Relacional (SQL)</th><th>No relacional (MongoDB)</th></tr>
-    <tr><td>Base de datos</td><td>Base de datos</td></tr>
-    <tr><td>Tabla</td><td>Colección</td></tr>
-    <tr><td>Fila / registro</td><td>Documento (JSON)</td></tr>
-    <tr><td>Columna</td><td>Campo (field)</td></tr>
-    <tr><td>Llave primaria (id)</td><td>_id (generado automáticamente)</td></tr>
-  </table>
+        <div class="norm-tabla">
+          <div class="titulo">✅ Normalizada (3 tablas relacionadas)</div>
+          <table class="propiedades">
+            <tr>
+              <th>Clientes</th>
+              <th>Pedidos</th>
+              <th>Detalle_Pedido</th>
+            </tr>
+            <tr>
+              <td>id_cliente, nombre, telefono</td>
+              <td>id_pedido, id_cliente, fecha</td>
+              <td>id_pedido, id_producto, cantidad</td>
+            </tr>
+          </table>
+          <p
+            style="font-size: 12.8px; color: var(--texto-dim); margin-top: 6px"
+          >
+            ✔ El teléfono de Ana se guarda una sola vez. Cada pedido puede tener
+            varios productos sin repetir filas innecesarias.
+          </p>
+        </div>
+      </div>
 
-  <div class="alert">🍔 <strong>Ejemplo:</strong> así se vería un producto de Fast Food Paradise como documento
-  dentro de una colección <code>productos</code> en MongoDB:</div>
+      <!-- MER -->
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag azul">Concepto 4</span>
+          <h2 class="sec-titulo">Modelo Entidad-Relación (MER)</h2>
+          <p class="sec-intro">
+            Es el diagrama que representa visualmente las entidades, sus
+            atributos y cómo se conectan entre sí mediante cardinalidades. Es el
+            paso previo a crear las tablas en el SMBD (eso lo harás en AA2).
+          </p>
+        </div>
 
-  <div class="bloque-codigo">
-    <div class="linea-codigo morado">
-      <div class="codigo-texto">{
-  <span class="attr">"_id"</span>: <span class="val">"6523af9b"</span>,
-  <span class="attr">"nombre"</span>: <span class="val">"Hamburguesa Clásica"</span>,
-  <span class="attr">"precio"</span>: <span class="val">9000</span>,
-  <span class="attr">"categoria"</span>: <span class="val">"hamburguesas"</span>,
-  <span class="attr">"disponible"</span>: <span class="val">true</span>,
-  <span class="attr">"ingredientes"</span>: [<span class="val">"pan"</span>, <span class="val">"carne"</span>, <span class="val">"queso"</span>, <span class="val">"lechuga"</span>]
-}</div>
-    </div>
-  </div>
+        <div class="mer-wrap">
+          <div class="mer-entidad verde">
+            <div class="mer-titulo">CLIENTE</div>
+            <ul>
+              <li class="pk">🔑 id_cliente</li>
+              <li>nombre</li>
+              <li>telefono</li>
+              <li>direccion</li>
+            </ul>
+          </div>
+          <div class="mer-cardinalidad">
+            <div>1</div>
+            <div class="linea"></div>
+            <div>N</div>
+          </div>
+          <div class="mer-entidad">
+            <div class="mer-titulo">PEDIDO</div>
+            <ul>
+              <li class="pk">🔑 id_pedido</li>
+              <li class="fk">⤷ id_cliente</li>
+              <li>fecha</li>
+            </ul>
+          </div>
+          <div class="mer-cardinalidad">
+            <div>1</div>
+            <div class="linea"></div>
+            <div>N</div>
+          </div>
+          <div class="mer-entidad naranja">
+            <div class="mer-titulo">DETALLE_PEDIDO</div>
+            <ul>
+              <li class="fk">⤷ id_pedido</li>
+              <li class="fk">⤷ id_producto</li>
+              <li>cantidad</li>
+            </ul>
+          </div>
+          <div class="mer-cardinalidad">
+            <div>N</div>
+            <div class="linea"></div>
+            <div>1</div>
+          </div>
+          <div class="mer-entidad verde">
+            <div class="mer-titulo">PRODUCTO</div>
+            <ul>
+              <li class="pk">🔑 id_producto</li>
+              <li>nombre</li>
+              <li>precio</li>
+              <li>categoria</li>
+            </ul>
+          </div>
+        </div>
 
-  <div class="explicacion azul">
-    <h4>💡 ¿Por qué aquí sí podemos meter una lista en un campo?</h4>
-    <p>A diferencia del modelo relacional (donde eso violaba la 1FN), en NoSQL es normal y está permitido anidar
-    listas o incluso documentos dentro de otros — por eso se dice que MongoDB es un modelo "orientado a documentos",
-    pensado para datos flexibles que no siempre tienen la misma forma.</p>
-  </div>
-</div>
+        <div class="explicacion">
+          <h4>📖 Cómo leer este diagrama</h4>
+          <p>
+            Un <strong>Cliente (1)</strong> puede hacer
+            <strong>muchos (N) Pedidos</strong>. Cada
+            <strong>Pedido (1)</strong> puede tener
+            <strong>muchas (N) líneas en Detalle_Pedido</strong>, y cada línea
+            apunta a <strong>un (1) Producto</strong> — así se resuelve de forma
+            limpia la relación N:M entre Pedido y Producto que vimos en el
+            concepto de cardinalidad.
+          </p>
+        </div>
+      </div>
 
-<!-- CIERRE -->
-<div class="slide">
-  <div class="sec-header">
-    <span class="sec-tag">Para entregar</span>
-    <h2 class="sec-titulo">Checklist de AA1</h2>
-    <p class="sec-intro">Con estos 5 conceptos ya tienes lo necesario para resolver las 4 evidencias de la actividad:</p>
-  </div>
-  <ul class="entrega-list">
-    <li>EV01 — Resolver el caso aplicando modelo relacional, identificando entidades, atributos, PK/FK</li>
-    <li>EV01 — Definir la cardinalidad correcta de cada relación (1:1, 1:N, N:M) y resolver los N:M con tabla intermedia</li>
-    <li>EV01 — Normalizar las tablas hasta 3FN, mostrando el antes y el después</li>
-    <li>EV02 — Dibujar el Modelo Entidad-Relación completo del caso propuesto</li>
-    <li>EV03 — Diseñar la estructura de un documento JSON para un objeto del caso no relacional</li>
-    <li>EV04 — Crear la base de datos en MongoDB con al menos una colección y documentos de ejemplo</li>
-  </ul>
-  <div class="alert">➡️ Cuando quieras, seguimos con <strong>AA2 — Manipular datos en el SMBD</strong> (DDL y DML con
-  MySQL Workbench) para pasar este modelo a tablas reales.</div>
-</div>
+      <!-- NOSQL -->
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag morado">Concepto 5</span>
+          <h2 class="sec-titulo">Bases de datos NoSQL y MongoDB</h2>
+          <p class="sec-intro">
+            No todo se modela en tablas. Una base de datos
+            <strong>NoSQL</strong> como MongoDB guarda la información en
+            <strong>documentos</strong> con formato JSON, agrupados en
+            <strong>colecciones</strong> (el equivalente a una tabla, pero
+            flexible: no todos los documentos tienen que tener las mismas
+            columnas).
+          </p>
+        </div>
 
-<footer>Guía de Aprendizaje 6 · 220501096 · Análisis y Desarrollo de Software · SENA</footer>
+        <table class="comparativa">
+          <tr>
+            <th>Relacional (SQL)</th>
+            <th>No relacional (MongoDB)</th>
+          </tr>
+          <tr>
+            <td>Base de datos</td>
+            <td>Base de datos</td>
+          </tr>
+          <tr>
+            <td>Tabla</td>
+            <td>Colección</td>
+          </tr>
+          <tr>
+            <td>Fila / registro</td>
+            <td>Documento (JSON)</td>
+          </tr>
+          <tr>
+            <td>Columna</td>
+            <td>Campo (field)</td>
+          </tr>
+          <tr>
+            <td>Llave primaria (id)</td>
+            <td>_id (generado automáticamente)</td>
+          </tr>
+        </table>
 
-</body>
+        <div class="alert">
+          🍔 <strong>Ejemplo:</strong> así se vería un producto de Fast Food
+          Paradise como documento dentro de una colección
+          <code>productos</code> en MongoDB:
+        </div>
+
+        <div class="bloque-codigo">
+          <div class="linea-codigo morado">
+            <div class="codigo-texto">
+              { <span class="attr">"_id"</span>:
+              <span class="val">"6523af9b"</span>,
+              <span class="attr">"nombre"</span>:
+              <span class="val">"Hamburguesa Clásica"</span>,
+              <span class="attr">"precio"</span>: <span class="val">9000</span>,
+              <span class="attr">"categoria"</span>:
+              <span class="val">"hamburguesas"</span>,
+              <span class="attr">"disponible"</span>:
+              <span class="val">true</span>,
+              <span class="attr">"ingredientes"</span>: [<span class="val"
+                >"pan"</span
+              >, <span class="val">"carne"</span>,
+              <span class="val">"queso"</span>,
+              <span class="val">"lechuga"</span>] }
+            </div>
+          </div>
+        </div>
+
+        <div class="explicacion azul">
+          <h4>💡 ¿Por qué aquí sí podemos meter una lista en un campo?</h4>
+          <p>
+            A diferencia del modelo relacional (donde eso violaba la 1FN), en
+            NoSQL es normal y está permitido anidar listas o incluso documentos
+            dentro de otros — por eso se dice que MongoDB es un modelo
+            "orientado a documentos", pensado para datos flexibles que no
+            siempre tienen la misma forma.
+          </p>
+        </div>
+      </div>
+
+      <!-- CIERRE -->
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag">Para entregar</span>
+          <h2 class="sec-titulo">Checklist de AA1</h2>
+          <p class="sec-intro">
+            Con estos 5 conceptos ya tienes lo necesario para resolver las 4
+            evidencias de la actividad:
+          </p>
+        </div>
+        <ul class="entrega-list">
+          <li>
+            EV01 — Resolver el caso aplicando modelo relacional, identificando
+            entidades, atributos, PK/FK
+          </li>
+          <li>
+            EV01 — Definir la cardinalidad correcta de cada relación (1:1, 1:N,
+            N:M) y resolver los N:M con tabla intermedia
+          </li>
+          <li>
+            EV01 — Normalizar las tablas hasta 3FN, mostrando el antes y el
+            después
+          </li>
+          <li>
+            EV02 — Dibujar el Modelo Entidad-Relación completo del caso
+            propuesto
+          </li>
+          <li>
+            EV03 — Diseñar la estructura de un documento JSON para un objeto del
+            caso no relacional
+          </li>
+          <li>
+            EV04 — Crear la base de datos en MongoDB con al menos una colección
+            y documentos de ejemplo
+          </li>
+        </ul>
+        <div class="alert">
+          ➡️ Cuando quieras, seguimos con
+          <strong>AA2 — Manipular datos en el SMBD</strong> (DDL y DML con MySQL
+          Workbench) para pasar este modelo a tablas reales.
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="tab-panel"
+      id="panel-ev03"
+      role="tabpanel"
+      aria-labelledby="tab-ev03"
+      tabindex="0"
+      hidden
+    >
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag naranja">GA6-220501096-AA1-EV03</span>
+          <h2 class="sec-titulo">Motores de bases de datos no relacionales</h2>
+          <p class="sec-intro">
+            Un motor NoSQL almacena y consulta datos con modelos distintos al de
+            tablas relacionadas por filas y columnas. Se elige según el tipo de
+            información, las consultas y las necesidades del sistema; NoSQL
+            significa "no solo SQL", no "sin consultas".
+          </p>
+        </div>
+
+        <div class="grid-4">
+          <div class="tarjeta">
+            <h4>Documentos</h4>
+            <p>
+              Agrupan campos en documentos flexibles, parecidos a JSON.
+              Ejemplos: MongoDB y CouchDB. Útiles para catálogos, perfiles y
+              datos que cambian de estructura.
+            </p>
+          </div>
+          <div class="tarjeta">
+            <h4>Clave-valor</h4>
+            <p>
+              Guardan cada valor asociado a una clave única. Ejemplos: Redis y
+              Amazon DynamoDB. Se usan en caché, sesiones y búsquedas rápidas
+              por clave.
+            </p>
+          </div>
+          <div class="tarjeta">
+            <h4>Familias de columnas</h4>
+            <p>
+              Organizan grandes volúmenes por columnas y distribuyen la carga.
+              Ejemplos: Apache Cassandra y HBase. Se aplican en registros de
+              eventos y series de tiempo.
+            </p>
+          </div>
+          <div class="tarjeta">
+            <h4>Grafos</h4>
+            <p>
+              Representan entidades como nodos y sus conexiones como relaciones.
+              Ejemplo: Neo4j. Son útiles para redes sociales, rutas y
+              recomendaciones.
+            </p>
+          </div>
+        </div>
+
+        <div class="explicacion azul" style="margin-top: 22px">
+          <h4>¿Cómo funcionan?</h4>
+          <p>
+            La aplicación envía operaciones al motor para guardar, buscar,
+            actualizar o eliminar datos. Cada familia optimiza una forma de
+            acceso diferente. Muchos motores permiten distribuir datos entre
+            servidores, pero la estructura, consistencia y escalabilidad se
+            configuran según cada producto y caso de uso.
+          </p>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag azul">Enfoque principal</span>
+          <h2 class="sec-titulo">MongoDB, Compass y Atlas</h2>
+          <p class="sec-intro">
+            MongoDB es un motor NoSQL orientado a documentos. Guarda documentos
+            BSON, que representan datos con una estructura similar a JSON, y los
+            organiza en colecciones.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="tarjeta">
+            <h4>MongoDB</h4>
+            <p>
+              Es el sistema de base de datos. Su jerarquía es
+              <strong>base de datos → colección → documento</strong>. Cada
+              documento tiene un identificador único <code>_id</code> y puede
+              contener campos anidados.
+            </p>
+          </div>
+          <div class="tarjeta">
+            <h4>MongoDB Compass</h4>
+            <p>
+              Es la aplicación visual de escritorio para conectarse a MongoDB.
+              Permite explorar bases y colecciones, ver documentos, aplicar
+              filtros y ejecutar consultas sin escribir cada operación en la
+              terminal.
+            </p>
+          </div>
+          <div class="tarjeta">
+            <h4>MongoDB Atlas</h4>
+            <p>
+              Es el servicio en la nube administrado de MongoDB. Allí se crean
+              clústeres y usuarios, y se controlan las direcciones autorizadas.
+              Compass y <code>mongosh</code> pueden conectarse a un clúster
+              Atlas usando su URI.
+            </p>
+          </div>
+        </div>
+
+        <table class="comparativa">
+          <tr>
+            <th>Concepto relacional</th>
+            <th>Equivalente en MongoDB</th>
+          </tr>
+          <tr>
+            <td>Base de datos</td>
+            <td>Base de datos</td>
+          </tr>
+          <tr>
+            <td>Tabla</td>
+            <td>Colección</td>
+          </tr>
+          <tr>
+            <td>Fila o registro</td>
+            <td>Documento BSON (similar a JSON)</td>
+          </tr>
+          <tr>
+            <td>Columna</td>
+            <td>Campo</td>
+          </tr>
+          <tr>
+            <td>Llave primaria</td>
+            <td><code>_id</code></td>
+          </tr>
+        </table>
+
+        <div class="alert">
+          Compass es un cliente gráfico y Atlas es un servicio administrado en
+          la nube: no son el mismo producto que el motor MongoDB. Protege las
+          credenciales y no publiques la URI de conexión ni contraseñas.
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag morado">Comandos principales</span>
+          <h2 class="sec-titulo">Operaciones de MongoDB con mongosh</h2>
+          <p class="sec-intro">
+            <code>mongosh</code> es la consola interactiva para conectarse a un
+            servidor MongoDB y ejecutar comandos sobre bases de datos y
+            colecciones.
+          </p>
+        </div>
+
+        <div class="bloque-codigo">
+          <div class="linea-codigo morado">
+            <pre
+              class="codigo-texto"
+            ><code>show dbs                              // Listar bases de datos
+use vehiculos                          // Seleccionar o preparar una base
+show collections                       // Listar colecciones de la base actual
+db.createCollection("parque")          // Crear una colección
+db.parque.insertOne({ placa: "ABC123" }) // Insertar un documento
+db.parque.find({})                     // Consultar documentos
+db.parque.findOne({ placa: "ABC123" }) // Buscar un documento
+db.parque.updateOne(                   // Actualizar un documento
+  { placa: "ABC123" },
+  { $set: { kilometraje: 16000 } }
+)
+db.parque.deleteOne({ placa: "ABC123" }) // Eliminar un documento
+db.parque.countDocuments({})            // Contar documentos</code></pre>
+          </div>
+        </div>
+
+        <div class="explicacion">
+          <h4>Insertar varios documentos</h4>
+          <p>
+            <code>insertMany([ ... ])</code> agrega varios documentos en una
+            sola operación. En el ejemplo de EV03 se usa para registrar los
+            cinco vehículos solicitados.
+          </p>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag naranja">Ejemplo de la evidencia</span>
+          <h2 class="sec-titulo">
+            Crear objetos JSON para la colección parque
+          </h2>
+          <p class="sec-intro">
+            Cada vehículo es un documento con placa, número de serie, modelo,
+            marca, kilometraje y tipo. El siguiente ejemplo selecciona la base,
+            crea la colección, inserta cinco documentos, consulta y actualiza
+            uno por placa.
+          </p>
+        </div>
+
+        <div class="explicacion azul">
+          <h4>Estructura de un documento</h4>
+          <p>Este es un objeto de ejemplo antes de insertarlo en MongoDB:</p>
+        </div>
+
+        <div class="bloque-codigo">
+          <div class="linea-codigo azul">
+            <pre class="codigo-texto"><code>{
+  "placa": "ABC123",
+  "numeroSerie": "SN-2024-001",
+  "modelo": 2024,
+  "marca": "Toyota",
+  "kilometraje": 15200,
+  "tipo": "SUV"
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="bloque-codigo">
+          <div class="linea-codigo naranja">
+            <pre class="codigo-texto"><code>use vehiculos
+
+db.createCollection("parque")
+
+db.parque.insertMany([
+  { placa: "ABC123", numeroSerie: "SN-2024-001", modelo: 2024, marca: "Toyota", kilometraje: 15200, tipo: "SUV" },
+  { placa: "XYZ789", numeroSerie: "SN-2023-002", modelo: 2023, marca: "Renault", kilometraje: 28400, tipo: "Sedan" },
+  { placa: "JKL456", numeroSerie: "SN-2022-003", modelo: 2022, marca: "Chevrolet", kilometraje: 41700, tipo: "Camioneta" },
+  { placa: "MNP321", numeroSerie: "SN-2021-004", modelo: 2021, marca: "Mazda", kilometraje: 53600, tipo: "Hatchback" },
+  { placa: "RST654", numeroSerie: "SN-2020-005", modelo: 2020, marca: "Kia", kilometraje: 68900, tipo: "SUV" }
+])
+
+db.parque.find({})
+db.parque.findOne({ placa: "ABC123" })
+
+db.parque.updateOne(
+  { placa: "ABC123" },
+  { $set: { kilometraje: 16000 } }
+)</code></pre>
+          </div>
+        </div>
+
+        <div class="alert">
+          MongoDB crea automáticamente <code>_id</code> si no se incluye. En una
+          instalación nueva, <code>use vehiculos</code> selecciona la base; esta
+          queda persistida cuando se guarda el primer documento.
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Guía de Aprendizaje 6 · 220501096 · Análisis y Desarrollo de Software ·
+      SENA
+    </footer>
+
+    <script>
+      const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+
+      function activateTab(selectedTab, moveFocus = false) {
+        tabs.forEach((tab) => {
+          const isSelected = tab === selectedTab;
+          tab.setAttribute("aria-selected", String(isSelected));
+          tab.tabIndex = isSelected ? 0 : -1;
+          document.getElementById(tab.getAttribute("aria-controls")).hidden =
+            !isSelected;
+        });
+        if (moveFocus) selectedTab.focus();
+      }
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => activateTab(tab));
+        tab.addEventListener("keydown", (event) => {
+          let nextIndex;
+          if (event.key === "ArrowRight") nextIndex = (index + 1) % tabs.length;
+          if (event.key === "ArrowLeft")
+            nextIndex = (index - 1 + tabs.length) % tabs.length;
+          if (event.key === "Home") nextIndex = 0;
+          if (event.key === "End") nextIndex = tabs.length - 1;
+          if (nextIndex !== undefined) {
+            event.preventDefault();
+            activateTab(tabs[nextIndex], true);
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
