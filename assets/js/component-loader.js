@@ -14,4 +14,5 @@ export async function loadSharedComponents() {
       target.textContent = "No fue posible cargar este componente.";
     }
   }));
+  document.dispatchEvent(new CustomEvent("adso:componentsLoaded"));
 }

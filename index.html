@@ -3,26 +3,93 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Guía de Aprendizaje 6 del programa Análisis y Desarrollo de Software del SENA." />
-    <title>Guía 6 · AA1 Modelo de Base de Datos</title>
+    <meta
+      name="description"
+      content="ADSO Virtual del SENA CADPH Garzón: información del programa, formación y acceso a la Guía de Aprendizaje 6."
+    />
+    <title>ADSO Virtual · SENA CADPH Garzón</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/styles.css" />
-    <script type="module" src="assets/js/tabs.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css?v=8" />
   </head>
-  <body>
-    <div data-component="components/layout/header.html"></div>
-    <div class="tabs" role="tablist" aria-label="Secciones de la guía">
-      <button class="tab-button" id="tab-adso" type="button" role="tab" aria-selected="true" aria-controls="panel-adso" tabindex="0">Información GUIA APRENDIZAJE 6</button>
-      <button class="tab-button" id="tab-aa1" type="button" role="tab" aria-selected="false" aria-controls="panel-aa1" tabindex="-1">Actividad 1 · AA1</button>
-      <button class="tab-button" id="tab-ev03" type="button" role="tab" aria-selected="false" aria-controls="panel-ev03" tabindex="-1">EV03 · NoSQL</button>
-    </div>
-    <main>
-      <div class="tab-panel" id="panel-adso" role="tabpanel" aria-labelledby="tab-adso" tabindex="0" data-view="tab-adso.html"></div>
-      <div class="tab-panel" id="panel-aa1" role="tabpanel" aria-labelledby="tab-aa1" tabindex="0" data-view="tab-aa1.html" hidden></div>
-      <div class="tab-panel" id="panel-ev03" role="tabpanel" aria-labelledby="tab-ev03" tabindex="0" data-view="tab-ev03.html" hidden></div>
+  <body class="landing-body">
+    <a class="skip-link" href="#home-content">Saltar al contenido</a>
+    <header class="landing-header">
+      <a
+        class="landing-identity"
+        href="index.html"
+        aria-label="Inicio ADSO Virtual"
+      >
+        <img src="assets/img/logo-sena.svg" alt="SENA" />
+        <strong>CADPH</strong>
+        <span
+          >Centro Agroempresarial y Desarrollo Pecuario del Huila · Garzón</span
+        >
+      </a>
+      <a class="landing-header-cta" href="explorar.html">
+        Explorar ADSO <span aria-hidden="true">↗</span>
+      </a>
+    </header>
+    <main id="home-content">
+      <section class="landing-hero" aria-labelledby="home-title">
+        <div class="landing-hero-content">
+          <p class="landing-eyebrow">
+            <span>ADSO</span> FORMACIÓN TECNOLÓGICA · MODALIDAD VIRTUAL
+          </p>
+          <p class="landing-location">
+            SENA REGIONAL HUILA <span>·</span> SEDE GARZÓN
+          </p>
+          <h1 id="home-title">ADSO Virtual</h1>
+          <p class="landing-program">
+            Tecnólogo en Análisis y Desarrollo de Software
+          </p>
+          <p class="landing-description">
+            Un espacio de formación para aprender a analizar, diseñar y
+            construir soluciones de software. Aquí encontrarás las guías y
+            materiales de la ficha, comenzando por la Guía de Aprendizaje 6.
+          </p>
+          <div class="landing-actions">
+            <a class="landing-primary" href="explorar.html"
+              >Ingresar a Guía 6 <span aria-hidden="true">↗</span></a
+            >
+          </div>
+        </div>
+        <a class="landing-scroll" href="#current-guide"
+          ><span aria-hidden="true">↓</span> GUÍA EN CURSO</a
+        >
+      </section>
+      <section
+        class="landing-current"
+        id="current-guide"
+        aria-labelledby="current-guide-title"
+      >
+        <div>
+          <p class="current-eyebrow">
+            EN CURSO <span>·</span> FASE 3 · EJECUCIÓN
+          </p>
+          <h2 id="current-guide-title">Guía de Aprendizaje 6</h2>
+          <p>
+            Desarrollar la estructura de datos y la interfaz de usuario del
+            software.
+          </p>
+        </div>
+        <ul class="program-facts" aria-label="Datos del programa ADSO">
+          <li><strong>228118</strong><span>Código programa</span></li>
+          <li><strong>3.984</strong><span>Horas de formación</span></li>
+          <li><strong>4 fases</strong><span>Proyecto formativo</span></li>
+        </ul>
+        <a class="current-link" href="explorar.html"
+          >Abrir Guía 6 <span aria-hidden="true">→</span></a
+        >
+      </section>
     </main>
-    <div data-component="components/layout/footer.html"></div>
+    <footer class="landing-footer">
+      <span>SENA · CADPH Garzón · Huila</span>
+      <span>ADSO Virtual · Código 228118</span>
+    </footer>
   </body>
 </html>

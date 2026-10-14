@@ -1,0 +1,197 @@
+<article class="slide">
+  <header class="sec-header">
+    <span class="sec-tag naranja"
+      >GA6-220501096-AA1-EV04 · Evidencia de producto</span
+    >
+    <h2 class="sec-titulo">Elaboración de las bases de datos</h2>
+    <p class="sec-intro">
+      Crea y manipula en MongoDB la base de datos NoSQL construida a partir del
+      documento de la EV03. La evidencia solicita una colección
+      <code>parque</code>, cinco documentos, dos actualizaciones, consultas y la
+      eliminación de un registro.
+    </p>
+  </header>
+
+  <section class="explicacion azul" aria-labelledby="ev04-criterio">
+    <h3 id="ev04-criterio">Criterio de evaluación</h3>
+    <p>
+      Crea la base de datos integrando los objetos de acuerdo con la
+      funcionalidad del software. El producto solicitado por la guía es un
+      <strong>video MP4</strong>
+      que muestre la creación y manipulación de bases de datos NoSQL.
+    </p>
+  </section>
+
+  <section aria-labelledby="ev04-estructura">
+    <header class="sec-header">
+      <span class="sec-tag azul">Antes de comenzar</span>
+      <h3 class="sec-titulo" id="ev04-estructura">Estructura del ejercicio</h3>
+    </header>
+    <div class="grid-3">
+      <article class="tarjeta">
+        <h4>Base de datos</h4>
+        <p>
+          <code>vehiculos_ev04</code>. Nombre de ejemplo para mantener este
+          ejercicio aislado de los datos de EV03.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Colección</h4>
+        <p><code>parque</code>, tal como solicita la evidencia.</p>
+      </article>
+      <article class="tarjeta">
+        <h4>Documento</h4>
+        <p>
+          Placa, número de serie, modelo, marca, kilometraje y tipo, siguiendo
+          la estructura JSON de EV03.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="ev04-proceso">
+    <header class="sec-header">
+      <span class="sec-tag">Desarrollo en mongosh</span>
+      <h3 class="sec-titulo" id="ev04-proceso">
+        Proceso de creación y manipulación
+      </h3>
+      <p class="sec-intro">
+        Ejecuta los pasos en orden. Se usa una base nueva para evitar modificar
+        por accidente el trabajo previo de EV03.
+      </p>
+    </header>
+
+    <ol class="pasos">
+      <li class="paso">
+        <h4>Selecciona la base y crea la colección</h4>
+        <p>
+          MongoDB crea la base al crear la colección o guardar el primer
+          documento.
+        </p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo azul">
+            <pre class="codigo-texto"><code>use vehiculos_ev04
+db.createCollection("parque")</code></pre>
+          </div>
+        </div>
+      </li>
+      <li class="paso">
+        <h4>Inserta cinco documentos</h4>
+        <p>
+          Conserva los campos definidos para el vehículo en EV03. MongoDB asigna
+          un <code>_id</code> a cada documento.
+        </p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo">
+            <pre class="codigo-texto"><code>db.parque.insertMany([
+  { placa: "ABC123", numeroSerie: "SN-2024-001", modelo: 2024, marca: "Toyota", kilometraje: 15200, tipo: "SUV" },
+  { placa: "XYZ789", numeroSerie: "SN-2023-002", modelo: 2023, marca: "Renault", kilometraje: 28400, tipo: "Sedan" },
+  { placa: "JKL456", numeroSerie: "SN-2022-003", modelo: 2022, marca: "Chevrolet", kilometraje: 41700, tipo: "Camioneta" },
+  { placa: "MNP321", numeroSerie: "SN-2021-004", modelo: 2021, marca: "Mazda", kilometraje: 53600, tipo: "Hatchback" },
+  { placa: "RST654", numeroSerie: "SN-2020-005", modelo: 2020, marca: "Kia", kilometraje: 68900, tipo: "SUV" }
+])</code></pre>
+          </div>
+        </div>
+      </li>
+      <li class="paso">
+        <h4>Actualiza el primer y el último registro</h4>
+        <p>
+          Comprueba que cada respuesta indique <code>matchedCount: 1</code> y
+          <code>modifiedCount: 1</code>.
+        </p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo naranja">
+            <pre class="codigo-texto"><code>db.parque.updateOne(
+  { placa: "ABC123" },
+  { $set: { kilometraje: 16000 } }
+)
+
+db.parque.updateOne(
+  { placa: "RST654" },
+  { $set: { kilometraje: 72000 } }
+)</code></pre>
+          </div>
+        </div>
+      </li>
+      <li class="paso">
+        <h4>Lista la colección completa</h4>
+        <p>
+          Registra en el video el resultado con los cinco documentos y sus
+          valores actualizados.
+        </p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo azul">
+            <pre class="codigo-texto"><code>db.parque.find({})</code></pre>
+          </div>
+        </div>
+      </li>
+      <li class="paso">
+        <h4>Borra el tercer documento</h4>
+        <p>
+          En este conjunto de ejemplo, el tercero tiene la placa
+          <code>JKL456</code>. El filtro por placa evita borrar otro registro.
+        </p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo naranja">
+            <pre
+              class="codigo-texto"
+            ><code>db.parque.deleteOne({ placa: "JKL456" })</code></pre>
+          </div>
+        </div>
+      </li>
+      <li class="paso">
+        <h4>Vuelve a listar y comprueba la eliminación</h4>
+        <p>
+          La colección debe mostrar cuatro documentos; la respuesta de borrado
+          debe indicar <code>deletedCount: 1</code>.
+        </p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo azul">
+            <pre class="codigo-texto"><code>db.parque.find({})
+db.parque.countDocuments({})</code></pre>
+          </div>
+        </div>
+      </li>
+      <li class="paso">
+        <h4>Consulta por número de placa</h4>
+        <p>
+          La guía pide una sentencia que recupere un documento según la placa.
+        </p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo morado">
+            <pre
+              class="codigo-texto"
+            ><code>db.parque.findOne({ placa: "ABC123" })</code></pre>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="alert" aria-labelledby="ev04-video">
+    <h3 id="ev04-video">Lista de verificación para el video MP4</h3>
+    <ul class="entrega-list">
+      <li>Mostrar la base de datos y la colección <code>parque</code>.</li>
+      <li>
+        Evidenciar la inserción de cinco documentos con la estructura de EV03.
+      </li>
+      <li>
+        Mostrar la actualización del primero y el último, y la consulta de los
+        cinco.
+      </li>
+      <li>
+        Eliminar el tercero, volver a listar la colección y consultar un
+        documento por placa.
+      </li>
+      <li>
+        Verificar que la colección final tenga cuatro documentos y que las
+        operaciones se ejecutaron correctamente.
+      </li>
+    </ul>
+    <p>
+      La guía indica como producto un video de la creación y manipulación de
+      bases de datos NoSQL, en formato MP4. La extensión del video no está
+      especificada.
+    </p>
+  </section>
+</article>

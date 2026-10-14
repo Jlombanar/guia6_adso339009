@@ -1,0 +1,58 @@
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <p class="hero-eyebrow"><span>ADSO</span> SENA · FASE DE EJECUCIÓN</p>
+      <h1 id="hero-title">
+        Guía de Aprendizaje 6<span>Del modelo de datos a la interfaz</span>
+      </h1>
+      <p class="hero-summary">
+        Construye la estructura que sostiene el software: diseña bases de datos,
+        trabaja con MongoDB y crea componentes front-end de acuerdo con el
+        diseño.
+      </p>
+      <div class="hero-actions">
+        <a
+          class="button button-primary"
+          href="assets/docs/Guia_aprendizaje_6.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Consultar guía PDF <span aria-hidden="true">↗</span></a
+        >
+        <a class="button button-secondary" href="#guia"
+          >Explorar contenidos <span aria-hidden="true">↓</span></a
+        >
+      </div>
+      <div class="hero-facts" aria-label="Datos de la guía">
+        <div><strong>220501096</strong><span>Competencia técnica</span></div>
+        <div>
+          <strong>02 + 03</strong><span>Resultados de aprendizaje</span>
+        </div>
+        <div><strong>AA1 — AA4</strong><span>Ruta de actividades</span></div>
+      </div>
+    </div>
+    <figure class="hero-diagram" aria-labelledby="diagram-caption">
+      <div class="diagram-heading">
+        <span>VISTA DE LA GUÍA</span><span>AA1 · MODELO RELACIONAL</span>
+      </div>
+      <div class="model-flow">
+        <div class="model-entity">
+          <strong>CLIENTE</strong><span>PK · id_cliente</span
+          ><span>nombre</span>
+        </div>
+        <div class="model-link"><span>1</span><i></i><span>N</span></div>
+        <div class="model-entity model-entity-focus">
+          <strong>PEDIDO</strong><span>PK · id_pedido</span
+          ><span>FK · id_cliente</span>
+        </div>
+        <div class="model-link"><span>1</span><i></i><span>N</span></div>
+        <div class="model-entity">
+          <strong>DETALLE</strong><span>FK · id_pedido</span
+          ><span>FK · id_producto</span>
+        </div>
+      </div>
+      <figcaption id="diagram-caption">
+        De los requerimientos al modelo de datos
+      </figcaption>
+    </figure>
+  </div>
+</section>
