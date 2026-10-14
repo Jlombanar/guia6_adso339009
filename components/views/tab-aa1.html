@@ -1,0 +1,488 @@
+<!-- AA1 INTRO -->
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag naranja">Empezamos · AA1</span>
+          <h2 class="sec-titulo">
+            GA6-220501096-AA1 · Crear un modelo de base de datos
+          </h2>
+          <p class="sec-intro">
+            "Crear un modelo de base de datos, con base a los requerimientos del
+            cliente." Esta actividad busca que antes de escribir una sola línea
+            de SQL, sepas <strong>pensar los datos</strong>: qué entidades
+            existen, cómo se relacionan entre sí, y cómo evitar que la
+            información quede duplicada o inconsistente.
+          </p>
+        </div>
+        <table class="comparativa">
+          <tr>
+            <th>Evidencia</th>
+            <th>Qué pide</th>
+          </tr>
+          <tr>
+            <td>EV01</td>
+            <td>
+              Resolución de problemas aplicando el modelo relacional,
+              cardinalidad y normalización
+            </td>
+          </tr>
+          <tr>
+            <td>EV02</td>
+            <td>
+              Elaboración del modelo entidad-relación (MER) de un caso propuesto
+            </td>
+          </tr>
+          <tr>
+            <td>EV03</td>
+            <td>
+              Creación de objetos en una base de datos no relacional (estructura
+              de un documento JSON)
+            </td>
+          </tr>
+          <tr>
+            <td>EV04</td>
+            <td>Elaboración de una base de datos en MongoDB</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- MODELO RELACIONAL -->
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag azul">Concepto 1</span>
+          <h2 class="sec-titulo">¿Qué es el modelo relacional?</h2>
+          <p class="sec-intro">
+            Es una forma de organizar la información en
+            <strong>tablas</strong> (también llamadas relaciones). Cada tabla
+            representa una entidad del mundo real (un cliente, un producto, un
+            pedido), cada columna es un atributo, y cada fila es un registro
+            concreto.
+          </p>
+        </div>
+
+        <div class="explicacion">
+          <h4>🧱 Las piezas básicas de una tabla</h4>
+          <p>
+            <strong>Entidad</strong> → se convierte en una tabla (ej: Cliente,
+            Producto).<br />
+            <strong>Atributo</strong> → se convierte en una columna (ej: nombre,
+            precio).<br />
+            <strong>Llave primaria (PK)</strong> → columna que identifica de
+            forma única cada fila (ej: id_producto).<br />
+            <strong>Llave foránea (FK)</strong> → columna que apunta a la llave
+            primaria de otra tabla, y es lo que crea la relación entre ambas.
+          </p>
+        </div>
+
+        <div class="alert">
+          🍔
+          <strong>Ejemplo aplicado a tu proyecto "Fast Food Paradise":</strong>
+          en vez de guardar todo en una sola tabla gigante donde se repite el
+          nombre del cliente en cada pedido, separamos la información en tres
+          entidades relacionadas: <strong>Clientes</strong>,
+          <strong>Productos</strong> y <strong>Pedidos</strong>.
+        </div>
+
+        <div class="bloque-codigo">
+          <div class="linea-codigo">
+            <div class="codigo-texto">
+              <span class="comment">-- Tabla Clientes</span>
+              <span class="tag">id_cliente</span>
+              <span class="val">INT PK</span> <span class="tag">nombre</span>
+              <span class="val">VARCHAR(80)</span>
+              <span class="tag">telefono</span>
+              <span class="val">VARCHAR(15)</span>
+              <span class="tag">direccion</span>
+              <span class="val">VARCHAR(120)</span>
+            </div>
+          </div>
+          <div class="linea-codigo naranja">
+            <div class="codigo-texto">
+              <span class="comment">-- Tabla Productos</span>
+              <span class="tag">id_producto</span>
+              <span class="val">INT PK</span> <span class="tag">nombre</span>
+              <span class="val">VARCHAR(60)</span>
+              <span class="tag">precio</span>
+              <span class="val">DECIMAL(10,2)</span>
+              <span class="tag">categoria</span>
+              <span class="val">VARCHAR(40)</span>
+            </div>
+          </div>
+          <div class="linea-codigo azul">
+            <div class="codigo-texto">
+              <span class="comment"
+                >-- Tabla Pedidos (une a las otras dos)</span
+              >
+              <span class="tag">id_pedido</span> <span class="val">INT PK</span>
+              <span class="attr">id_cliente</span>
+              <span class="val">INT FK</span>
+              <span class="comment">→ referencia a Clientes</span>
+              <span class="attr">id_producto</span>
+              <span class="val">INT FK</span>
+              <span class="comment">→ referencia a Productos</span>
+              <span class="tag">cantidad</span> <span class="val">INT</span>
+              <span class="tag">fecha</span> <span class="val">DATE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARDINALIDAD -->
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag morado">Concepto 2</span>
+          <h2 class="sec-titulo">¿Qué es la cardinalidad?</h2>
+          <p class="sec-intro">
+            La cardinalidad describe <strong>cuántas veces</strong> puede
+            relacionarse un registro de una entidad con registros de otra
+            entidad. Es la regla de negocio detrás de la relación.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="tarjeta">
+            <h4>1 : 1 (uno a uno)</h4>
+            <p>
+              Un registro de A se relaciona con exactamente un registro de B, y
+              viceversa.
+            </p>
+            <p style="margin-top: 8px; color: #9be78a">
+              Ej: un Cliente tiene una única Cuenta de fidelización.
+            </p>
+          </div>
+          <div class="tarjeta">
+            <h4>1 : N (uno a muchos)</h4>
+            <p>
+              Un registro de A se relaciona con varios de B, pero cada B solo
+              pertenece a un A.
+            </p>
+            <p style="margin-top: 8px; color: #9be78a">
+              Ej: un Cliente hace muchos Pedidos, pero cada Pedido es de un solo
+              Cliente.
+            </p>
+          </div>
+          <div class="tarjeta">
+            <h4>N : M (muchos a muchos)</h4>
+            <p>
+              Varios registros de A se relacionan con varios de B. Se resuelve
+              con una tabla intermedia.
+            </p>
+            <p style="margin-top: 8px; color: #9be78a">
+              Ej: un Pedido puede tener muchos Productos, y un Producto aparece
+              en muchos Pedidos.
+            </p>
+          </div>
+        </div>
+
+        <div class="explicacion naranja" style="margin-top: 20px">
+          <h4>🍔 Aplicado a Fast Food Paradise</h4>
+          <p>
+            <strong>Cliente → Pedido</strong> es <strong>1:N</strong> (un
+            cliente hace muchos pedidos).<br />
+            <strong>Pedido → Producto</strong> en realidad es
+            <strong>N:M</strong> (un pedido puede llevar varios productos —una
+            hamburguesa y una gaseosa— y un mismo producto, como la gaseosa,
+            aparece en muchos pedidos distintos). Para resolver ese N:M se crea
+            una tabla intermedia, por ejemplo <strong>Detalle_Pedido</strong>,
+            que guarda id_pedido + id_producto + cantidad.
+          </p>
+        </div>
+      </div>
+
+      <!-- NORMALIZACION -->
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag">Concepto 3</span>
+          <h2 class="sec-titulo">¿Qué es la normalización?</h2>
+          <p class="sec-intro">
+            Es el proceso de organizar las tablas para
+            <strong>eliminar redundancia</strong> (datos repetidos) e
+            <strong>inconsistencias</strong>. Se aplica por niveles llamados
+            "formas normales".
+          </p>
+        </div>
+
+        <div class="pasos">
+          <li class="paso">
+            <h4>1FN — Primera Forma Normal</h4>
+            <p>
+              Cada columna debe tener un solo valor (atómico), y no deben
+              existir columnas repetidas o listas dentro de una celda. Nada de
+              guardar "hamburguesa, gaseosa, papas" en una sola casilla.
+            </p>
+          </li>
+          <li class="paso">
+            <h4>2FN — Segunda Forma Normal</h4>
+            <p>
+              Cumple 1FN, y además cada columna que no es llave debe depender de
+              <strong>toda</strong> la llave primaria, no solo de una parte
+              (esto aplica cuando la llave primaria tiene varias columnas).
+            </p>
+          </li>
+          <li class="paso">
+            <h4>3FN — Tercera Forma Normal</h4>
+            <p>
+              Cumple 2FN, y además ninguna columna que no es llave puede
+              depender de otra columna que tampoco es llave (sin dependencias
+              transitivas).
+            </p>
+          </li>
+        </div>
+
+        <div class="alert">
+          🍔 <strong>Ejemplo antes y después, con tu proyecto:</strong>
+        </div>
+
+        <div class="norm-tabla">
+          <div class="titulo">❌ SIN normalizar (una sola tabla "Pedido")</div>
+          <table class="propiedades">
+            <tr>
+              <th>id_pedido</th>
+              <th>cliente</th>
+              <th>telefono_cliente</th>
+              <th>productos</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Ana Pérez</td>
+              <td>3001234567</td>
+              <td>Hamburguesa, Gaseosa</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Ana Pérez</td>
+              <td>3001234567</td>
+              <td>Papas</td>
+            </tr>
+          </table>
+          <p
+            style="font-size: 12.8px; color: var(--texto-dim); margin-top: 6px"
+          >
+            ⚠️ El teléfono de Ana se repite en cada pedido (redundancia) y la
+            columna "productos" guarda varios valores en una celda (viola 1FN).
+          </p>
+        </div>
+
+        <div class="norm-tabla">
+          <div class="titulo">✅ Normalizada (3 tablas relacionadas)</div>
+          <table class="propiedades">
+            <tr>
+              <th>Clientes</th>
+              <th>Pedidos</th>
+              <th>Detalle_Pedido</th>
+            </tr>
+            <tr>
+              <td>id_cliente, nombre, telefono</td>
+              <td>id_pedido, id_cliente, fecha</td>
+              <td>id_pedido, id_producto, cantidad</td>
+            </tr>
+          </table>
+          <p
+            style="font-size: 12.8px; color: var(--texto-dim); margin-top: 6px"
+          >
+            ✔ El teléfono de Ana se guarda una sola vez. Cada pedido puede tener
+            varios productos sin repetir filas innecesarias.
+          </p>
+        </div>
+      </div>
+
+      <!-- MER -->
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag azul">Concepto 4</span>
+          <h2 class="sec-titulo">Modelo Entidad-Relación (MER)</h2>
+          <p class="sec-intro">
+            Es el diagrama que representa visualmente las entidades, sus
+            atributos y cómo se conectan entre sí mediante cardinalidades. Es el
+            paso previo a crear las tablas en el SMBD (eso lo harás en AA2).
+          </p>
+        </div>
+
+        <div class="mer-wrap">
+          <div class="mer-entidad verde">
+            <div class="mer-titulo">CLIENTE</div>
+            <ul>
+              <li class="pk">🔑 id_cliente</li>
+              <li>nombre</li>
+              <li>telefono</li>
+              <li>direccion</li>
+            </ul>
+          </div>
+          <div class="mer-cardinalidad">
+            <div>1</div>
+            <div class="linea"></div>
+            <div>N</div>
+          </div>
+          <div class="mer-entidad">
+            <div class="mer-titulo">PEDIDO</div>
+            <ul>
+              <li class="pk">🔑 id_pedido</li>
+              <li class="fk">⤷ id_cliente</li>
+              <li>fecha</li>
+            </ul>
+          </div>
+          <div class="mer-cardinalidad">
+            <div>1</div>
+            <div class="linea"></div>
+            <div>N</div>
+          </div>
+          <div class="mer-entidad naranja">
+            <div class="mer-titulo">DETALLE_PEDIDO</div>
+            <ul>
+              <li class="fk">⤷ id_pedido</li>
+              <li class="fk">⤷ id_producto</li>
+              <li>cantidad</li>
+            </ul>
+          </div>
+          <div class="mer-cardinalidad">
+            <div>N</div>
+            <div class="linea"></div>
+            <div>1</div>
+          </div>
+          <div class="mer-entidad verde">
+            <div class="mer-titulo">PRODUCTO</div>
+            <ul>
+              <li class="pk">🔑 id_producto</li>
+              <li>nombre</li>
+              <li>precio</li>
+              <li>categoria</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="explicacion">
+          <h4>📖 Cómo leer este diagrama</h4>
+          <p>
+            Un <strong>Cliente (1)</strong> puede hacer
+            <strong>muchos (N) Pedidos</strong>. Cada
+            <strong>Pedido (1)</strong> puede tener
+            <strong>muchas (N) líneas en Detalle_Pedido</strong>, y cada línea
+            apunta a <strong>un (1) Producto</strong> — así se resuelve de forma
+            limpia la relación N:M entre Pedido y Producto que vimos en el
+            concepto de cardinalidad.
+          </p>
+        </div>
+      </div>
+
+      <!-- NOSQL -->
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag morado">Concepto 5</span>
+          <h2 class="sec-titulo">Bases de datos NoSQL y MongoDB</h2>
+          <p class="sec-intro">
+            No todo se modela en tablas. Una base de datos
+            <strong>NoSQL</strong> como MongoDB guarda la información en
+            <strong>documentos</strong> con formato JSON, agrupados en
+            <strong>colecciones</strong> (el equivalente a una tabla, pero
+            flexible: no todos los documentos tienen que tener las mismas
+            columnas).
+          </p>
+        </div>
+
+        <table class="comparativa">
+          <tr>
+            <th>Relacional (SQL)</th>
+            <th>No relacional (MongoDB)</th>
+          </tr>
+          <tr>
+            <td>Base de datos</td>
+            <td>Base de datos</td>
+          </tr>
+          <tr>
+            <td>Tabla</td>
+            <td>Colección</td>
+          </tr>
+          <tr>
+            <td>Fila / registro</td>
+            <td>Documento (JSON)</td>
+          </tr>
+          <tr>
+            <td>Columna</td>
+            <td>Campo (field)</td>
+          </tr>
+          <tr>
+            <td>Llave primaria (id)</td>
+            <td>_id (generado automáticamente)</td>
+          </tr>
+        </table>
+
+        <div class="alert">
+          🍔 <strong>Ejemplo:</strong> así se vería un producto de Fast Food
+          Paradise como documento dentro de una colección
+          <code>productos</code> en MongoDB:
+        </div>
+
+        <div class="bloque-codigo">
+          <div class="linea-codigo morado">
+            <div class="codigo-texto">
+              { <span class="attr">"_id"</span>:
+              <span class="val">"6523af9b"</span>,
+              <span class="attr">"nombre"</span>:
+              <span class="val">"Hamburguesa Clásica"</span>,
+              <span class="attr">"precio"</span>: <span class="val">9000</span>,
+              <span class="attr">"categoria"</span>:
+              <span class="val">"hamburguesas"</span>,
+              <span class="attr">"disponible"</span>:
+              <span class="val">true</span>,
+              <span class="attr">"ingredientes"</span>: [<span class="val"
+                >"pan"</span
+              >, <span class="val">"carne"</span>,
+              <span class="val">"queso"</span>,
+              <span class="val">"lechuga"</span>] }
+            </div>
+          </div>
+        </div>
+
+        <div class="explicacion azul">
+          <h4>💡 ¿Por qué aquí sí podemos meter una lista en un campo?</h4>
+          <p>
+            A diferencia del modelo relacional (donde eso violaba la 1FN), en
+            NoSQL es normal y está permitido anidar listas o incluso documentos
+            dentro de otros — por eso se dice que MongoDB es un modelo
+            "orientado a documentos", pensado para datos flexibles que no
+            siempre tienen la misma forma.
+          </p>
+        </div>
+      </div>
+
+      <!-- CIERRE -->
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag">Para entregar</span>
+          <h2 class="sec-titulo">Checklist de AA1</h2>
+          <p class="sec-intro">
+            Con estos 5 conceptos ya tienes lo necesario para resolver las 4
+            evidencias de la actividad:
+          </p>
+        </div>
+        <ul class="entrega-list">
+          <li>
+            EV01 — Resolver el caso aplicando modelo relacional, identificando
+            entidades, atributos, PK/FK
+          </li>
+          <li>
+            EV01 — Definir la cardinalidad correcta de cada relación (1:1, 1:N,
+            N:M) y resolver los N:M con tabla intermedia
+          </li>
+          <li>
+            EV01 — Normalizar las tablas hasta 3FN, mostrando el antes y el
+            después
+          </li>
+          <li>
+            EV02 — Dibujar el Modelo Entidad-Relación completo del caso
+            propuesto
+          </li>
+          <li>
+            EV03 — Diseñar la estructura de un documento JSON para un objeto del
+            caso no relacional
+          </li>
+          <li>
+            EV04 — Crear la base de datos en MongoDB con al menos una colección
+            y documentos de ejemplo
+          </li>
+        </ul>
+        <div class="alert">
+          ➡️ Cuando quieras, seguimos con
+          <strong>AA2 — Manipular datos en el SMBD</strong> (DDL y DML con MySQL
+          Workbench) para pasar este modelo a tablas reales.
+        </div>
+      </div>

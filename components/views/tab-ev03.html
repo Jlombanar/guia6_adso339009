@@ -1,0 +1,237 @@
+<div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag naranja">GA6-220501096-AA1-EV03</span>
+          <h2 class="sec-titulo">Motores de bases de datos no relacionales</h2>
+          <p class="sec-intro">
+            Un motor NoSQL almacena y consulta datos con modelos distintos al de
+            tablas relacionadas por filas y columnas. Se elige según el tipo de
+            información, las consultas y las necesidades del sistema; NoSQL
+            significa "no solo SQL", no "sin consultas".
+          </p>
+        </div>
+
+        <div class="grid-4">
+          <div class="tarjeta">
+            <h4>Documentos</h4>
+            <p>
+              Agrupan campos en documentos flexibles, parecidos a JSON.
+              Ejemplos: MongoDB y CouchDB. Útiles para catálogos, perfiles y
+              datos que cambian de estructura.
+            </p>
+          </div>
+          <div class="tarjeta">
+            <h4>Clave-valor</h4>
+            <p>
+              Guardan cada valor asociado a una clave única. Ejemplos: Redis y
+              Amazon DynamoDB. Se usan en caché, sesiones y búsquedas rápidas
+              por clave.
+            </p>
+          </div>
+          <div class="tarjeta">
+            <h4>Familias de columnas</h4>
+            <p>
+              Organizan grandes volúmenes por columnas y distribuyen la carga.
+              Ejemplos: Apache Cassandra y HBase. Se aplican en registros de
+              eventos y series de tiempo.
+            </p>
+          </div>
+          <div class="tarjeta">
+            <h4>Grafos</h4>
+            <p>
+              Representan entidades como nodos y sus conexiones como relaciones.
+              Ejemplo: Neo4j. Son útiles para redes sociales, rutas y
+              recomendaciones.
+            </p>
+          </div>
+        </div>
+
+        <div class="explicacion azul" style="margin-top: 22px">
+          <h4>¿Cómo funcionan?</h4>
+          <p>
+            La aplicación envía operaciones al motor para guardar, buscar,
+            actualizar o eliminar datos. Cada familia optimiza una forma de
+            acceso diferente. Muchos motores permiten distribuir datos entre
+            servidores, pero la estructura, consistencia y escalabilidad se
+            configuran según cada producto y caso de uso.
+          </p>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag azul">Enfoque principal</span>
+          <h2 class="sec-titulo">MongoDB, Compass y Atlas</h2>
+          <p class="sec-intro">
+            MongoDB es un motor NoSQL orientado a documentos. Guarda documentos
+            BSON, que representan datos con una estructura similar a JSON, y los
+            organiza en colecciones.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="tarjeta">
+            <h4>MongoDB</h4>
+            <p>
+              Es el sistema de base de datos. Su jerarquía es
+              <strong>base de datos → colección → documento</strong>. Cada
+              documento tiene un identificador único <code>_id</code> y puede
+              contener campos anidados.
+            </p>
+          </div>
+          <div class="tarjeta">
+            <h4>MongoDB Compass</h4>
+            <p>
+              Es la aplicación visual de escritorio para conectarse a MongoDB.
+              Permite explorar bases y colecciones, ver documentos, aplicar
+              filtros y ejecutar consultas sin escribir cada operación en la
+              terminal.
+            </p>
+          </div>
+          <div class="tarjeta">
+            <h4>MongoDB Atlas</h4>
+            <p>
+              Es el servicio en la nube administrado de MongoDB. Allí se crean
+              clústeres y usuarios, y se controlan las direcciones autorizadas.
+              Compass y <code>mongosh</code> pueden conectarse a un clúster
+              Atlas usando su URI.
+            </p>
+          </div>
+        </div>
+
+        <table class="comparativa">
+          <tr>
+            <th>Concepto relacional</th>
+            <th>Equivalente en MongoDB</th>
+          </tr>
+          <tr>
+            <td>Base de datos</td>
+            <td>Base de datos</td>
+          </tr>
+          <tr>
+            <td>Tabla</td>
+            <td>Colección</td>
+          </tr>
+          <tr>
+            <td>Fila o registro</td>
+            <td>Documento BSON (similar a JSON)</td>
+          </tr>
+          <tr>
+            <td>Columna</td>
+            <td>Campo</td>
+          </tr>
+          <tr>
+            <td>Llave primaria</td>
+            <td><code>_id</code></td>
+          </tr>
+        </table>
+
+        <div class="alert">
+          Compass es un cliente gráfico y Atlas es un servicio administrado en
+          la nube: no son el mismo producto que el motor MongoDB. Protege las
+          credenciales y no publiques la URI de conexión ni contraseñas.
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag morado">Comandos principales</span>
+          <h2 class="sec-titulo">Operaciones de MongoDB con mongosh</h2>
+          <p class="sec-intro">
+            <code>mongosh</code> es la consola interactiva para conectarse a un
+            servidor MongoDB y ejecutar comandos sobre bases de datos y
+            colecciones.
+          </p>
+        </div>
+
+        <div class="bloque-codigo">
+          <div class="linea-codigo morado">
+            <pre
+              class="codigo-texto"
+            ><code>show dbs                              // Listar bases de datos
+use vehiculos                          // Seleccionar o preparar una base
+show collections                       // Listar colecciones de la base actual
+db.createCollection("parque")          // Crear una colección
+db.parque.insertOne({ placa: "ABC123" }) // Insertar un documento
+db.parque.find({})                     // Consultar documentos
+db.parque.findOne({ placa: "ABC123" }) // Buscar un documento
+db.parque.updateOne(                   // Actualizar un documento
+  { placa: "ABC123" },
+  { $set: { kilometraje: 16000 } }
+)
+db.parque.deleteOne({ placa: "ABC123" }) // Eliminar un documento
+db.parque.countDocuments({})            // Contar documentos</code></pre>
+          </div>
+        </div>
+
+        <div class="explicacion">
+          <h4>Insertar varios documentos</h4>
+          <p>
+            <code>insertMany([ ... ])</code> agrega varios documentos en una
+            sola operación. En el ejemplo de EV03 se usa para registrar los
+            cinco vehículos solicitados.
+          </p>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="sec-header">
+          <span class="sec-tag naranja">Ejemplo de la evidencia</span>
+          <h2 class="sec-titulo">
+            Crear objetos JSON para la colección parque
+          </h2>
+          <p class="sec-intro">
+            Cada vehículo es un documento con placa, número de serie, modelo,
+            marca, kilometraje y tipo. El siguiente ejemplo selecciona la base,
+            crea la colección, inserta cinco documentos, consulta y actualiza
+            uno por placa.
+          </p>
+        </div>
+
+        <div class="explicacion azul">
+          <h4>Estructura de un documento</h4>
+          <p>Este es un objeto de ejemplo antes de insertarlo en MongoDB:</p>
+        </div>
+
+        <div class="bloque-codigo">
+          <div class="linea-codigo azul">
+            <pre class="codigo-texto"><code>{
+  "placa": "ABC123",
+  "numeroSerie": "SN-2024-001",
+  "modelo": 2024,
+  "marca": "Toyota",
+  "kilometraje": 15200,
+  "tipo": "SUV"
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="bloque-codigo">
+          <div class="linea-codigo naranja">
+            <pre class="codigo-texto"><code>use vehiculos
+
+db.createCollection("parque")
+
+db.parque.insertMany([
+  { placa: "ABC123", numeroSerie: "SN-2024-001", modelo: 2024, marca: "Toyota", kilometraje: 15200, tipo: "SUV" },
+  { placa: "XYZ789", numeroSerie: "SN-2023-002", modelo: 2023, marca: "Renault", kilometraje: 28400, tipo: "Sedan" },
+  { placa: "JKL456", numeroSerie: "SN-2022-003", modelo: 2022, marca: "Chevrolet", kilometraje: 41700, tipo: "Camioneta" },
+  { placa: "MNP321", numeroSerie: "SN-2021-004", modelo: 2021, marca: "Mazda", kilometraje: 53600, tipo: "Hatchback" },
+  { placa: "RST654", numeroSerie: "SN-2020-005", modelo: 2020, marca: "Kia", kilometraje: 68900, tipo: "SUV" }
+])
+
+db.parque.find({})
+db.parque.findOne({ placa: "ABC123" })
+
+db.parque.updateOne(
+  { placa: "ABC123" },
+  { $set: { kilometraje: 16000 } }
+)</code></pre>
+          </div>
+        </div>
+
+        <div class="alert">
+          MongoDB crea automáticamente <code>_id</code> si no se incluye. En una
+          instalación nueva, <code>use vehiculos</code> selecciona la base; esta
+          queda persistida cuando se guarda el primer documento.
+        </div>
+      </div>
