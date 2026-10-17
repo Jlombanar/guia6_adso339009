@@ -1,0 +1,471 @@
+<article class="slide">
+  <header class="sec-header">
+    <span class="sec-tag naranja"
+      >GA6-220501096-AA2-EV01 · Evidencia de desempeño</span
+    >
+    <h2 class="sec-titulo">
+      Destrezas y conocimientos en el manejo de sentencias DDL y DML de SQL
+    </h2>
+    <p class="sec-intro">
+      Elabora un informe técnico con las sentencias SQL que resuelven el taller
+      de la guía: crear una tabla, verificarla, insertar, consultar, actualizar
+      y contar registros. Aquí se trabaja un caso distinto al de la tabla
+      <code>libreta</code> para que entiendas el procedimiento y luego lo
+      apliques al enunciado oficial.
+    </p>
+  </header>
+
+  <section class="explicacion azul" aria-labelledby="ev05-criterio">
+    <h3 id="ev05-criterio">Criterio de evaluación</h3>
+    <p>
+      Implementa restricciones en la base de datos de acuerdo con las reglas de
+      diseño. Instrumento: lista de chequeo
+      <code>IE-GA6-220501096-AA2-EV01</code>. El producto es un
+      <strong>documento en PDF</strong> de extensión libre.
+    </p>
+  </section>
+
+  <section aria-labelledby="ev05-sql">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 1</span>
+      <h3 class="sec-titulo" id="ev05-sql">¿Qué son DDL y DML?</h3>
+      <p class="sec-intro">
+        SQL (<em>Structured Query Language</em>) es el lenguaje estándar para
+        trabajar con bases de datos relacionales. Sus sentencias se agrupan
+        según su propósito: unas construyen la <strong>estructura</strong> y
+        otras manipulan los <strong>datos</strong> guardados en ella.
+      </p>
+    </header>
+    <div class="grid-2">
+      <article class="tarjeta">
+        <h4>DDL · Lenguaje de Definición de Datos</h4>
+        <p>
+          Crea, modifica o elimina objetos: bases de datos, tablas, columnas,
+          índices y restricciones. Trabaja sobre el <em>molde</em>, no sobre
+          los registros.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>DML · Lenguaje de Manipulación de Datos</h4>
+        <p>
+          Inserta, consulta, actualiza y borra filas dentro de las tablas ya
+          creadas. Trabaja sobre el <em>contenido</em>.
+        </p>
+      </article>
+    </div>
+
+    <table class="comparativa">
+      <caption class="sr-only">Principales sentencias DDL y DML</caption>
+      <tr>
+        <th scope="col">Sentencia</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Qué hace</th>
+      </tr>
+      <tr>
+        <td><code>CREATE</code></td>
+        <td>DDL</td>
+        <td>Crea una base de datos, tabla, vista o índice.</td>
+      </tr>
+      <tr>
+        <td><code>ALTER</code></td>
+        <td>DDL</td>
+        <td>Modifica una tabla: agrega, cambia o quita columnas.</td>
+      </tr>
+      <tr>
+        <td><code>DROP</code></td>
+        <td>DDL</td>
+        <td>Elimina el objeto completo, con estructura y datos.</td>
+      </tr>
+      <tr>
+        <td><code>TRUNCATE</code></td>
+        <td>DDL</td>
+        <td>Vacía la tabla y conserva su estructura.</td>
+      </tr>
+      <tr>
+        <td><code>INSERT</code></td>
+        <td>DML</td>
+        <td>Agrega una o varias filas.</td>
+      </tr>
+      <tr>
+        <td><code>SELECT</code></td>
+        <td>DML</td>
+        <td>
+          Consulta filas. Algunos autores la ubican en DQL (lenguaje de
+          consulta).
+        </td>
+      </tr>
+      <tr>
+        <td><code>UPDATE</code></td>
+        <td>DML</td>
+        <td>Cambia valores de filas existentes que cumplan un filtro.</td>
+      </tr>
+      <tr>
+        <td><code>DELETE</code></td>
+        <td>DML</td>
+        <td>Borra filas que cumplan un filtro.</td>
+      </tr>
+    </table>
+
+    <section class="explicacion morado" aria-labelledby="ev05-where">
+      <h4 id="ev05-where">Regla de oro: UPDATE y DELETE siempre con WHERE</h4>
+      <p>
+        Sin <code>WHERE</code>, la sentencia afecta a <strong>todas</strong> las
+        filas de la tabla. Filtra por la llave primaria (<code>id</code>) para
+        modificar exactamente el registro que necesitas. Otras familias son DCL
+        (<code>GRANT</code>, <code>REVOKE</code>) para permisos y TCL
+        (<code>COMMIT</code>, <code>ROLLBACK</code>) para transacciones.
+      </p>
+    </section>
+  </section>
+
+  <section aria-labelledby="ev05-motor">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 2</span>
+      <h3 class="sec-titulo" id="ev05-motor">
+        El motor: MySQL Server y MySQL Workbench
+      </h3>
+      <p class="sec-intro">
+        Son dos programas diferentes que trabajan juntos. Confundirlos es el
+        error más común al instalar el entorno.
+      </p>
+    </header>
+    <div class="grid-3">
+      <article class="tarjeta">
+        <span class="num">1</span>
+        <h4>MySQL Server · el motor (SMBD)</h4>
+        <p>
+          Servicio que guarda los datos, interpreta el SQL y aplica las
+          restricciones. Por defecto escucha en <code>localhost:3306</code>.
+          Usa la edición <em>Community</em>, gratuita.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <span class="num">2</span>
+        <h4>InnoDB · motor de almacenamiento</h4>
+        <p>
+          Es el predeterminado de MySQL. Soporta llaves foráneas y
+          transacciones (<code>COMMIT</code> / <code>ROLLBACK</code>), que
+          necesitarás en la EV02.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <span class="num">3</span>
+        <h4>MySQL Workbench · el cliente gráfico</h4>
+        <p>
+          Herramienta visual para conectarse al servidor, escribir y ejecutar
+          SQL, ver resultados en tablas y diseñar diagramas EER.
+        </p>
+      </article>
+    </div>
+
+    <table class="propiedades">
+      <caption class="sr-only">Funciones de MySQL Workbench</caption>
+      <tr>
+        <th scope="col">Zona de Workbench</th>
+        <th scope="col">Para qué la usarás</th>
+      </tr>
+      <tr>
+        <td>SQL Editor</td>
+        <td>
+          Escribir el script. El rayo ejecuta todo el script y el rayo con
+          cursor ejecuta solo la sentencia actual (Ctrl + Enter; ⌘ + Enter en
+          macOS).
+        </td>
+      </tr>
+      <tr>
+        <td>Result Grid</td>
+        <td>
+          Ver las filas que devuelve un <code>SELECT</code>. Captura esta zona
+          para el informe.
+        </td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>
+          Revisar cada acción con su duración y filas afectadas, por ejemplo
+          <code>2 row(s) affected</code>.
+        </td>
+      </tr>
+      <tr>
+        <td>Navigator · Schemas</td>
+        <td>
+          Explorar bases de datos y tablas. Tras un <code>CREATE</code>, pulsa
+          actualizar para verlas.
+        </td>
+      </tr>
+      <tr>
+        <td>Model (EER)</td>
+        <td>
+          Diseñar el diagrama de la base de datos y generar el script con
+          <em>Forward Engineer</em>. Lo pide la EV02.
+        </td>
+      </tr>
+    </table>
+
+    <section class="alert" aria-labelledby="ev05-safe">
+      <h4 id="ev05-safe">Modo Safe Updates</h4>
+      <p>
+        Workbench activa por defecto el modo de actualizaciones seguras: rechaza
+        un <code>UPDATE</code> o <code>DELETE</code> cuyo
+        <code>WHERE</code> no use una columna llave (error 1175). Por eso el
+        ejemplo incluye una llave primaria <code>id</code> y filtra por ella. No
+        desactives la protección: escribe filtros correctos.
+      </p>
+    </section>
+  </section>
+
+  <section aria-labelledby="ev05-vscode">
+    <header class="sec-header">
+      <span class="sec-tag morado">Herramienta alterna</span>
+      <h3 class="sec-titulo" id="ev05-vscode">
+        Extensiones de bases de datos en Visual Studio Code
+      </h3>
+      <p class="sec-intro">
+        Si ya programas en VS Code, puedes conectarte al mismo MySQL Server sin
+        salir del editor. La extensión es solo otro cliente: el motor sigue
+        siendo MySQL.
+      </p>
+    </header>
+    <div class="grid-3">
+      <article class="tarjeta">
+        <h4>Database Client</h4>
+        <p>
+          De Weijan Chen. Árbol de conexiones, editor SQL y vista de tablas
+          editable. Soporta MySQL, PostgreSQL, SQLite, MongoDB y Redis.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>SQLTools + driver MySQL</h4>
+        <p>
+          Extensión ligera de conexiones y consultas. Requiere instalar además
+          el driver <em>SQLTools MySQL/MariaDB</em>.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>MySQL Shell for VS Code</h4>
+        <p>
+          Extensión oficial de Oracle. Integra MySQL Shell con cuadernos de
+          consultas SQL, JavaScript y Python.
+        </p>
+      </article>
+    </div>
+    <section class="explicacion" aria-labelledby="ev05-conexion">
+      <h4 id="ev05-conexion">Datos para crear la conexión</h4>
+      <p>
+        Host <code>localhost</code> · puerto <code>3306</code> · usuario
+        <code>root</code> (o el que creaste al instalar) · contraseña · base
+        <code>cooperativa_cafe</code>. Para la evidencia, usa Workbench: la guía
+        lo nombra como herramienta del SMBD y la EV02 exige sus diagramas.
+      </p>
+    </section>
+  </section>
+
+  <section aria-labelledby="ev05-proceso">
+    <header class="sec-header">
+      <span class="sec-tag">Ejemplo resuelto · caso diferente</span>
+      <h3 class="sec-titulo" id="ev05-proceso">
+        Directorio de proveedores de una cooperativa cafetera
+      </h3>
+      <p class="sec-intro">
+        Una cooperativa de Garzón registra a los caficultores que le venden
+        café pergamino. Los ocho pasos siguen el mismo orden del taller de la
+        guía; los datos son ficticios.
+      </p>
+    </header>
+
+    <ol class="pasos">
+      <li class="paso">
+        <h4>Crea la base de datos y la tabla (DDL)</h4>
+        <p>
+          El teléfono es <code>VARCHAR</code> y no <code>INT</code>: no se
+          opera matemáticamente y puede llevar ceros o el prefijo
+          <code>+57</code>. La llave primaria identifica cada fila.
+        </p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo azul">
+            <pre class="codigo-texto"><code>CREATE DATABASE cooperativa_cafe;
+USE cooperativa_cafe;
+
+CREATE TABLE proveedor (
+  id        INT AUTO_INCREMENT PRIMARY KEY,
+  nombre    VARCHAR(40) NOT NULL,
+  vereda    VARCHAR(30),
+  telefono  VARCHAR(13)
+);</code></pre>
+          </div>
+        </div>
+      </li>
+      <li class="paso">
+        <h4>Verifica que la tabla exista</h4>
+        <p>La lista debe incluir <code>proveedor</code>.</p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo morado">
+            <pre class="codigo-texto"><code>SHOW TABLES;</code></pre>
+          </div>
+        </div>
+      </li>
+      <li class="paso">
+        <h4>Revisa la estructura de la tabla</h4>
+        <p>
+          Muestra cada campo con su tipo, si acepta nulos y cuál es la llave
+          (<code>PRI</code>).
+        </p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo morado">
+            <pre class="codigo-texto"><code>DESCRIBE proveedor;</code></pre>
+          </div>
+        </div>
+      </li>
+      <li class="paso">
+        <h4>Inserta los dos primeros registros (DML)</h4>
+        <p>
+          Se omite <code>id</code> porque <code>AUTO_INCREMENT</code> asigna 1 y
+          2.
+        </p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo">
+            <pre class="codigo-texto"><code>INSERT INTO proveedor (nombre, vereda, telefono) VALUES
+  ('Rosa Cuéllar', 'El Recreo', '3105550101'),
+  ('Hernán Polanía', 'Zuluaga', '3115550102');</code></pre>
+          </div>
+        </div>
+      </li>
+      <li class="paso">
+        <h4>Consulta todos los registros</h4>
+        <p>El asterisco devuelve todas las columnas.</p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo morado">
+            <pre class="codigo-texto"><code>SELECT * FROM proveedor;</code></pre>
+          </div>
+        </div>
+      </li>
+      <li class="paso">
+        <h4>Actualiza los datos recién insertados</h4>
+        <p>
+          Un <code>UPDATE</code> por registro, filtrando por la llave primaria.
+          Vuelve a ejecutar el <code>SELECT</code> para comprobar el cambio.
+        </p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo naranja">
+            <pre class="codigo-texto"><code>UPDATE proveedor
+SET telefono = '3205550111'
+WHERE id = 1;
+
+UPDATE proveedor
+SET vereda = 'Majo', telefono = '3125550122'
+WHERE id = 2;
+
+SELECT * FROM proveedor;</code></pre>
+          </div>
+        </div>
+      </li>
+      <li class="paso">
+        <h4>Inserta cinco registros más</h4>
+        <p>
+          Un solo <code>INSERT</code> con varias filas. El Output debe indicar
+          <code>5 row(s) affected</code>.
+        </p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo">
+            <pre class="codigo-texto"><code>INSERT INTO proveedor (nombre, vereda, telefono) VALUES
+  ('Luz Marina Trujillo', 'Las Mercedes', '3135550103'),
+  ('Óscar Perdomo', 'El Mesón', '3145550104'),
+  ('Diana Vargas', 'San Antonio', '3155550105'),
+  ('Fabio Ramírez', 'Providencia', '3165550106'),
+  ('Yolanda Artunduaga', 'La Cabaña', '3175550107');</code></pre>
+          </div>
+        </div>
+      </li>
+      <li class="paso">
+        <h4>Cuenta los registros ingresados</h4>
+        <p>
+          <code>COUNT(*)</code> es una función de agregación. El alias
+          <code>AS</code> nombra la columna del resultado, que debe ser
+          <strong>7</strong>.
+        </p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo morado">
+            <pre class="codigo-texto"><code>SELECT COUNT(*) AS total_proveedores FROM proveedor;</code></pre>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="explicacion naranja" aria-labelledby="ev05-extra">
+    <h3 id="ev05-extra">Para practicar las demás sentencias</h3>
+    <p>
+      No son parte del taller, pero completan el repertorio DDL y DML. Ejecútalas
+      al final para no alterar el conteo del paso 8.
+    </p>
+    <div class="bloque-codigo">
+      <div class="linea-codigo naranja">
+        <pre class="codigo-texto"><code><span class="comment">-- DDL: agregar una columna a la tabla existente</span>
+ALTER TABLE proveedor ADD kilos_mes DECIMAL(8,2) DEFAULT 0;
+
+<span class="comment">-- DML: borrar un proveedor puntual</span>
+DELETE FROM proveedor WHERE id = 7;
+
+<span class="comment">-- DDL: eliminar la base de práctica completa</span>
+DROP DATABASE cooperativa_cafe;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="ev05-aplica">
+    <header class="sec-header">
+      <span class="sec-tag azul">Ahora tú</span>
+      <h3 class="sec-titulo" id="ev05-aplica">Traslada el método a la tabla libreta</h3>
+    </header>
+    <table class="comparativa">
+      <caption class="sr-only">Equivalencias entre el ejemplo y el taller</caption>
+      <tr>
+        <th scope="col">Ejemplo</th>
+        <th scope="col">Taller de la guía</th>
+      </tr>
+      <tr>
+        <td><code>proveedor</code></td>
+        <td><code>libreta</code></td>
+      </tr>
+      <tr>
+        <td>nombre, vereda, telefono</td>
+        <td>
+          nombre <code>VARCHAR(20)</code>, domicilio <code>VARCHAR(30)</code>,
+          telefono <code>VARCHAR(11)</code>
+        </td>
+      </tr>
+      <tr>
+        <td>Rosa Cuéllar, Hernán Polanía</td>
+        <td>Alberto Mores, Juan Torres (datos dados por la guía)</td>
+      </tr>
+      <tr>
+        <td>Filtro <code>WHERE id = …</code></td>
+        <td>
+          La tabla de la guía no tiene llave: filtra por <code>nombre</code> o
+          agrega una llave primaria y explícalo en el informe.
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="alert" aria-labelledby="ev05-entrega">
+    <h3 id="ev05-entrega">Lista de verificación del informe técnico (PDF)</h3>
+    <ul class="entrega-list">
+      <li>Portada con datos del aprendiz, ficha, programa y evidencia.</li>
+      <li>Introducción: qué es SQL y la diferencia entre DDL y DML.</li>
+      <li>Objetivo del taller.</li>
+      <li>
+        Solución punto a punto (1 a 8): enunciado, sentencia SQL y captura del
+        resultado en Workbench.
+      </li>
+      <li>
+        Evidencia de la actualización con un <code>SELECT</code> antes y
+        después, y el conteo final de siete registros.
+      </li>
+    </ul>
+    <p>
+      La guía pide como mínimo portada, introducción, objetivo y sentencias
+      punto a punto. Agregar conclusiones es opcional, pero recomendable.
+    </p>
+  </section>
+</article>

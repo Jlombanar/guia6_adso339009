@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/css/styles.css?v=8" />
+    <link rel="stylesheet" href="assets/css/styles.css?v=9" />
     <script type="module" src="assets/js/tabs.js"></script>
   </head>
   <body class="app-body">
@@ -25,92 +25,38 @@
         <div data-component="components/layout/header.html"></div>
         <main class="workspace-main" id="contenido">
           <div data-component="components/layout/guide-overview.html"></div>
-          <nav
-            class="tabs"
-            id="guia"
-            role="tablist"
-            aria-label="Secciones de la guía"
-          >
-            <button
-              class="tab-button"
-              id="tab-adso"
-              type="button"
-              role="tab"
-              aria-selected="true"
-              aria-controls="panel-adso"
-              tabindex="0"
-            >
+          <nav class="tabs" id="guia" role="tablist" aria-label="Secciones de la guía">
+            <button class="tab-button" id="tab-adso" type="button" role="tab"
+              aria-selected="true" aria-controls="panel-adso" tabindex="0">
               Resumen de la guía
             </button>
-            <button
-              class="tab-button"
-              id="tab-aa1"
-              type="button"
-              role="tab"
-              aria-selected="false"
-              aria-controls="panel-aa1"
-              tabindex="-1"
-            >
+            <button class="tab-button" id="tab-aa1" type="button" role="tab"
+              aria-selected="false" aria-controls="panel-aa1" tabindex="-1">
               AA1 · Modelo de datos
             </button>
-            <button
-              class="tab-button"
-              id="tab-ev03"
-              type="button"
-              role="tab"
-              aria-selected="false"
-              aria-controls="panel-ev03"
-              tabindex="-1"
-            >
+            <button class="tab-button" id="tab-ev03" type="button" role="tab"
+              aria-selected="false" aria-controls="panel-ev03" tabindex="-1">
               EV03 · NoSQL
             </button>
-            <button
-              class="tab-button"
-              id="tab-ev04"
-              type="button"
-              role="tab"
-              aria-selected="false"
-              aria-controls="panel-ev04"
-              tabindex="-1"
-            >
+            <button class="tab-button" id="tab-ev04" type="button" role="tab"
+              aria-selected="false" aria-controls="panel-ev04" tabindex="-1">
               EV04 · MongoDB
             </button>
+            <button class="tab-button" id="tab-ev05" type="button" role="tab"
+              aria-selected="false" aria-controls="panel-ev05" tabindex="-1">
+              AA2 · DDL y DML
+            </button>
           </nav>
-          <div
-            class="tab-panel"
-            id="panel-adso"
-            role="tabpanel"
-            aria-labelledby="tab-adso"
-            tabindex="0"
-            data-view="tab-adso.html"
-          ></div>
-          <div
-            class="tab-panel"
-            id="panel-aa1"
-            role="tabpanel"
-            aria-labelledby="tab-aa1"
-            tabindex="0"
-            data-view="tab-aa1.html"
-            hidden
-          ></div>
-          <div
-            class="tab-panel"
-            id="panel-ev03"
-            role="tabpanel"
-            aria-labelledby="tab-ev03"
-            tabindex="0"
-            data-view="tab-ev03.html"
-            hidden
-          ></div>
-          <div
-            class="tab-panel"
-            id="panel-ev04"
-            role="tabpanel"
-            aria-labelledby="tab-ev04"
-            tabindex="0"
-            data-view="tab-ev04.html"
-            hidden
-          ></div>
+          <div class="tab-panel" id="panel-adso" role="tabpanel" aria-labelledby="tab-adso"
+            tabindex="0" data-view="tab-adso.html"></div>
+          <div class="tab-panel" id="panel-aa1" role="tabpanel" aria-labelledby="tab-aa1"
+            tabindex="0" data-view="tab-aa1.html" hidden></div>
+          <div class="tab-panel" id="panel-ev03" role="tabpanel" aria-labelledby="tab-ev03"
+            tabindex="0" data-view="tab-ev03.html" hidden></div>
+          <div class="tab-panel" id="panel-ev04" role="tabpanel" aria-labelledby="tab-ev04"
+            tabindex="0" data-view="tab-ev04.html" hidden></div>
+          <div class="tab-panel" id="panel-ev05" role="tabpanel" aria-labelledby="tab-ev05"
+            tabindex="0" data-view="tab-ev05.html" hidden></div>
         </main>
         <div data-component="components/layout/footer.html"></div>
       </div>
