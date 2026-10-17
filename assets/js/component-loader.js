@@ -1,7 +1,11 @@
-export async function loadComponent(target, url) {
+export async function fetchComponent(url) {
   const response = await fetch(url);
   if (!response.ok) throw new Error(`No se pudo cargar ${url}: ${response.status}`);
-  target.innerHTML = await response.text();
+  return response.text();
+}
+
+export async function loadComponent(target, url) {
+  target.innerHTML = await fetchComponent(url);
 }
 
 export async function loadSharedComponents() {
