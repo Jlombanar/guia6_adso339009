@@ -1466,6 +1466,36 @@
         color: #fff;
       }
 
+      .activity-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .activity-manual {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 40px;
+        padding: 8px 16px;
+        border: 1px solid #39a900;
+        border-radius: 5px;
+        background: #fff;
+        color: #1f5c00;
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .activity-manual:hover {
+        background: #eef7e8;
+      }
+
+      .activity-manual:focus-visible {
+        outline: 3px solid #267300;
+        outline-offset: 2px;
+      }
+
       .activity-soon {
         align-self: flex-start;
         padding: 7px 12px;
