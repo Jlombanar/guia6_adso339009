@@ -1,0 +1,267 @@
+<article class="slide">
+  <header class="sec-header">
+    <span class="sec-tag naranja"
+      >GA6-220501096-AA2-EV03 · Evidencia de producto</span
+    >
+    <h2 class="sec-titulo">Script bases de datos del proyecto</h2>
+    <p class="sec-intro">
+      Con la estructura de la EV02 ya creada, genera el script SQL del modelo
+      físico de tu proyecto formativo y expórtalo desde MySQL Workbench. Las
+      capturas muestran el procedimiento paso a paso con el esquema
+      <code>juego</code>; tú seleccionas el esquema de tu proyecto.
+    </p>
+  </header>
+
+  <section class="explicacion azul" aria-labelledby="ev07-criterio">
+    <h3 id="ev07-criterio">Criterio de evaluación</h3>
+    <p>
+      Implementa restricciones en la base de datos de acuerdo con las reglas de
+      diseño. Instrumento: lista de chequeo
+      <code>IE-GA6-220501096-AA2-EV03</code>. El producto es un
+      <strong>archivo ZIP</strong> con los archivos <code>.sql</code> del
+      modelo físico que corresponden a los diseños hechos en MySQL Workbench.
+    </p>
+  </section>
+
+  <section aria-labelledby="ev07-concepto">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto</span>
+      <h3 class="sec-titulo" id="ev07-concepto">¿Qué es el script de la base de datos?</h3>
+      <p class="sec-intro">
+        Es un archivo de texto con todas las sentencias SQL que reconstruyen la
+        base de datos en cualquier servidor MySQL: <code>CREATE DATABASE</code>,
+        cada <code>CREATE TABLE</code> con sus llaves y restricciones y, si se
+        quiere, los <code>INSERT</code> con los datos. Sirve como copia de
+        seguridad y para entregar o instalar el proyecto en otro equipo.
+      </p>
+    </header>
+    <div class="grid-2">
+      <article class="tarjeta">
+        <h4>Data Export (mysqldump)</h4>
+        <p>
+          Parte de la base que ya existe en el servidor y la vuelca a un archivo
+          <code>.sql</code>. Es el procedimiento de las capturas.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Forward Engineer</h4>
+        <p>
+          Parte del diagrama del modelo (<code>.mwb</code>) y genera el script
+          de creación. Se explica al final como alternativa.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="ev07-pasos">
+    <header class="sec-header">
+      <span class="sec-tag">Paso a paso</span>
+      <h3 class="sec-titulo" id="ev07-pasos">Exportar el script con Data Export</h3>
+    </header>
+
+    <ol class="pasos">
+      <li class="paso">
+        <h4>Verifica que la base de datos del proyecto exista</h4>
+        <p>
+          En la pestaña <strong>Schemas</strong> pulsa el botón de actualizar y
+          despliega tu esquema. En <em>Tables</em> deben aparecer todas las
+          tablas del proyecto creadas en la EV02.
+        </p>
+        <figure class="captura vertical">
+          <img
+            src="assets/img/ev07/01-schemas.jpg"
+            alt="Panel Schemas de MySQL Workbench con los esquemas adso, cocina, deporte, jimmy, juego, panaderia y sys; el esquema juego está desplegado mostrando Tables, Views, Stored Procedures y Functions."
+            width="738"
+            height="1144"
+            loading="lazy"
+          />
+          <figcaption>Panel Schemas con el esquema del proyecto desplegado.</figcaption>
+        </figure>
+      </li>
+
+      <li class="paso">
+        <h4>Abre Administration › Data Export</h4>
+        <p>
+          Cambia a la pestaña <strong>Administration</strong>. En el grupo
+          <em>Management</em> elige <strong>Data Export</strong>. También está
+          en el menú <em>Server › Data Export</em>.
+        </p>
+        <figure class="captura vertical">
+          <img
+            src="assets/img/ev07/02-menu-administration.jpg"
+            alt="Menú Administration de MySQL Workbench con las secciones Management, Instance y Performance; en Management aparece la opción Data Export."
+            width="452"
+            height="720"
+            loading="lazy"
+          />
+          <figcaption>La opción Data Export está en el grupo Management.</figcaption>
+        </figure>
+      </li>
+
+      <li class="paso">
+        <h4>Selecciona el esquema, las tablas y las opciones</h4>
+        <p>
+          Marca tu esquema en la lista izquierda; a la derecha quedan marcadas
+          todas sus tablas (en el ejemplo, <em>4 tables selected</em>). Luego
+          configura:
+        </p>
+        <table class="propiedades">
+          <caption class="sr-only">Opciones recomendadas de Data Export</caption>
+          <tr>
+            <th scope="col">Opción</th>
+            <th scope="col">Valor recomendado</th>
+          </tr>
+          <tr>
+            <td>Tipo de volcado</td>
+            <td>
+              <em>Dump Structure and Data</em> (estructura y datos) o
+              <em>Dump Structure Only</em> si solo quieres el modelo físico.
+            </td>
+          </tr>
+          <tr>
+            <td>Export to Self-Contained File</td>
+            <td>
+              Actívalo para obtener un único archivo. Pulsa
+              <strong>…</strong> y cambia <code>Untitled.sql</code> por un
+              nombre claro, por ejemplo <code>script_proyecto.sql</code>.
+            </td>
+          </tr>
+          <tr>
+            <td>Include Create Schema</td>
+            <td>
+              <strong>Márcalo.</strong> Agrega <code>CREATE DATABASE</code> y
+              <code>USE</code> al inicio, de modo que el script cree la base
+              completa por sí solo.
+            </td>
+          </tr>
+          <tr>
+            <td>Dump Stored Procedures, Events y Triggers</td>
+            <td>Márcalos solo si tu proyecto los tiene.</td>
+          </tr>
+        </table>
+        <figure class="captura">
+          <img
+            src="assets/img/ev07/03-seleccion-objetos.jpg"
+            alt="Pantalla Data Export: el esquema juego está marcado y a la derecha aparecen marcadas las tablas detalle_pedido, pedido, productos y Users; abajo están seleccionados Dump Structure and Data y Export to Self-Contained File con la ruta Desktop/Untitled.sql."
+            width="1600"
+            height="851"
+            loading="lazy"
+          />
+          <figcaption>
+            Object Selection: esquema, tablas, tipo de volcado y archivo de
+            destino. En esta captura <em>Include Create Schema</em> aún no está
+            marcado.
+          </figcaption>
+        </figure>
+      </li>
+
+      <li class="paso">
+        <h4>Pulsa Start Export y acepta el aviso de versión</h4>
+        <p>
+          Si Workbench trae un <code>mysqldump</code> más antiguo que tu
+          servidor (aquí 8.0.36 frente a 9.0.1), muestra
+          <em>mysqldump Version Mismatch</em>. Para tablas, llaves y datos el
+          volcado funciona igual: pulsa <strong>Continue Anyway</strong>.
+        </p>
+        <figure class="captura">
+          <img
+            src="assets/img/ev07/04-aviso-version.jpg"
+            alt="Diálogo mysqldump Version Mismatch que indica que mysqldump de Workbench es versión 8.0.36 y el servidor es 9.0.1, con los botones Cancel y Continue Anyway."
+            width="1600"
+            height="883"
+            loading="lazy"
+          />
+          <figcaption>Aviso de versiones distintas: continúa con Continue Anyway.</figcaption>
+        </figure>
+      </li>
+
+      <li class="paso">
+        <h4>Confirma que la exportación terminó</h4>
+        <p>
+          La pestaña <strong>Export Progress</strong> debe decir
+          <em>Export Completed</em> y <em>4 of 4 exported</em> (el número de
+          tus tablas). El log muestra el comando <code>mysqldump</code> usado y
+          la ruta del archivo generado.
+        </p>
+        <figure class="captura">
+          <img
+            src="assets/img/ev07/05-exportacion-completa.jpg"
+            alt="Pestaña Export Progress con el mensaje Export Completed, estado 4 of 4 exported y el log del comando mysqldump que exportó el esquema juego al archivo Desktop/Untitled.sql."
+            width="1600"
+            height="870"
+            loading="lazy"
+          />
+          <figcaption>Exportación completa: 4 de 4 tablas exportadas.</figcaption>
+        </figure>
+      </li>
+
+      <li class="paso">
+        <h4>Revisa el archivo generado</h4>
+        <p>
+          Ábrelo con VS Code o desde Workbench (<em>File › Open SQL
+          Script</em>). Debe contener un <code>CREATE TABLE</code> por tabla con
+          su <code>PRIMARY KEY</code> y sus <code>CONSTRAINT … FOREIGN
+          KEY</code>. Así se ve un fragmento típico:
+        </p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo morado">
+            <pre class="codigo-texto"><code><span class="comment">-- Table structure for table `pedido`</span>
+DROP TABLE IF EXISTS `pedido`;
+CREATE TABLE `pedido` (
+  `Id_pedido` int NOT NULL AUTO_INCREMENT,
+  `id_user` int NOT NULL,
+  `Fecha` date NOT NULL,
+  PRIMARY KEY (`Id_pedido`),
+  KEY `id_user` (`id_user`),
+  CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`id_user`)
+    REFERENCES `Users` (`id_user`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</code></pre>
+          </div>
+        </div>
+      </li>
+
+      <li class="paso">
+        <h4>Comprueba que el script funciona</h4>
+        <p>
+          La prueba definitiva es restaurarlo: en
+          <strong>Administration › Data Import/Restore</strong> elige
+          <em>Import from Self-Contained File</em>, selecciona tu
+          <code>.sql</code> y pulsa <em>Start Import</em>. Si marcaste
+          <em>Include Create Schema</em>, la base se recrea sola. Captura el
+          resultado para tu evidencia.
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="explicacion naranja" aria-labelledby="ev07-forward">
+    <h3 id="ev07-forward">Alternativa: generar el script desde el modelo</h3>
+    <p>
+      Si diseñaste el diagrama en Workbench (<code>.mwb</code>), ábrelo y ve a
+      <strong>File › Export › Forward Engineer SQL CREATE Script</strong>.
+      Elige la ruta del archivo, marca <em>Generate DROP Statements Before Each
+      CREATE Statement</em> si quieres poder ejecutarlo varias veces, revisa
+      los objetos y pulsa <em>Finish</em>. Obtienes solo la estructura, sin
+      datos.
+    </p>
+  </section>
+
+  <section class="alert" aria-labelledby="ev07-entrega">
+    <h3 id="ev07-entrega">Contenido del ZIP</h3>
+    <ul class="entrega-list">
+      <li>
+        Archivo <code>.sql</code> con el script de la base de datos del
+        proyecto formativo (todas las tablas, llaves y restricciones).
+      </li>
+      <li>El script debe corresponder a los diseños hechos en MySQL Workbench.</li>
+      <li>
+        Recomendado: incluir también el modelo <code>.mwb</code> y verificar
+        que el script se importa sin errores.
+      </li>
+    </ul>
+    <p>
+      Usa la base de datos de tu proyecto, no la de práctica: la guía pide que
+      el script cumpla los requisitos del proyecto formativo.
+    </p>
+  </section>
+</article>

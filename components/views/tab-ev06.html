@@ -1,0 +1,300 @@
+<article class="slide">
+  <header class="sec-header">
+    <span class="sec-tag naranja"
+      >GA6-220501096-AA2-EV02 · Evidencia de desempeño</span
+    >
+    <h2 class="sec-titulo">
+      Creación de la estructura de la BD y aplicación de restricciones
+    </h2>
+    <p class="sec-intro">
+      Pasa del modelo entidad relación a la base de datos física: define cada
+      tabla con sus tipos de datos y protege la información con llaves
+      primarias, llaves foráneas y campos obligatorios. El ejemplo resuelto es
+      la base <code>deportes</code> de una tienda de artículos deportivos.
+    </p>
+  </header>
+
+  <section class="explicacion azul" aria-labelledby="ev06-criterio">
+    <h3 id="ev06-criterio">Criterio de evaluación</h3>
+    <p>
+      Implementa restricciones en la base de datos de acuerdo con las reglas de
+      diseño. Instrumento: lista de chequeo
+      <code>IE-GA6-220501096-AA2-EV02</code>. El producto es un
+      <strong>archivo ZIP</strong> con el documento en Word y los archivos de
+      MySQL Workbench (<code>.mwb</code>) con los diseños entidad relación.
+    </p>
+  </section>
+
+  <section aria-labelledby="ev06-restricciones">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 1</span>
+      <h3 class="sec-titulo" id="ev06-restricciones">
+        ¿Qué es una restricción?
+      </h3>
+      <p class="sec-intro">
+        Una restricción (<em>constraint</em>) es una regla que el motor verifica
+        en cada <code>INSERT</code>, <code>UPDATE</code> o
+        <code>DELETE</code>. Si la operación la incumple, MySQL la rechaza con
+        un error y el dato inválido nunca llega a la tabla.
+      </p>
+    </header>
+    <table class="comparativa">
+      <caption class="sr-only">Restricciones usadas en la base deportes</caption>
+      <tr>
+        <th scope="col">Restricción</th>
+        <th scope="col">Qué garantiza</th>
+        <th scope="col">Ejemplo en deportes</th>
+      </tr>
+      <tr>
+        <td><code>PRIMARY KEY</code></td>
+        <td>Cada fila tiene un identificador único y no nulo.</td>
+        <td><code>Users.id_user</code></td>
+      </tr>
+      <tr>
+        <td><code>AUTO_INCREMENT</code></td>
+        <td>MySQL asigna el siguiente número de la llave automáticamente.</td>
+        <td><code>productos.Id_producto</code></td>
+      </tr>
+      <tr>
+        <td><code>FOREIGN KEY</code></td>
+        <td>
+          El valor existe en la tabla referenciada (integridad referencial).
+        </td>
+        <td><code>pedido.id_user → Users</code></td>
+      </tr>
+      <tr>
+        <td><code>NOT NULL</code></td>
+        <td>El campo es obligatorio.</td>
+        <td>Todos los campos del modelo</td>
+      </tr>
+    </table>
+
+    <section class="explicacion morado" aria-labelledby="ev06-reglas">
+      <h4 id="ev06-reglas">Comportamiento de las llaves foráneas</h4>
+      <p>
+        Sin <code>ON DELETE</code> ni <code>ON UPDATE</code>, MySQL aplica
+        <code>RESTRICT</code>: no deja crear un pedido para un usuario que no
+        existe ni borrar un usuario que ya tiene pedidos. Como las llaves
+        foráneas no llevan nombre, MySQL las llama
+        <code>pedido_ibfk_1</code>, <code>detalle_pedido_ibfk_1</code> y
+        <code>detalle_pedido_ibfk_2</code>.
+      </p>
+    </section>
+  </section>
+
+  <section aria-labelledby="ev06-modelo">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 2</span>
+      <h3 class="sec-titulo" id="ev06-modelo">Lectura del modelo entidad relación</h3>
+      <p class="sec-intro">
+        Cuatro entidades. La relación muchos a muchos entre pedidos y productos
+        se resuelve con la tabla intermedia <code>detalle_pedido</code>.
+      </p>
+    </header>
+    <div class="grid-2">
+      <article class="tarjeta">
+        <h4>Users 1 ── N pedido</h4>
+        <p>Un usuario hace muchos pedidos; cada pedido pertenece a un usuario.</p>
+      </article>
+      <article class="tarjeta">
+        <h4>pedido 1 ── N detalle_pedido</h4>
+        <p>Un pedido tiene varias líneas de detalle, una por producto.</p>
+      </article>
+      <article class="tarjeta">
+        <h4>productos 1 ── N detalle_pedido</h4>
+        <p>Un producto puede aparecer en el detalle de muchos pedidos.</p>
+      </article>
+      <article class="tarjeta">
+        <h4>Correo VARCHAR(10)</h4>
+        <p>
+          El campo admite máximo diez caracteres. Usa correos cortos en los
+          datos de prueba (<code>lg@mail.co</code>); uno más largo genera el
+          error 1406.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="ev06-script">
+    <header class="sec-header">
+      <span class="sec-tag">Ejemplo resuelto</span>
+      <h3 class="sec-titulo" id="ev06-script">Script de la base de datos deportes</h3>
+      <p class="sec-intro">
+        Crea primero las tablas padre (<code>Users</code>,
+        <code>productos</code>) antes de las hijas que las referencian: una
+        llave foránea solo puede apuntar a una tabla que ya existe.
+      </p>
+    </header>
+
+    <ol class="pasos">
+      <li class="paso">
+        <h4>Crea la base de datos</h4>
+        <div class="bloque-codigo">
+          <div class="linea-codigo azul">
+            <pre class="codigo-texto"><code>CREATE DATABASE deportes;
+USE deportes;</code></pre>
+          </div>
+        </div>
+      </li>
+      <li class="paso">
+        <h4>Tabla Users</h4>
+        <div class="bloque-codigo">
+          <div class="linea-codigo azul">
+            <pre class="codigo-texto"><code>CREATE table Users(
+    id_user INT PRIMARY KEY AUTO_INCREMENT,
+    NOmnbre VARCHAR(100) NOT NULL,
+    Edad int NOT NULL,
+    Correo VARCHAR(10) NOT NULL,
+    Passwords VARCHAR(100) NOT NULL
+);</code></pre>
+          </div>
+        </div>
+      </li>
+      <li class="paso">
+        <h4>Tabla pedido</h4>
+        <p>
+          Cada sentencia termina en punto y coma; sin él, Workbench une esta
+          tabla con la siguiente y da error de sintaxis.
+        </p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo naranja">
+            <pre class="codigo-texto"><code>CREATE TABLE pedido(
+    Id_pedido INT PRIMARY KEY AUTO_INCREMENT,
+    id_user INT NOT NULL,
+    Fecha DATE NOT NULL,
+    FOREIGN KEY (id_user) REFERENCES Users(id_user)
+);</code></pre>
+          </div>
+        </div>
+      </li>
+      <li class="paso">
+        <h4>Tabla productos</h4>
+        <p>
+          <code>DECIMAL(10,2)</code> guarda el precio exacto, sin los errores
+          de redondeo de <code>FLOAT</code>.
+        </p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo azul">
+            <pre class="codigo-texto"><code>CREATE TABLE productos(
+    Id_producto INT PRIMARY KEY AUTO_INCREMENT,
+    Nombre VARCHAR(100) NOT NULL,
+    Precio DECIMAL(10,2) NOT NULL,
+    Stock INT NOT NULL
+);</code></pre>
+          </div>
+        </div>
+      </li>
+      <li class="paso">
+        <h4>Tabla detalle_pedido</h4>
+        <p>Dos llaves foráneas: una hacia el pedido y otra hacia el producto.</p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo naranja">
+            <pre class="codigo-texto"><code>CREATE TABLE detalle_pedido (
+    Id_detalle INT PRIMARY KEY AUTO_INCREMENT,
+    Id_pedido INT NOT NULL,
+    Id_producto INT NOT NULL,
+    Cantidad INT NOT NULL,
+    FOREIGN KEY (Id_pedido) REFERENCES pedido(Id_pedido),
+    FOREIGN KEY (Id_producto) REFERENCES productos(Id_producto)
+);</code></pre>
+          </div>
+        </div>
+      </li>
+      <li class="paso">
+        <h4>Verifica la estructura y las restricciones</h4>
+        <p>
+          Captura estos resultados para el documento: deben aparecer 7
+          restricciones, 4 llaves primarias y 3 foráneas.
+        </p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo morado">
+            <pre class="codigo-texto"><code>SHOW TABLES;
+DESCRIBE pedido;
+
+SELECT TABLE_NAME, CONSTRAINT_NAME, CONSTRAINT_TYPE
+FROM information_schema.TABLE_CONSTRAINTS
+WHERE TABLE_SCHEMA = 'deportes'
+ORDER BY TABLE_NAME, CONSTRAINT_TYPE;</code></pre>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="ev06-pruebas">
+    <header class="sec-header">
+      <span class="sec-tag morado">Demuestra que funcionan</span>
+      <h3 class="sec-titulo" id="ev06-pruebas">Pruebas de las restricciones</h3>
+      <p class="sec-intro">
+        Inserta primero algunos usuarios, productos y pedidos. Luego ejecuta
+        cada sentencia por separado: todas deben fallar, y ese error es la
+        evidencia de que la restricción protege los datos.
+      </p>
+    </header>
+    <table class="propiedades">
+      <caption class="sr-only">Sentencias de prueba y error esperado</caption>
+      <tr>
+        <th scope="col">Sentencia</th>
+        <th scope="col">Error esperado</th>
+      </tr>
+      <tr>
+        <td><code>INSERT INTO Users (id_user, NOmnbre, Edad, Correo, Passwords) VALUES (1, 'Repetido', 20, 'x@mail.co', 'x');</code></td>
+        <td>1062 · llave primaria duplicada</td>
+      </tr>
+      <tr>
+        <td><code>INSERT INTO productos (Nombre, Precio, Stock) VALUES (NULL, 1000, 1);</code></td>
+        <td>1048 · <code>Nombre</code> no puede ser nulo</td>
+      </tr>
+      <tr>
+        <td><code>INSERT INTO pedido (id_user, Fecha) VALUES (99, '2026-10-21');</code></td>
+        <td>1452 · el usuario 99 no existe</td>
+      </tr>
+      <tr>
+        <td><code>INSERT INTO detalle_pedido (Id_pedido, Id_producto, Cantidad) VALUES (1, 99, 1);</code></td>
+        <td>1452 · el producto 99 no existe</td>
+      </tr>
+      <tr>
+        <td><code>DELETE FROM Users WHERE id_user = 1;</code></td>
+        <td>1451 · el usuario tiene pedidos</td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="explicacion naranja" aria-labelledby="ev06-workbench">
+    <h3 id="ev06-workbench">Diagrama en MySQL Workbench (.mwb)</h3>
+    <p>
+      Ejecuta el script y luego ve a <strong>Database › Reverse Engineer</strong>,
+      elige la conexión y el esquema <code>deportes</code>. Workbench dibuja el
+      diagrama EER con las relaciones. Guárdalo con
+      <strong>File › Save Model As</strong> como <code>deportes.mwb</code>. Si
+      prefieres diseñar primero, crea el modelo en <em>File › New Model</em> y
+      genera el script con <strong>Forward Engineer</strong>.
+    </p>
+  </section>
+
+  <section class="alert" aria-labelledby="ev06-entrega">
+    <h3 id="ev06-entrega">Contenido del ZIP</h3>
+    <ul class="entrega-list">
+      <li>
+        Documento Word: portada, introducción, objetivo, descripción de la
+        estructura (tablas, atributos, tipos de datos y restricciones).
+      </li>
+      <li>Capturas del script ejecutado y de las pruebas de restricciones.</li>
+      <li>Archivo <code>deportes.mwb</code> con el diagrama entidad relación.</li>
+      <li>Archivo <code>deportes.sql</code> con el script (recomendado).</li>
+    </ul>
+    <p>
+      Documento de ejemplo:
+      <a
+        href="assets/docs/evidencias/AA2-EV02/GA6-220501096-AA2-EV02_deportes.docx"
+        download
+        >GA6-220501096-AA2-EV02_deportes.docx</a
+      >. Completa la portada y pega tus capturas donde están los textos entre
+      corchetes.
+    </p>
+    <p>
+      Aplica el mismo método a las tablas de tu proyecto formativo: la guía
+      pide la estructura del software que desarrollas.
+    </p>
+  </section>
+</article>
