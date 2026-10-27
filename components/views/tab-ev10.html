@@ -1,0 +1,446 @@
+<article class="slide">
+  <header class="sec-header">
+    <span class="sec-tag naranja"
+      >GA6-220501096-AA4-EV02 · Evidencia de desempeño</span
+    >
+    <h2 class="sec-titulo">
+      Establecer los componentes front-end de la aplicación web
+    </h2>
+    <p class="sec-intro">
+      Antes de programar el front-end se decide con qué piezas se va a
+      construir. En esta evidencia elaboras un documento que especifica la
+      estructura de componentes de tu software y los elementos HTML que usará
+      cada uno. El ejemplo resuelto define los componentes de la tienda
+      <code>deportes</code>, a partir de su base de datos (AA2) y del prototipo
+      en Figma (AA3).
+    </p>
+  </header>
+
+  <section class="explicacion azul" aria-labelledby="ev10-criterio">
+    <h3 id="ev10-criterio">Criterio de evaluación</h3>
+    <p>
+      Genera plantillas y estilos de acuerdo con el diseño establecido.
+      Instrumento: lista de chequeo <code>IE-GA6-220501096-AA4-EV02</code>. El
+      producto es el <strong>documento de componentes</strong> en Word,
+      entregado en una <strong>carpeta comprimida ZIP</strong>. Como mínimo
+      debe tener portada, introducción, objetivo y la definición de los
+      elementos HTML a utilizar en el diseño front-end.
+    </p>
+  </section>
+
+  <section aria-labelledby="ev10-que-es">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 1</span>
+      <h3 class="sec-titulo" id="ev10-que-es">¿Qué es un componente front-end?</h3>
+      <p class="sec-intro">
+        Es una pieza de la interfaz que se puede reutilizar: un botón, un campo
+        de formulario, una tarjeta de producto. Cada componente reúne tres
+        capas y se escribe una sola vez para usarlo en todas las pantallas.
+      </p>
+    </header>
+    <div class="grid-2">
+      <article class="tarjeta">
+        <h4>HTML · estructura</h4>
+        <p>
+          Qué es la pieza y qué contiene: <code>&lt;article&gt;</code> con
+          imagen, título, precio y botón.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>CSS · presentación</h4>
+        <p>
+          Cómo se ve: colores, tamaños, espacios y sus variantes
+          (<code>.btn--primario</code>, <code>.btn--peligro</code>).
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>JS · comportamiento</h4>
+        <p>
+          Qué hace al interactuar: «Agregar» suma el producto al carrito y
+          actualiza el contador.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Datos</h4>
+        <p>
+          Qué información muestra y de qué tabla viene:
+          <code>productos.Nombre</code>, <code>Precio</code>,
+          <code>Stock</code>.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="ev10-atomico">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 2</span>
+      <h3 class="sec-titulo" id="ev10-atomico">Diseño atómico: organizar por niveles</h3>
+      <p class="sec-intro">
+        La metodología <em>Atomic Design</em> ordena los componentes de lo más
+        pequeño a lo más grande. Las piezas pequeñas se combinan para formar
+        las grandes, y un cambio en un átomo se refleja en todas las pantallas.
+      </p>
+    </header>
+    <table class="comparativa">
+      <caption class="sr-only">Niveles del diseño atómico con ejemplos de la tienda deportes</caption>
+      <tr>
+        <th scope="col">Nivel</th>
+        <th scope="col">Qué es</th>
+        <th scope="col">Ejemplo en la tienda</th>
+      </tr>
+      <tr>
+        <td><strong>Átomos</strong></td>
+        <td>Elementos HTML básicos con estilo propio.</td>
+        <td>Botón, campo de texto, etiqueta, insignia de stock, logo</td>
+      </tr>
+      <tr>
+        <td><strong>Moléculas</strong></td>
+        <td>Grupo pequeño de átomos con una función.</td>
+        <td>Campo de formulario (etiqueta + entrada + error), buscador, tarjeta de producto</td>
+      </tr>
+      <tr>
+        <td><strong>Organismos</strong></td>
+        <td>Secciones completas.</td>
+        <td>Encabezado con navegación, formulario de login, rejilla del catálogo, tabla de pedidos</td>
+      </tr>
+      <tr>
+        <td><strong>Plantillas</strong></td>
+        <td>Esqueleto que ubica los organismos.</td>
+        <td>Plantilla de autenticación y plantilla de tienda</td>
+      </tr>
+      <tr>
+        <td><strong>Páginas</strong></td>
+        <td>Plantilla con datos reales.</td>
+        <td><code>login.html</code>, <code>catalogo.html</code>, <code>carrito.html</code>…</td>
+      </tr>
+    </table>
+  </section>
+
+  <section aria-labelledby="ev10-html">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 3</span>
+      <h3 class="sec-titulo" id="ev10-html">Elementos HTML que debes definir</h3>
+      <p class="sec-intro">
+        Es la parte obligatoria del documento. Usa HTML5 semántico: cada
+        etiqueta describe su contenido, y así el lector de pantalla anuncia
+        «navegación», «principal» o «formulario». Para cada elemento indica
+        para qué sirve y en qué pantalla lo usarás.
+      </p>
+    </header>
+    <table class="propiedades">
+      <caption class="sr-only">Elementos HTML por grupo y su uso en la tienda</caption>
+      <tr>
+        <th scope="col">Grupo</th>
+        <th scope="col">Elementos</th>
+        <th scope="col">Uso en la tienda</th>
+      </tr>
+      <tr>
+        <td>Estructura</td>
+        <td>
+          <code>&lt;header&gt;</code> <code>&lt;nav&gt;</code>
+          <code>&lt;main&gt;</code> <code>&lt;section&gt;</code>
+          <code>&lt;article&gt;</code> <code>&lt;aside&gt;</code>
+          <code>&lt;footer&gt;</code>
+        </td>
+        <td>Encabezado y menú, contenido de cada página, tarjetas, resumen del carrito, pie</td>
+      </tr>
+      <tr>
+        <td>Contenido</td>
+        <td>
+          <code>&lt;h1&gt;</code>–<code>&lt;h3&gt;</code> <code>&lt;p&gt;</code>
+          <code>&lt;ul&gt;</code> <code>&lt;a&gt;</code>
+          <code>&lt;img alt&gt;</code> <code>&lt;strong&gt;</code>
+          <code>&lt;data&gt;</code> <code>&lt;time&gt;</code>
+        </td>
+        <td>Títulos, menú, fotos de productos, precio, fecha del pedido</td>
+      </tr>
+      <tr>
+        <td>Formularios</td>
+        <td>
+          <code>&lt;form&gt;</code> <code>&lt;label for&gt;</code>
+          <code>&lt;input type="email|password|number|search"&gt;</code>
+          <code>&lt;fieldset&gt;</code> <code>&lt;button&gt;</code>
+          <code>&lt;output&gt;</code>
+        </td>
+        <td>Login, registro, buscador, cantidad en el carrito, total</td>
+      </tr>
+      <tr>
+        <td>Datos tabulares</td>
+        <td>
+          <code>&lt;table&gt;</code> <code>&lt;caption&gt;</code>
+          <code>&lt;thead&gt;</code> <code>&lt;th scope&gt;</code>
+        </td>
+        <td>Historial de pedidos y su detalle</td>
+      </tr>
+      <tr>
+        <td>Interactivos</td>
+        <td><code>&lt;dialog&gt;</code></td>
+        <td>Ventana modal de detalle del pedido y confirmación</td>
+      </tr>
+      <tr>
+        <td>Accesibilidad</td>
+        <td>
+          <code>lang</code> <code>alt</code> <code>aria-label</code>
+          <code>aria-live</code> <code>aria-invalid</code>
+          <code>aria-current</code>
+        </td>
+        <td>Botones con ícono, contador del carrito, errores de formulario, menú activo</td>
+      </tr>
+    </table>
+  </section>
+
+  <section aria-labelledby="ev10-pasos">
+    <header class="sec-header">
+      <span class="sec-tag">Paso a paso</span>
+      <h3 class="sec-titulo" id="ev10-pasos">Cómo elaborar el documento</h3>
+      <p class="sec-intro">
+        Trabaja sobre tu proyecto formativo. Ten a la mano los requerimientos,
+        el modelo de la base de datos y el prototipo de la AA3.
+      </p>
+    </header>
+    <ol class="pasos">
+      <li class="paso">
+        <h4>Lista las pantallas</h4>
+        <p>
+          Recorre el prototipo y anota cada pantalla con el requerimiento que
+          atiende. En la tienda: Login (RF-02), Registro (RF-01), Catálogo
+          (RF-03, RF-04), Carrito (RF-05) y Mis pedidos (RF-06).
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Encierra lo que se repite</h4>
+        <p>
+          En cada pantalla marca los bloques que aparecen más de una vez:
+          botones, campos, tarjetas, el encabezado. Cada bloque repetido es un
+          componente. Si en Figma ya los creaste como componentes, úsalos tal
+          cual.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Clasifícalos por nivel y dibuja el árbol</h4>
+        <p>
+          Ubica cada componente como átomo, molécula u organismo y muestra
+          cómo se anidan dentro de cada página.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Define los elementos HTML</h4>
+        <p>
+          Haz las tablas del Concepto 3 con tus propios elementos: etiqueta,
+          uso y pantalla donde aparece. Es el contenido mínimo que pide la
+          guía.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Escribe una ficha por componente</h4>
+        <p>
+          Propósito, elementos HTML, variantes, estados (normal, hover, foco,
+          deshabilitado, error), datos que muestra, función JS y atributos de
+          accesibilidad. Incluye el fragmento HTML de los más importantes.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Fija carpetas, nombres y estilos</h4>
+        <p>
+          Estructura de archivos, convención de clases (por ejemplo BEM:
+          <code>bloque__elemento--modificador</code>), paleta, tipografía,
+          espaciado y puntos de quiebre. Esto es lo que aplicarás en la
+          AA4-EV03.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Arma el documento</h4>
+        <p>
+          Portada, tabla de contenido, introducción, objetivos y los apartados
+          anteriores, cerrando con conclusiones y referencias. En Word usa los
+          estilos <strong>Título 1</strong> y <strong>Título 2</strong> para
+          generar la tabla de contenido automática.
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="ev10-ejemplo">
+    <header class="sec-header">
+      <span class="sec-tag">Ejemplo resuelto</span>
+      <h3 class="sec-titulo" id="ev10-ejemplo">Componentes de la tienda deportes</h3>
+      <p class="sec-intro">
+        El árbol muestra cómo se ensambla cada página. Los componentes salen de
+        las pantallas Login y Catálogo diseñadas en Figma, más las pantallas de
+        Registro, Carrito y Mis pedidos que completan los requerimientos.
+      </p>
+    </header>
+
+    <div class="bloque-codigo">
+      <div class="linea-codigo azul">
+        <pre class="codigo-texto"><code>Plantilla de tienda (catalogo.html, carrito.html, pedidos.html)
+├── Encabezado
+│   ├── Logo
+│   ├── Navegación (Catálogo · Mis pedidos · Carrito con contador)
+│   └── Botón secundario «Cerrar sesión»
+├── main
+│   ├── Catálogo
+│   │   ├── Buscador (Campo + Botón)
+│   │   └── Rejilla de productos
+│   │       └── Tarjeta de producto × n
+│   ├── Carrito
+│   │   ├── Ítem de carrito × n
+│   │   └── Resumen del carrito (total + «Confirmar pedido»)
+│   └── Mis pedidos
+│       └── Tabla de pedidos (+ «Ver detalle» → Modal)
+└── Pie de página
+
+Plantilla de autenticación (login.html, registro.html)
+├── Logo
+├── Formulario de login / registro
+│   ├── Campo de formulario × n
+│   └── Botón primario
+└── Enlace a la otra pantalla</code></pre>
+      </div>
+    </div>
+
+    <table class="comparativa">
+      <caption class="sr-only">Catálogo de componentes de la tienda deportes</caption>
+      <tr>
+        <th scope="col">Componente</th>
+        <th scope="col">Nivel</th>
+        <th scope="col">Elementos HTML</th>
+        <th scope="col">Datos / JS</th>
+      </tr>
+      <tr>
+        <td>Botón <code>.btn</code></td>
+        <td>Átomo</td>
+        <td><code>&lt;button type&gt;</code></td>
+        <td>Variantes primario, secundario, acción y peligro</td>
+      </tr>
+      <tr>
+        <td>Insignia de stock <code>.badge</code></td>
+        <td>Átomo</td>
+        <td><code>&lt;span&gt;</code></td>
+        <td><code>productos.Stock</code>: ok, bajo o agotado</td>
+      </tr>
+      <tr>
+        <td>Campo de formulario <code>.campo</code></td>
+        <td>Molécula</td>
+        <td><code>&lt;label&gt;</code> <code>&lt;input&gt;</code> <code>&lt;p&gt;</code> de error</td>
+        <td><code>validarCampo()</code></td>
+      </tr>
+      <tr>
+        <td>Tarjeta de producto <code>.tarjeta-producto</code></td>
+        <td>Molécula</td>
+        <td><code>&lt;article&gt;</code> <code>&lt;img&gt;</code> <code>&lt;h3&gt;</code> <code>&lt;data&gt;</code> <code>&lt;button&gt;</code></td>
+        <td><code>Nombre</code>, <code>Precio</code>, <code>Stock</code>; <code>agregarAlCarrito()</code></td>
+      </tr>
+      <tr>
+        <td>Buscador <code>.buscador</code></td>
+        <td>Molécula</td>
+        <td><code>&lt;form role="search"&gt;</code> <code>&lt;input type="search"&gt;</code></td>
+        <td><code>filtrarProductos()</code></td>
+      </tr>
+      <tr>
+        <td>Encabezado <code>.encabezado</code></td>
+        <td>Organismo</td>
+        <td><code>&lt;header&gt;</code> <code>&lt;nav&gt;</code> <code>&lt;ul&gt;</code> <code>&lt;a&gt;</code></td>
+        <td>Nombre de <code>Users</code>; contador con <code>aria-live</code></td>
+      </tr>
+      <tr>
+        <td>Formulario de login <code>.form-login</code></td>
+        <td>Organismo</td>
+        <td><code>&lt;form&gt;</code> con 2 campos y botón</td>
+        <td><code>Correo</code>, <code>Passwords</code>; <code>iniciarSesion()</code></td>
+      </tr>
+      <tr>
+        <td>Tabla de pedidos <code>.tabla-pedidos</code></td>
+        <td>Organismo</td>
+        <td><code>&lt;table&gt;</code> <code>&lt;caption&gt;</code> <code>&lt;time&gt;</code></td>
+        <td><code>pedido</code>, <code>detalle_pedido</code></td>
+      </tr>
+      <tr>
+        <td>Modal <code>.modal</code></td>
+        <td>Organismo</td>
+        <td><code>&lt;dialog&gt;</code></td>
+        <td><code>showModal()</code>; se cierra con <kbd>Esc</kbd></td>
+      </tr>
+    </table>
+
+    <div class="grid-2">
+      <article class="tarjeta">
+        <h4>Molécula: campo de formulario</h4>
+        <div class="bloque-codigo">
+          <div class="linea-codigo azul">
+            <pre class="codigo-texto"><code>&lt;div class="campo"&gt;
+  &lt;label class="campo__etiqueta" for="correo"&gt;Correo&lt;/label&gt;
+  &lt;input class="campo__entrada" id="correo"
+    type="email" autocomplete="email" required
+    aria-describedby="correo-error" /&gt;
+  &lt;p class="campo__error" id="correo-error" hidden&gt;
+    Escribe un correo válido.
+  &lt;/p&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </article>
+      <article class="tarjeta">
+        <h4>Molécula: tarjeta de producto</h4>
+        <div class="bloque-codigo">
+          <div class="linea-codigo naranja">
+            <pre class="codigo-texto"><code>&lt;article class="tarjeta-producto" data-id="1"&gt;
+  &lt;img src="img/balon.jpg"
+    alt="Balón de fútbol blanco y verde" /&gt;
+  &lt;h3&gt;Balón de fútbol&lt;/h3&gt;
+  &lt;p&gt;&lt;strong&gt;&lt;data value="85000"&gt;$85.000&lt;/data&gt;&lt;/strong&gt;&lt;/p&gt;
+  &lt;span class="badge badge--ok"&gt;Stock: 12&lt;/span&gt;
+  &lt;button class="btn btn--accion" type="button"&gt;
+    Agregar
+  &lt;/button&gt;
+&lt;/article&gt;</code></pre>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="bloque-codigo">
+      <div class="linea-codigo morado">
+        <pre class="codigo-texto"><code>tienda-deportes/
+├── login.html · registro.html · catalogo.html · carrito.html · pedidos.html
+├── css/  base.css (variables) · componentes.css · layout.css
+├── js/   main.js · api.js · carrito.js · validacion.js
+└── img/  logo.svg y fotos de productos</code></pre>
+      </div>
+    </div>
+
+    <section class="explicacion morado" aria-labelledby="ev10-doc">
+      <h4 id="ev10-doc">Contenido del documento de ejemplo</h4>
+      <p>
+        Portada · Contenido · 1. Introducción · 2. Objetivos · 3. Descripción
+        del software y requerimientos · 4. Arquitectura de componentes (diseño
+        atómico y árbol) · 5. Definición de elementos HTML · 6. Catálogo de
+        componentes con fichas · 7. Estructura de carpetas · 8. Guía de
+        estilos · 9. Conclusiones · 10. Referencias. Al abrirlo, Word puede
+        pedir actualizar la tabla de contenido: acepta para ver los números de
+        página.
+      </p>
+    </section>
+
+    <div class="activity-actions">
+      <a
+        class="activity-manual"
+        href="assets/docs/evidencias/AA4-EV02/GA6-220501096-AA4-EV02_componentes-frontend.docx"
+        download
+        >Descargar documento de ejemplo <span aria-hidden="true">↓</span></a
+      >
+    </div>
+  </section>
+
+  <section class="alert" aria-labelledby="ev10-entrega">
+    <h3 id="ev10-entrega">Antes de comprimir</h3>
+    <ul class="entrega-list">
+      <li>Usa los componentes de tu proyecto formativo: la tienda deportes es solo el ejemplo.</li>
+      <li>El documento tiene portada, introducción, objetivo y la definición de los elementos HTML.</li>
+      <li>Cada pantalla del prototipo aparece en el árbol de componentes.</li>
+      <li>Cada componente indica sus elementos HTML, estados, datos y accesibilidad.</li>
+      <li>La guía de estilos coincide con los colores y fuentes del prototipo de la AA3.</li>
+      <li>Comprime el documento y nómbralo <code>GA6-220501096-AA4-EV02_TuNombre.zip</code>.</li>
+    </ul>
+  </section>
+</article>
