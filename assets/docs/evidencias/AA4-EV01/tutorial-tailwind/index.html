@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Tutorial práctico de Tailwind CSS: instalación por CDN, tipografía, espaciado, Flexbox, Grid y estados, con código y resultado en vivo."
+    />
+    <title>Tutorial práctico de Tailwind CSS</title>
+
+    <!-- Tailwind CSS por CDN (versión fijada) -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+
+    <!-- Configuración y estilos propios escritos con Tailwind -->
+    <style type="text/tailwindcss">
+      @custom-variant dark (&:where(.dark, .dark *));
+
+      @theme {
+        --color-sena: #39a900;
+        --color-sena-oscuro: #2f7d00;
+        --color-azul: #0067ac;
+        --color-naranja: #ff6b00;
+      }
+
+      @layer base {
+        p code, p kbd {
+          @apply rounded bg-slate-100 px-1 font-mono text-[0.9em] text-pink-700 dark:bg-slate-700 dark:text-pink-300;
+        }
+      }
+
+      @layer components {
+        .tema {
+          @apply mb-12 scroll-mt-20 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800;
+        }
+        .tema-titulo {
+          @apply mb-4 border-b-4 border-sena pb-2 text-2xl font-extrabold text-slate-900 dark:text-white;
+        }
+        .codigo {
+          @apply overflow-x-auto rounded-b-xl bg-slate-900 p-4 font-mono text-sm leading-relaxed text-sky-200;
+        }
+        .resultado {
+          @apply rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-4 dark:border-slate-600 dark:bg-slate-900;
+        }
+      }
+    </style>
+    <script src="js/app.js" defer></script>
+  </head>
+
+  <body class="bg-slate-100 text-slate-700 antialiased scroll-smooth dark:bg-slate-950 dark:text-slate-300">
+    <a
+      href="#contenido"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded focus:bg-white focus:px-4 focus:py-2"
+      >Saltar al contenido</a
+    >
+
+    <header class="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur dark:border-slate-800 dark:bg-slate-900/90">
+      <nav class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3" aria-label="Principal">
+        <a href="#inicio" class="flex items-center gap-2 font-bold text-slate-900 dark:text-white">
+          <span class="grid size-8 place-items-center rounded-lg bg-sena text-white">TW</span>
+          Tailwind en 6 pasos
+        </a>
+        <button
+          id="boton-tema"
+          type="button"
+          aria-pressed="false"
+          class="rounded-lg border border-slate-300 px-3 py-2 text-sm font-semibold hover:bg-slate-100 focus:ring-4 focus:ring-sky-300 focus:outline-none dark:border-slate-600 dark:hover:bg-slate-800"
+        >
+          🌙 Modo oscuro
+        </button>
+      </nav>
+    </header>
+
+    <section id="inicio" class="bg-linear-to-br from-sena to-azul text-white">
+      <div class="mx-auto max-w-5xl px-4 py-14 md:py-20">
+        <p class="text-sm font-semibold tracking-widest text-green-100 uppercase">
+          Tutorial · Front-end
+        </p>
+        <h1 class="mt-2 text-4xl font-extrabold md:text-6xl">
+          Tutorial práctico de Tailwind CSS
+        </h1>
+        <p class="mt-4 max-w-2xl text-lg text-green-50">
+          Aprende a dar estilo a una página web escribiendo clases directamente
+          en el HTML. Cada tema trae una explicación, el código listo para
+          copiar y el resultado funcionando.
+        </p>
+      </div>
+    </section>
+
+    <main id="contenido" class="mx-auto max-w-5xl px-4 py-10">
+      <nav aria-labelledby="indice-titulo" class="mb-12 rounded-2xl bg-white p-6 shadow-sm dark:bg-slate-800">
+        <h2 id="indice-titulo" class="text-xl font-bold text-slate-900 dark:text-white">
+          Contenido del tutorial
+        </h2>
+        <ol id="indice" class="mt-4 grid list-decimal gap-2 pl-6 font-semibold sm:grid-cols-2">
+          <li><a class="text-azul underline underline-offset-4 hover:text-sena dark:text-sky-400" href="#instalacion">Instalación por CDN</a></li>
+          <li><a class="text-azul underline underline-offset-4 hover:text-sena dark:text-sky-400" href="#tipografia">Tipografía y colores</a></li>
+          <li><a class="text-azul underline underline-offset-4 hover:text-sena dark:text-sky-400" href="#espaciado">Espaciado y modelo de caja</a></li>
+          <li><a class="text-azul underline underline-offset-4 hover:text-sena dark:text-sky-400" href="#flexbox">Flexbox: barra de navegación</a></li>
+          <li><a class="text-azul underline underline-offset-4 hover:text-sena dark:text-sky-400" href="#grid">Grid responsivo: galería</a></li>
+          <li><a class="text-azul underline underline-offset-4 hover:text-sena dark:text-sky-400" href="#estados">Estados: hover y focus</a></li>
+        </ol>
+      </nav>
+
+      <!-- Tema 1 -->
+      <article id="instalacion" class="tema">
+        <h2 class="tema-titulo">1. Instalación por CDN</h2>
+        <div class="grid gap-6 md:grid-cols-2">
+          <img src="img/cdn.svg" alt="Editor de código con la etiqueta script que carga Tailwind desde el CDN." width="400" height="220" class="w-full rounded-xl" />
+          <p>
+            Un <strong>CDN</strong> es un servidor que entrega archivos por
+            internet. Basta con agregar una etiqueta
+            <code>&lt;script&gt;</code>
+            en el <code>&lt;head&gt;</code>:
+            el navegador lee las clases de la página y genera el CSS. Fija la
+            versión en la URL para que tu diseño no cambie solo.
+          </p>
+        </div>
+        <figure class="mt-6">
+          <figcaption class="flex items-center justify-between rounded-t-xl bg-slate-800 px-4 py-2 text-xs text-slate-300">
+            index.html <button type="button" class="copiar rounded bg-slate-700 px-2 py-1 font-semibold hover:bg-slate-600">Copiar</button>
+          </figcaption>
+<pre class="codigo"><code>&lt;!doctype html&gt;
+&lt;html lang="es"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;title&gt;Mi página&lt;/title&gt;
+    &lt;script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1 class="text-3xl font-bold text-green-600"&gt;¡Hola, Tailwind!&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </figure>
+        <p class="mt-4 mb-2 text-sm font-bold text-slate-900 uppercase dark:text-white">Resultado</p>
+        <div class="resultado">
+          <h3 class="text-3xl font-bold text-green-600">¡Hola, Tailwind!</h3>
+        </div>
+      </article>
+
+      <!-- Tema 2 -->
+      <article id="tipografia" class="tema">
+        <h2 class="tema-titulo">2. Tipografía y colores</h2>
+        <div class="grid gap-6 md:grid-cols-2">
+          <img src="img/tipografia.svg" alt="Muestras de texto en distintos tamaños y una escala de tonos de verde 200, 400 y 700." width="400" height="220" class="w-full rounded-xl" />
+          <p>
+            El tamaño va de <code>text-xs</code> a <code>text-9xl</code> y el
+            grosor de <code>font-thin</code> a <code>font-black</code>. Los
+            colores siguen el patrón <code>propiedad-color-tono</code>: en
+            <code>text-green-600</code>, el tono va de 50 (claro) a 950
+            (oscuro). Con <code>bg-</code> se pinta el fondo.
+          </p>
+        </div>
+        <figure class="mt-6">
+          <figcaption class="flex items-center justify-between rounded-t-xl bg-slate-800 px-4 py-2 text-xs text-slate-300">
+            HTML <button type="button" class="copiar rounded bg-slate-700 px-2 py-1 font-semibold hover:bg-slate-600">Copiar</button>
+          </figcaption>
+<pre class="codigo"><code>&lt;h3 class="text-4xl font-extrabold text-slate-900"&gt;Título principal&lt;/h3&gt;
+&lt;p class="text-lg font-medium text-sky-700"&gt;Subtítulo en azul&lt;/p&gt;
+&lt;p class="text-sm text-slate-500 italic"&gt;Texto pequeño, gris y en cursiva.&lt;/p&gt;
+&lt;span class="rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-800"&gt;
+  Etiqueta
+&lt;/span&gt;</code></pre>
+        </figure>
+        <p class="mt-4 mb-2 text-sm font-bold text-slate-900 uppercase dark:text-white">Resultado</p>
+        <div class="resultado space-y-2">
+          <h3 class="text-4xl font-extrabold text-slate-900 dark:text-white">Título principal</h3>
+          <p class="text-lg font-medium text-sky-700 dark:text-sky-400">Subtítulo en azul</p>
+          <p class="text-sm text-slate-500 italic">Texto pequeño, gris y en cursiva.</p>
+          <span class="inline-block rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-800">Etiqueta</span>
+        </div>
+      </article>
+
+      <!-- Tema 3 -->
+      <article id="espaciado" class="tema">
+        <h2 class="tema-titulo">3. Espaciado y modelo de caja</h2>
+        <div class="grid gap-6 md:grid-cols-2">
+          <img src="img/espaciado.svg" alt="Diagrama del modelo de caja: margen exterior, relleno interior y contenido en el centro." width="400" height="220" class="w-full rounded-xl" />
+          <p>
+            <code>p-</code> es el relleno interno (<em>padding</em>) y
+            <code>m-</code> el margen externo. Cada unidad equivale a 4 px:
+            <code>p-4</code> = 16 px. Agrega <code>x</code> o <code>y</code>
+            para un solo eje (<code>px-6</code>, <code>my-2</code>) o
+            <code>t</code>, <code>r</code>, <code>b</code>, <code>l</code> para
+            un lado.
+          </p>
+        </div>
+        <figure class="mt-6">
+          <figcaption class="flex items-center justify-between rounded-t-xl bg-slate-800 px-4 py-2 text-xs text-slate-300">
+            HTML <button type="button" class="copiar rounded bg-slate-700 px-2 py-1 font-semibold hover:bg-slate-600">Copiar</button>
+          </figcaption>
+<pre class="codigo"><code>&lt;div class="m-4 max-w-sm rounded-2xl border-2 border-green-600 bg-white p-6 shadow-lg"&gt;
+  &lt;h3 class="mb-2 text-xl font-bold"&gt;Tarjeta&lt;/h3&gt;
+  &lt;p class="text-slate-600"&gt;Margen de 16 px, relleno de 24 px y sombra.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+        </figure>
+        <p class="mt-4 mb-2 text-sm font-bold text-slate-900 uppercase dark:text-white">Resultado</p>
+        <div class="resultado">
+          <div class="m-4 max-w-sm rounded-2xl border-2 border-green-600 bg-white p-6 shadow-lg">
+            <h3 class="mb-2 text-xl font-bold text-slate-900">Tarjeta</h3>
+            <p class="text-slate-600">Margen de 16 px, relleno de 24 px y sombra.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Tema 4 -->
+      <article id="flexbox" class="tema">
+        <h2 class="tema-titulo">4. Flexbox: barra de navegación</h2>
+        <div class="grid gap-6 md:grid-cols-2">
+          <img src="img/flexbox.svg" alt="Tres cajas moradas alineadas en una fila con el espacio repartido entre ellas." width="400" height="220" class="w-full rounded-xl" />
+          <p>
+            <code>flex</code> pone los hijos en fila.
+            <code>justify-between</code> reparte el espacio en el eje
+            horizontal e <code>items-center</code> los centra en el vertical.
+            <code>gap-6</code> separa los elementos sin usar márgenes.
+          </p>
+        </div>
+        <figure class="mt-6">
+          <figcaption class="flex items-center justify-between rounded-t-xl bg-slate-800 px-4 py-2 text-xs text-slate-300">
+            HTML <button type="button" class="copiar rounded bg-slate-700 px-2 py-1 font-semibold hover:bg-slate-600">Copiar</button>
+          </figcaption>
+<pre class="codigo"><code>&lt;nav class="flex items-center justify-between rounded-xl bg-slate-800 px-6 py-4 text-white"&gt;
+  &lt;strong class="text-lg"&gt;MiTienda&lt;/strong&gt;
+  &lt;ul class="flex gap-6"&gt;
+    &lt;li&gt;&lt;a href="#" class="hover:text-green-400"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="hover:text-green-400"&gt;Productos&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="hover:text-green-400"&gt;Contacto&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+        </figure>
+        <p class="mt-4 mb-2 text-sm font-bold text-slate-900 uppercase dark:text-white">Resultado</p>
+        <div class="resultado">
+          <nav class="flex items-center justify-between rounded-xl bg-slate-800 px-6 py-4 text-white" aria-label="Ejemplo de barra">
+            <strong class="text-lg">MiTienda</strong>
+            <ul class="flex gap-6">
+              <li><a href="#flexbox" class="hover:text-green-400">Inicio</a></li>
+              <li><a href="#flexbox" class="hover:text-green-400">Productos</a></li>
+              <li><a href="#flexbox" class="hover:text-green-400">Contacto</a></li>
+            </ul>
+          </nav>
+        </div>
+      </article>
+
+      <!-- Tema 5 -->
+      <article id="grid" class="tema">
+        <h2 class="tema-titulo">5. Grid responsivo: galería</h2>
+        <div class="grid gap-6 md:grid-cols-2">
+          <img src="img/grid.svg" alt="Seis cajas verdes ordenadas en una rejilla de tres columnas y dos filas." width="400" height="220" class="w-full rounded-xl" />
+          <p>
+            <code>grid grid-cols-1</code> apila en el celular. Los prefijos
+            responsivos cambian el diseño desde cierto ancho:
+            <code>sm:</code> 640 px, <code>md:</code> 768 px,
+            <code>lg:</code> 1024 px. Reduce la ventana para ver cómo pasa de 3
+            a 2 y a 1 columna.
+          </p>
+        </div>
+        <figure class="mt-6">
+          <figcaption class="flex items-center justify-between rounded-t-xl bg-slate-800 px-4 py-2 text-xs text-slate-300">
+            HTML <button type="button" class="copiar rounded bg-slate-700 px-2 py-1 font-semibold hover:bg-slate-600">Copiar</button>
+          </figcaption>
+<pre class="codigo"><code>&lt;section class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"&gt;
+  &lt;article class="rounded-xl bg-white p-5 shadow"&gt;
+    &lt;h3 class="font-bold"&gt;HTML&lt;/h3&gt;
+    &lt;p class="text-sm text-slate-500"&gt;Estructura&lt;/p&gt;
+  &lt;/article&gt;
+  &lt;!-- repite el article para CSS y JavaScript --&gt;
+&lt;/section&gt;</code></pre>
+        </figure>
+        <p class="mt-4 mb-2 text-sm font-bold text-slate-900 uppercase dark:text-white">Resultado</p>
+        <div class="resultado">
+          <section class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" aria-label="Ejemplo de galería">
+            <article class="rounded-xl border-t-4 border-orange-500 bg-white p-5 shadow">
+              <h3 class="font-bold text-slate-900">HTML</h3>
+              <p class="text-sm text-slate-500">Estructura</p>
+            </article>
+            <article class="rounded-xl border-t-4 border-sky-500 bg-white p-5 shadow">
+              <h3 class="font-bold text-slate-900">CSS</h3>
+              <p class="text-sm text-slate-500">Presentación</p>
+            </article>
+            <article class="rounded-xl border-t-4 border-yellow-400 bg-white p-5 shadow">
+              <h3 class="font-bold text-slate-900">JavaScript</h3>
+              <p class="text-sm text-slate-500">Comportamiento</p>
+            </article>
+          </section>
+        </div>
+      </article>
+
+      <!-- Tema 6 -->
+      <article id="estados" class="tema">
+        <h2 class="tema-titulo">6. Estados: hover y focus</h2>
+        <div class="grid gap-6 md:grid-cols-2">
+          <img src="img/estados.svg" alt="Dos botones verdes: uno normal y otro más oscuro con anillo de foco y el puntero encima." width="400" height="220" class="w-full rounded-xl" />
+          <p>
+            Un prefijo aplica la clase solo en un estado:
+            <code>hover:</code> al pasar el mouse, <code>focus:</code> al
+            llegar con el teclado y <code>active:</code> al hacer clic. El
+            anillo de <code>focus:ring-4</code> ayuda a quien navega con
+            <kbd>Tab</kbd>: es una práctica de accesibilidad.
+          </p>
+        </div>
+        <figure class="mt-6">
+          <figcaption class="flex items-center justify-between rounded-t-xl bg-slate-800 px-4 py-2 text-xs text-slate-300">
+            HTML <button type="button" class="copiar rounded bg-slate-700 px-2 py-1 font-semibold hover:bg-slate-600">Copiar</button>
+          </figcaption>
+<pre class="codigo"><code>&lt;button class="rounded-lg bg-green-600 px-5 py-3 font-semibold text-white
+  transition hover:bg-green-800 focus:ring-4 focus:ring-green-300
+  focus:outline-none active:scale-95"&gt;
+  Comenzar
+&lt;/button&gt;</code></pre>
+        </figure>
+        <p class="mt-4 mb-2 text-sm font-bold text-slate-900 uppercase dark:text-white">Resultado (pasa el mouse o usa Tab)</p>
+        <div class="resultado flex flex-wrap gap-4">
+          <button type="button" class="rounded-lg bg-green-600 px-5 py-3 font-semibold text-white transition hover:bg-green-800 focus:ring-4 focus:ring-green-300 focus:outline-none active:scale-95">
+            Comenzar
+          </button>
+          <button type="button" class="rounded-lg bg-naranja px-5 py-3 font-semibold text-white transition hover:bg-orange-700 focus:ring-4 focus:ring-orange-300 focus:outline-none active:scale-95">
+            Versión naranja
+          </button>
+        </div>
+      </article>
+    </main>
+
+    <footer class="bg-slate-900 py-6 text-center text-sm text-slate-400">
+      <p>Evidencia GA6-220501096-AA4-EV01 · ADSO · SENA CADPH Garzón</p>
+    </footer>
+
+    <a
+      id="volver-arriba"
+      href="#contenido"
+      class="fixed right-4 bottom-4 rounded-full bg-naranja px-4 py-3 font-semibold text-white shadow-lg hover:bg-orange-700 focus:ring-4 focus:ring-orange-300 focus:outline-none"
+      hidden
+      >↑ Índice</a
+    >
+  </body>
+</html>

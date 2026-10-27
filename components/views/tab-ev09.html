@@ -1,0 +1,451 @@
+<article class="slide">
+  <header class="sec-header">
+    <span class="sec-tag naranja"
+      >GA6-220501096-AA4-EV01 · Evidencia de conocimiento</span
+    >
+    <h2 class="sec-titulo">
+      Fundamentos en la implementación de componentes front-end, HTML, CSS, JS
+    </h2>
+    <p class="sec-intro">
+      Elabora una página que enseñe un pequeño tutorial sobre un tema de tu
+      gusto. Debe tener un título, una lista ordenada con enlaces a cada tema
+      y, en cada tema, su título, una imagen y la descripción. Los estilos se
+      aplican con <strong>Tailwind CSS</strong> instalado por CDN. El ejemplo
+      resuelto es un tutorial práctico del propio Tailwind CSS, con código y
+      resultado en vivo.
+    </p>
+  </header>
+
+  <section class="explicacion azul" aria-labelledby="ev09-criterio">
+    <h3 id="ev09-criterio">Criterio de evaluación</h3>
+    <p>
+      Genera plantillas y estilos de acuerdo con el diseño establecido.
+      Instrumento: lista de chequeo <code>IE-GA6-220501096-AA4-EV01</code>. El
+      producto es una <strong>carpeta comprimida ZIP</strong> con los archivos
+      HTML de la página y los recursos que usa (CSS, JS e imágenes).
+    </p>
+  </section>
+
+  <section aria-labelledby="ev09-que-es">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 1</span>
+      <h3 class="sec-titulo" id="ev09-que-es">¿Qué es Tailwind CSS?</h3>
+      <p class="sec-intro">
+        Es un framework de CSS <em>utility-first</em>: en lugar de escribir
+        reglas en un archivo aparte, se aplican clases pequeñas que hacen una
+        sola cosa (<code>p-4</code> da relleno, <code>text-center</code> centra
+        el texto) directamente en el HTML. Tailwind genera el CSS solo de las
+        clases que usas.
+      </p>
+    </header>
+    <div class="grid-2">
+      <article class="tarjeta">
+        <h4>CSS tradicional</h4>
+        <div class="bloque-codigo">
+          <div class="linea-codigo azul">
+            <pre class="codigo-texto"><code>&lt;button class="boton"&gt;Enviar&lt;/button&gt;
+
+.boton {
+  background: #39a900;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+}</code></pre>
+          </div>
+        </div>
+      </article>
+      <article class="tarjeta">
+        <h4>Con Tailwind</h4>
+        <div class="bloque-codigo">
+          <div class="linea-codigo naranja">
+            <pre class="codigo-texto"><code>&lt;button class="bg-green-600 text-white
+  px-4 py-2 rounded-lg"&gt;
+  Enviar
+&lt;/button&gt;</code></pre>
+          </div>
+        </div>
+      </article>
+    </div>
+    <table class="comparativa">
+      <caption class="sr-only">Ventajas y cuidados al usar Tailwind</caption>
+      <tr>
+        <th scope="col">Ventajas</th>
+        <th scope="col">Cuidados</th>
+      </tr>
+      <tr>
+        <td>No inventas nombres de clases ni cambias de archivo a cada rato.</td>
+        <td>El HTML se llena de clases; agrupa lo repetido en componentes.</td>
+      </tr>
+      <tr>
+        <td>Diseño responsivo con prefijos: <code>md:</code>, <code>lg:</code>.</td>
+        <td>Hay que aprender los nombres de las utilidades.</td>
+      </tr>
+      <tr>
+        <td>Escala de colores y espacios consistente en todo el sitio.</td>
+        <td>No reemplaza saber CSS: cada clase es una propiedad CSS.</td>
+      </tr>
+    </table>
+  </section>
+
+  <section aria-labelledby="ev09-cdn">
+    <header class="sec-header">
+      <span class="sec-tag">Paso a paso</span>
+      <h3 class="sec-titulo" id="ev09-cdn">Instalar Tailwind por CDN</h3>
+      <p class="sec-intro">
+        La forma más rápida: no se instala nada en el equipo, solo se agrega una
+        etiqueta <code>&lt;script&gt;</code>. El navegador lee las clases de la
+        página y genera el CSS al vuelo.
+      </p>
+    </header>
+    <ol class="pasos">
+      <li class="paso">
+        <h4>Crea la carpeta y el archivo index.html</h4>
+        <p>
+          Abre VS Code, crea la carpeta <code>tutorial</code> y dentro el
+          archivo <code>index.html</code>. Escribe <kbd>!</kbd> y pulsa
+          <kbd>Tab</kbd> para generar la estructura HTML5.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Agrega el script de Tailwind en el &lt;head&gt;</h4>
+        <p>Fija la versión en la URL para que tu página no cambie sola.</p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo azul">
+            <pre class="codigo-texto"><code>&lt;head&gt;
+  &lt;meta charset="UTF-8" /&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+  &lt;title&gt;Mi tutorial&lt;/title&gt;
+  &lt;script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"&gt;&lt;/script&gt;
+&lt;/head&gt;</code></pre>
+          </div>
+        </div>
+      </li>
+      <li class="paso">
+        <h4>Comprueba que funciona</h4>
+        <p>
+          Abre el archivo con <strong>Live Server</strong>. Si el título se ve
+          grande, verde y centrado, Tailwind está activo.
+        </p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo naranja">
+            <pre class="codigo-texto"><code>&lt;body&gt;
+  &lt;h1 class="text-4xl font-bold text-green-600 text-center mt-10"&gt;
+    ¡Hola, Tailwind!
+  &lt;/h1&gt;
+&lt;/body&gt;</code></pre>
+          </div>
+        </div>
+      </li>
+      <li class="paso">
+        <h4>Opcional: agrega tus propios colores</h4>
+        <p>
+          Con <code>@theme</code> creas utilidades nuevas. Después de esto
+          existen <code>bg-sena</code>, <code>text-sena</code>,
+          <code>border-sena</code>…
+        </p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo morado">
+            <pre class="codigo-texto"><code>&lt;style type="text/tailwindcss"&gt;
+  @theme {
+    --color-sena: #39a900;
+    --color-azul: #0067ac;
+  }
+&lt;/style&gt;</code></pre>
+          </div>
+        </div>
+      </li>
+    </ol>
+    <section class="explicacion morado" aria-labelledby="ev09-cdn-nota">
+      <h4 id="ev09-cdn-nota">El CDN es para aprender y prototipar</h4>
+      <p>
+        El script del CDN necesita internet y genera el CSS en cada visita. En
+        un proyecto real se instala con <code>npm</code> (Tailwind CLI o Vite)
+        para obtener un archivo CSS pequeño y optimizado. En tutoriales antiguos
+        verás <code>cdn.tailwindcss.com</code>: es el CDN de la versión 3, que
+        se configura con <code>tailwind.config</code> en vez de
+        <code>@theme</code>.
+      </p>
+    </section>
+  </section>
+
+  <section aria-labelledby="ev09-clases">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 2</span>
+      <h3 class="sec-titulo" id="ev09-clases">Las utilidades más usadas</h3>
+      <p class="sec-intro">
+        La escala de espacios va de 4 en 4 píxeles: <code>p-1</code> = 4 px,
+        <code>p-4</code> = 16 px, <code>p-8</code> = 32 px.
+      </p>
+    </header>
+    <table class="propiedades">
+      <caption class="sr-only">Utilidades de Tailwind y su CSS equivalente</caption>
+      <tr>
+        <th scope="col">Grupo</th>
+        <th scope="col">Clases de ejemplo</th>
+        <th scope="col">CSS equivalente</th>
+      </tr>
+      <tr>
+        <td>Texto</td>
+        <td><code>text-xl font-bold text-center</code></td>
+        <td><code>font-size</code>, <code>font-weight</code>, <code>text-align</code></td>
+      </tr>
+      <tr>
+        <td>Color</td>
+        <td><code>text-stone-700 bg-green-100</code></td>
+        <td><code>color</code>, <code>background-color</code></td>
+      </tr>
+      <tr>
+        <td>Espaciado</td>
+        <td><code>p-4 px-6 mt-8 gap-4</code></td>
+        <td><code>padding</code>, <code>margin</code>, <code>gap</code></td>
+      </tr>
+      <tr>
+        <td>Tamaño</td>
+        <td><code>w-full max-w-4xl h-48</code></td>
+        <td><code>width</code>, <code>max-width</code>, <code>height</code></td>
+      </tr>
+      <tr>
+        <td>Bordes y sombras</td>
+        <td><code>border rounded-xl shadow-md</code></td>
+        <td><code>border</code>, <code>border-radius</code>, <code>box-shadow</code></td>
+      </tr>
+      <tr>
+        <td>Layout</td>
+        <td><code>flex items-center grid grid-cols-3</code></td>
+        <td><code>display: flex</code>, <code>display: grid</code></td>
+      </tr>
+      <tr>
+        <td>Responsivo</td>
+        <td><code>grid-cols-1 md:grid-cols-2</code></td>
+        <td><code>@media (min-width: 768px)</code></td>
+      </tr>
+      <tr>
+        <td>Estados</td>
+        <td><code>hover:bg-green-700 focus:ring-4</code></td>
+        <td><code>:hover</code>, <code>:focus</code></td>
+      </tr>
+    </table>
+  </section>
+
+  <section aria-labelledby="ev09-ejercicios">
+    <header class="sec-header">
+      <span class="sec-tag morado">Practica</span>
+      <h3 class="sec-titulo" id="ev09-ejercicios">Ejercicios prácticos</h3>
+      <p class="sec-intro">
+        Pega cada ejercicio dentro del <code>&lt;body&gt;</code> de tu archivo
+        de prueba, obsérvalo en el navegador y luego resuelve el reto.
+      </p>
+    </header>
+    <ol class="pasos">
+      <li class="paso">
+        <h4>Tipografía y color</h4>
+        <div class="bloque-codigo">
+          <div class="linea-codigo azul">
+            <pre class="codigo-texto"><code>&lt;h1 class="text-3xl font-extrabold text-green-700"&gt;Mi tutorial&lt;/h1&gt;
+&lt;p class="text-lg text-stone-600 italic"&gt;Aprende paso a paso.&lt;/p&gt;</code></pre>
+          </div>
+        </div>
+        <p>
+          <strong>Reto:</strong> cambia el título a <code>text-5xl</code> y
+          color azul (<code>text-blue-700</code>), y subraya el párrafo con
+          <code>underline</code>.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Modelo de caja: relleno, margen y borde</h4>
+        <div class="bloque-codigo">
+          <div class="linea-codigo naranja">
+            <pre class="codigo-texto"><code>&lt;div class="m-6 p-6 border-2 border-green-600 rounded-xl bg-green-50"&gt;
+  Caja con margen, relleno y borde redondeado
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+        <p>
+          <strong>Reto:</strong> deja solo relleno horizontal
+          (<code>px-10</code>) y agrega una sombra (<code>shadow-lg</code>).
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Barra de navegación con Flexbox</h4>
+        <div class="bloque-codigo">
+          <div class="linea-codigo morado">
+            <pre class="codigo-texto"><code>&lt;nav class="flex items-center justify-between bg-stone-800 p-4 text-white"&gt;
+  &lt;strong&gt;Mi sitio&lt;/strong&gt;
+  &lt;ul class="flex gap-6"&gt;
+    &lt;li&gt;&lt;a href="#" class="hover:text-green-400"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="hover:text-green-400"&gt;Temas&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+          </div>
+        </div>
+        <p>
+          <strong>Reto:</strong> agrega un tercer enlace «Contacto» y cambia
+          <code>justify-between</code> por <code>justify-center</code>. ¿Qué
+          ocurre?
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Rejilla responsiva con Grid</h4>
+        <div class="bloque-codigo">
+          <div class="linea-codigo azul">
+            <pre class="codigo-texto"><code>&lt;section class="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 lg:grid-cols-3"&gt;
+  &lt;div class="rounded-lg bg-green-200 p-6"&gt;1&lt;/div&gt;
+  &lt;div class="rounded-lg bg-green-300 p-6"&gt;2&lt;/div&gt;
+  &lt;div class="rounded-lg bg-green-400 p-6"&gt;3&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+          </div>
+        </div>
+        <p>
+          <strong>Reto:</strong> reduce el ancho de la ventana (o usa
+          <kbd>F12</kbd> › modo dispositivo) y observa cómo pasa de 3 a 2 y a 1
+          columna.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Botón con estados</h4>
+        <div class="bloque-codigo">
+          <div class="linea-codigo naranja">
+            <pre class="codigo-texto"><code>&lt;button class="rounded-lg bg-green-600 px-5 py-3 font-semibold text-white
+  transition hover:bg-green-800 focus:outline-none focus:ring-4
+  focus:ring-green-300 active:scale-95"&gt;
+  Comenzar
+&lt;/button&gt;</code></pre>
+          </div>
+        </div>
+        <p>
+          <strong>Reto:</strong> navega con <kbd>Tab</kbd> hasta el botón: el
+          anillo de foco es accesibilidad. Crea una versión naranja.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Componente: tarjeta de un tema</h4>
+        <p>Es la pieza que se repite en la evidencia: título, imagen y descripción.</p>
+        <div class="bloque-codigo">
+          <div class="linea-codigo morado">
+            <pre class="codigo-texto"><code>&lt;article id="tema1" class="max-w-sm overflow-hidden rounded-2xl bg-white shadow-md"&gt;
+  &lt;img src="img/tema1.jpg" alt="Descripción de la imagen" class="h-48 w-full object-cover" /&gt;
+  &lt;div class="p-5"&gt;
+    &lt;h2 class="text-xl font-bold text-green-700"&gt;1. Título del tema&lt;/h2&gt;
+    &lt;p class="mt-2 text-stone-600"&gt;Descripción del tema.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+          </div>
+        </div>
+        <p>
+          <strong>Reto:</strong> duplica la tarjeta tres veces dentro de la
+          rejilla del ejercicio 4.
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="ev09-ejemplo">
+    <header class="sec-header">
+      <span class="sec-tag">Ejemplo resuelto</span>
+      <h3 class="sec-titulo" id="ev09-ejemplo">Tutorial práctico de Tailwind CSS</h3>
+      <p class="sec-intro">
+        Seis temas, de la instalación a los estados. Cada tema muestra el
+        código con un botón para copiarlo y debajo el resultado funcionando.
+        Así se cumple cada
+        requisito de la guía:
+      </p>
+    </header>
+    <table class="comparativa">
+      <caption class="sr-only">Requisitos de la evidencia y cómo se cumplen</caption>
+      <tr>
+        <th scope="col">Requisito</th>
+        <th scope="col">Implementación</th>
+      </tr>
+      <tr>
+        <td>Título del tutorial</td>
+        <td><code>&lt;h1&gt;</code> dentro del <code>&lt;header&gt;</code></td>
+      </tr>
+      <tr>
+        <td>Lista ordenada con enlaces</td>
+        <td>
+          <code>&lt;nav&gt;</code> con <code>&lt;ol&gt;</code>; cada enlace
+          apunta al <code>id</code> del tema: <code>href="#cosecha"</code>
+        </td>
+      </tr>
+      <tr>
+        <td>Título, imagen y descripción por tema</td>
+        <td>
+          <code>&lt;article id="…"&gt;</code> con <code>&lt;h2&gt;</code>,
+          <code>&lt;img alt&gt;</code> y <code>&lt;p&gt;</code>
+        </td>
+      </tr>
+      <tr>
+        <td>Otros elementos HTML</td>
+        <td>
+          <code>&lt;pre&gt;</code> y <code>&lt;code&gt;</code> para el código,
+          <code>&lt;button&gt;</code>, <code>&lt;ul&gt;</code>,
+          <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>,
+          <code>&lt;footer&gt;</code>
+        </td>
+      </tr>
+      <tr>
+        <td>Estilos CSS</td>
+        <td>
+          Utilidades de Tailwind por CDN, colores propios con
+          <code>@theme</code>, modo oscuro con <code>@custom-variant</code>
+          y componentes propios (<code>.tema</code>, <code>.codigo</code>)
+          con <code>@apply</code>
+        </td>
+      </tr>
+      <tr>
+        <td>JavaScript</td>
+        <td>
+          <code>js/app.js</code>: botón de modo oscuro, botones «Copiar» que
+          llevan el código al portapapeles y botón para volver al índice
+        </td>
+      </tr>
+    </table>
+
+    <div class="bloque-codigo">
+      <div class="linea-codigo azul">
+        <pre class="codigo-texto"><code>tutorial-tailwind/
+├── index.html
+├── js/app.js
+└── img/  cdn.svg · tipografia.svg · espaciado.svg · flexbox.svg · grid.svg · estados.svg</code></pre>
+      </div>
+    </div>
+
+    <figure class="captura">
+      <iframe
+        src="assets/docs/evidencias/AA4-EV01/tutorial-tailwind/index.html"
+        title="Vista previa del tutorial práctico de Tailwind CSS"
+        loading="lazy"
+        style="width: 100%; height: 520px; border: 1px solid #d8e2da; border-radius: 10px; background: #fff"
+      ></iframe>
+      <figcaption>Vista previa del ejemplo. Necesita internet para cargar Tailwind.</figcaption>
+    </figure>
+
+    <div class="activity-actions">
+      <a
+        class="activity-explore"
+        href="assets/docs/evidencias/AA4-EV01/tutorial-tailwind/index.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Abrir el ejemplo <span aria-hidden="true">↗</span></a
+      >
+      <a
+        class="activity-manual"
+        href="assets/docs/evidencias/AA4-EV01/GA6-220501096-AA4-EV01_tutorial-tailwind.zip"
+        download
+        >Descargar ZIP <span aria-hidden="true">↓</span></a
+      >
+    </div>
+  </section>
+
+  <section class="alert" aria-labelledby="ev09-entrega">
+    <h3 id="ev09-entrega">Antes de comprimir</h3>
+    <ul class="entrega-list">
+      <li>Elige tu propio tema: este tutorial de Tailwind es solo el ejemplo.</li>
+      <li>Mínimo cuatro temas, cada uno con título, imagen y descripción.</li>
+      <li>Todos los enlaces del índice llevan a su tema (pruébalos uno por uno).</li>
+      <li>Cada imagen tiene texto alternativo (<code>alt</code>) y está dentro de la carpeta <code>img/</code>.</li>
+      <li>Rutas relativas (<code>img/foto.jpg</code>), nunca <code>C:\Users\…</code>.</li>
+      <li>Comprime la carpeta completa y nómbrala <code>GA6-220501096-AA4-EV01_TuNombre.zip</code>.</li>
+    </ul>
+  </section>
+</article>

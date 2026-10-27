@@ -1,0 +1,419 @@
+<article class="slide">
+  <header class="sec-header">
+    <span class="sec-tag naranja"
+      >GA6-220501096-AA3-EV01 · Evidencia de conocimiento</span
+    >
+    <h2 class="sec-titulo">Selección herramientas para prototipado</h2>
+    <p class="sec-intro">
+      Antes de programar una interfaz se dibuja y se prueba como prototipo.
+      En esta evidencia comparas herramientas de prototipado, eliges una,
+      pruebas sus funciones principales y construyes un ejemplo con algunos
+      elementos. El ejemplo resuelto usa <strong>Figma</strong> y diseña dos
+      pantallas móviles de la tienda <code>deportes</code> trabajada en la AA2.
+    </p>
+  </header>
+
+  <section class="explicacion azul" aria-labelledby="ev08-criterio">
+    <h3 id="ev08-criterio">Criterio de evaluación</h3>
+    <p>
+      Crea interfaces de usuario aplicando buenas prácticas de usabilidad y
+      accesibilidad. Instrumento: lista de chequeo
+      <code>IE-GA6-220501096-AA3-EV01</code>. El producto es un
+      <strong>archivo ZIP</strong> con el documento en Word y el archivo donde
+      se realizó el prototipado.
+    </p>
+  </section>
+
+  <section aria-labelledby="ev08-conceptos">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 1</span>
+      <h3 class="sec-titulo" id="ev08-conceptos">
+        Boceto, wireframe, mockup y prototipo
+      </h3>
+      <p class="sec-intro">
+        Un prototipo es un modelo fácil de modificar que representa el
+        software antes de construirlo. Se avanza por niveles de fidelidad:
+      </p>
+    </header>
+    <div class="grid-2">
+      <article class="tarjeta">
+        <h4>Boceto (sketch)</h4>
+        <p>Dibujo rápido a mano o digital para ordenar ideas. Sin detalle.</p>
+      </article>
+      <article class="tarjeta">
+        <h4>Wireframe</h4>
+        <p>
+          Esqueleto en grises: ubica bloques, menús y botones. Baja fidelidad.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Mockup</h4>
+        <p>
+          Diseño visual final: colores, tipografía, íconos e imágenes. Alta
+          fidelidad, pero estático.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Prototipo interactivo</h4>
+        <p>
+          Mockup con navegación: al pulsar un botón cambia de pantalla. Permite
+          probar la experiencia con usuarios.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="ev08-comparativa">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 2</span>
+      <h3 class="sec-titulo" id="ev08-comparativa">
+        Comparativa de herramientas
+      </h3>
+      <p class="sec-intro">
+        Esta tabla va en el documento como justificación de la selección.
+        Revisa los planes vigentes en el sitio de cada herramienta, porque
+        cambian con frecuencia.
+      </p>
+    </header>
+    <table class="comparativa">
+      <caption class="sr-only">Comparativa de herramientas de prototipado</caption>
+      <tr>
+        <th scope="col">Herramienta</th>
+        <th scope="col">Tipo y acceso</th>
+        <th scope="col">Fortalezas</th>
+        <th scope="col">Limitaciones</th>
+      </tr>
+      <tr>
+        <td><strong>Figma</strong></td>
+        <td>Navegador y app de escritorio. Plan gratuito y plan educativo.</td>
+        <td>
+          Componentes, Auto Layout, prototipado interactivo, trabajo
+          colaborativo en tiempo real, modo desarrollador con CSS.
+        </td>
+        <td>Requiere internet; el plan gratuito limita archivos de equipo.</td>
+      </tr>
+      <tr>
+        <td><strong>Penpot</strong></td>
+        <td>Navegador. Libre y de código abierto, gratuito.</td>
+        <td>
+          Basado en estándares web (SVG, CSS), componentes, prototipado,
+          se puede instalar en un servidor propio.
+        </td>
+        <td>Comunidad y plantillas más pequeñas que Figma.</td>
+      </tr>
+      <tr>
+        <td><strong>Balsamiq</strong></td>
+        <td>Navegador y escritorio. De pago con prueba gratuita.</td>
+        <td>Wireframes muy rápidos con aspecto de boceto.</td>
+        <td>Solo baja fidelidad; no sirve para el diseño visual final.</td>
+      </tr>
+      <tr>
+        <td><strong>Adobe XD</strong></td>
+        <td>Escritorio. Incluido en Creative Cloud.</td>
+        <td>Prototipado y animaciones entre pantallas.</td>
+        <td>
+          En modo de mantenimiento: Adobe ya no lo desarrolla ni lo vende por
+          separado.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Pencil Project</strong></td>
+        <td>Escritorio. Libre y gratuito.</td>
+        <td>Funciona sin internet; plantillas de Android, iOS y web.</td>
+        <td>Interacción limitada y desarrollo poco activo.</td>
+      </tr>
+    </table>
+
+    <section class="explicacion morado" aria-labelledby="ev08-seleccion">
+      <h4 id="ev08-seleccion">Selección: Figma</h4>
+      <p>
+        Se elige Figma porque es gratuito para aprendices, funciona en el
+        navegador sin instalar nada, cubre de wireframe a prototipo interactivo
+        en una sola herramienta y entrega medidas y CSS que se reutilizan en la
+        AA4. Penpot es la alternativa recomendada si prefieres software libre:
+        los pasos de esta guía son casi idénticos.
+      </p>
+    </section>
+  </section>
+
+  <section aria-labelledby="ev08-funciones">
+    <header class="sec-header">
+      <span class="sec-tag">Paso a paso</span>
+      <h3 class="sec-titulo" id="ev08-funciones">
+        Principales funciones de Figma
+      </h3>
+      <p class="sec-intro">
+        Toma una captura en cada paso: son los pantallazos de las principales
+        funciones que pide la guía. Los atajos son de Windows; en macOS usa
+        <kbd>Cmd</kbd> en lugar de <kbd>Ctrl</kbd>.
+      </p>
+    </header>
+
+    <ol class="pasos">
+      <li class="paso">
+        <h4>Crea la cuenta y un archivo de diseño</h4>
+        <p>
+          Entra a <strong>figma.com</strong>, regístrate con tu correo y pulsa
+          <strong>+ Create › Design</strong>. Cambia el nombre del archivo a
+          <code>AA3-EV01_TiendaDeportes</code>. Captura el área de trabajo:
+          barra de herramientas, capas a la izquierda y propiedades a la
+          derecha.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Frames: el lienzo de cada pantalla</h4>
+        <p>
+          Pulsa <kbd>F</kbd> (Frame) y en el panel derecho elige el tamaño
+          <em>Phone › Android Compact</em> (412 × 917) o <em>iPhone 16</em>.
+          Cada frame es una pantalla. Crea dos y nómbralos
+          <code>Login</code> y <code>Catálogo</code>.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Formas, texto e imágenes</h4>
+        <p>
+          <kbd>R</kbd> rectángulo, <kbd>O</kbd> elipse, <kbd>T</kbd> texto.
+          Arrastra una imagen desde tu equipo para insertarla. En el panel
+          derecho cambia relleno, borde, radio de esquina y sombra.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Estilos de color y texto</h4>
+        <p>
+          Selecciona un relleno y pulsa el ícono de estilos para guardarlo
+          como <code>Verde SENA #39A900</code>. Haz lo mismo con los textos
+          (<code>Título 24</code>, <code>Cuerpo 16</code>). Así cambias un
+          color en todo el diseño desde un solo lugar.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Auto Layout</h4>
+        <p>
+          Selecciona un texto con su fondo y pulsa <kbd>Shift</kbd> +
+          <kbd>A</kbd>. El botón crece solo cuando cambias el texto y respeta
+          el espaciado (padding). Úsalo también para apilar los campos del
+          formulario.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Componentes e instancias</h4>
+        <p>
+          Selecciona el botón y pulsa <kbd>Ctrl</kbd> + <kbd>Alt</kbd> +
+          <kbd>K</kbd>. Se vuelve un componente (rombo morado). Cada copia es
+          una instancia: si editas el componente principal, todas cambian.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Prototype: conectar pantallas</h4>
+        <p>
+          Cambia a la pestaña <strong>Prototype</strong> del panel derecho.
+          Selecciona el botón <em>Ingresar</em> del Login, arrastra el círculo
+          azul hasta el frame Catálogo y configura
+          <em>On click › Navigate to › Smart animate</em>.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Presentar y probar</h4>
+        <p>
+          Pulsa el botón <strong>Present</strong> (▶) arriba a la derecha.
+          Haz clic en <em>Ingresar</em> y comprueba que navega al catálogo.
+          Captura el modo presentación.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Compartir, inspeccionar y exportar</h4>
+        <p>
+          <strong>Share</strong> genera el enlace para el instructor. El modo
+          desarrollador (<kbd>Shift</kbd> + <kbd>D</kbd>) muestra medidas y
+          CSS. Para el ZIP descarga el archivo con
+          <strong>Menú › File › Save local copy</strong>: obtienes un
+          <code>.fig</code>.
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="ev08-ejemplo">
+    <header class="sec-header">
+      <span class="sec-tag">Ejemplo resuelto</span>
+      <h3 class="sec-titulo" id="ev08-ejemplo">
+        Interfaz de la tienda deportes
+      </h3>
+      <p class="sec-intro">
+        Dos pantallas que usan los datos de la base <code>deportes</code>:
+        el login valida <code>Correo</code> y <code>Passwords</code> de
+        <code>Users</code>, y el catálogo muestra <code>Nombre</code>,
+        <code>Precio</code> y <code>Stock</code> de <code>productos</code>.
+      </p>
+    </header>
+
+    <figure class="captura">
+      <svg
+        viewBox="0 0 560 420"
+        width="560"
+        height="420"
+        role="img"
+        aria-labelledby="ev08-wire-title"
+        style="max-width: 100%; height: auto; background: #f4f7f4; border-radius: 10px"
+      >
+        <title id="ev08-wire-title">
+          Wireframe de dos pantallas móviles: Login con logo, campos de correo
+          y contraseña y botón Ingresar, conectado con una flecha al Catálogo,
+          que tiene barra superior, buscador y tres tarjetas de producto con
+          nombre, precio, stock y botón Agregar.
+        </title>
+        <g font-family="DM Sans, sans-serif" font-size="11" fill="#1f2a24">
+          <rect x="40" y="20" width="190" height="380" rx="22" fill="#fff" stroke="#9aa79f" stroke-width="2" />
+          <circle cx="135" cy="80" r="26" fill="#39a900" />
+          <text x="135" y="84" text-anchor="middle" fill="#fff" font-weight="700">DEP</text>
+          <text x="135" y="132" text-anchor="middle" font-size="15" font-weight="700">Iniciar sesión</text>
+          <text x="58" y="162">Correo</text>
+          <rect x="58" y="168" width="154" height="34" rx="6" fill="#fff" stroke="#6b7a71" />
+          <text x="58" y="222">Contraseña</text>
+          <rect x="58" y="228" width="154" height="34" rx="6" fill="#fff" stroke="#6b7a71" />
+          <rect x="58" y="286" width="154" height="44" rx="8" fill="#39a900" />
+          <text x="135" y="313" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Ingresar</text>
+          <text x="135" y="356" text-anchor="middle" fill="#0067ac">¿Olvidaste tu contraseña?</text>
+
+          <path d="M222 308 C 270 308, 290 210, 322 210" fill="none" stroke="#0067ac" stroke-width="2" stroke-dasharray="5 4" />
+          <polygon points="322,204 334,210 322,216" fill="#0067ac" />
+          <text x="278" y="290" text-anchor="middle" fill="#0067ac" font-size="10">On click</text>
+
+          <rect x="334" y="20" width="190" height="380" rx="22" fill="#fff" stroke="#9aa79f" stroke-width="2" />
+          <rect x="334" y="20" width="190" height="56" rx="22" fill="#39a900" />
+          <rect x="334" y="54" width="190" height="22" fill="#39a900" />
+          <text x="350" y="56" fill="#fff" font-size="14" font-weight="700">Catálogo</text>
+          <rect x="350" y="88" width="158" height="30" rx="15" fill="#fff" stroke="#6b7a71" />
+          <text x="364" y="107" fill="#5c6a62">Buscar producto…</text>
+          <g>
+            <rect x="350" y="130" width="158" height="78" rx="8" fill="#fff" stroke="#c9d3cc" />
+            <rect x="358" y="138" width="44" height="44" rx="6" fill="#dfe7e1" />
+            <text x="410" y="152" font-weight="700">Balón fútbol</text>
+            <text x="410" y="168">$85.000</text>
+            <text x="410" y="184" fill="#5c6a62">Stock: 12</text>
+            <rect x="436" y="186" width="64" height="18" rx="4" fill="#ff6b00" />
+            <text x="468" y="199" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">Agregar</text>
+          </g>
+          <g>
+            <rect x="350" y="216" width="158" height="78" rx="8" fill="#fff" stroke="#c9d3cc" />
+            <rect x="358" y="224" width="44" height="44" rx="6" fill="#dfe7e1" />
+            <text x="410" y="238" font-weight="700">Guayos</text>
+            <text x="410" y="254">$210.000</text>
+            <text x="410" y="270" fill="#5c6a62">Stock: 5</text>
+            <rect x="436" y="272" width="64" height="18" rx="4" fill="#ff6b00" />
+            <text x="468" y="285" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">Agregar</text>
+          </g>
+          <g>
+            <rect x="350" y="302" width="158" height="78" rx="8" fill="#fff" stroke="#c9d3cc" />
+            <rect x="358" y="310" width="44" height="44" rx="6" fill="#dfe7e1" />
+            <text x="410" y="324" font-weight="700">Raqueta</text>
+            <text x="410" y="340">$150.000</text>
+            <text x="410" y="356" fill="#5c6a62">Stock: 8</text>
+            <rect x="436" y="358" width="64" height="18" rx="4" fill="#ff6b00" />
+            <text x="468" y="371" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">Agregar</text>
+          </g>
+        </g>
+      </svg>
+      <figcaption>
+        Resultado esperado: el botón Ingresar del Login navega al Catálogo.
+      </figcaption>
+    </figure>
+
+    <table class="propiedades">
+      <caption class="sr-only">Elementos de cada pantalla y función de Figma usada</caption>
+      <tr>
+        <th scope="col">Elemento</th>
+        <th scope="col">Función de Figma</th>
+      </tr>
+      <tr>
+        <td>Logo circular y título «Iniciar sesión»</td>
+        <td>Elipse (<kbd>O</kbd>), texto (<kbd>T</kbd>) y estilo <code>Título 24</code></td>
+      </tr>
+      <tr>
+        <td>Campos Correo y Contraseña con su etiqueta</td>
+        <td>Rectángulo con borde, Auto Layout vertical, componente <code>Campo</code></td>
+      </tr>
+      <tr>
+        <td>Botón Ingresar</td>
+        <td>Componente <code>Botón primario</code> con Auto Layout y estilo de color</td>
+      </tr>
+      <tr>
+        <td>Tarjeta de producto (imagen, nombre, precio, stock, Agregar)</td>
+        <td>Componente <code>Tarjeta producto</code>; tres instancias con distinto texto</td>
+      </tr>
+      <tr>
+        <td>Navegación Login → Catálogo</td>
+        <td>Pestaña Prototype: <em>On click › Navigate to › Smart animate</em></td>
+      </tr>
+    </table>
+  </section>
+
+  <section aria-labelledby="ev08-usabilidad">
+    <header class="sec-header">
+      <span class="sec-tag morado">Lo que evalúa la lista de chequeo</span>
+      <h3 class="sec-titulo" id="ev08-usabilidad">
+        Buenas prácticas de usabilidad y accesibilidad
+      </h3>
+      <p class="sec-intro">
+        Aplícalas en el ejemplo y menciónalas en el documento: son el criterio
+        de evaluación.
+      </p>
+    </header>
+    <div class="grid-2">
+      <article class="tarjeta">
+        <h4>Contraste suficiente</h4>
+        <p>
+          Texto normal con contraste mínimo 4.5:1 (WCAG 2.1 AA). Verifícalo con
+          un plugin como <em>Stark</em> o <em>Contrast</em>.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Áreas táctiles grandes</h4>
+        <p>Botones y campos de al menos 44 × 44 px para tocarlos con el dedo.</p>
+      </article>
+      <article class="tarjeta">
+        <h4>Etiquetas visibles</h4>
+        <p>
+          Cada campo lleva su etiqueta encima; el texto de ejemplo
+          (placeholder) no la reemplaza.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Consistencia</h4>
+        <p>
+          Mismos colores, tipografías y botones en todas las pantallas gracias
+          a estilos y componentes. Texto de cuerpo de 16 px o más.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="alert" aria-labelledby="ev08-entrega">
+    <h3 id="ev08-entrega">Contenido del ZIP</h3>
+    <ul class="entrega-list">
+      <li>
+        Documento Word: portada, introducción, objetivo, comparativa y
+        justificación de la herramienta, pantallazos de las principales
+        funciones y pantallazos del ejemplo.
+      </li>
+      <li>
+        Archivo del prototipo: <code>AA3-EV01_TiendaDeportes.fig</code>
+        (o <code>.penpot</code> si usaste Penpot).
+      </li>
+      <li>Enlace de visualización del prototipo dentro del documento (recomendado).</li>
+    </ul>
+    <p>
+      Documento de ejemplo:
+      <a
+        href="assets/docs/evidencias/AA3-EV01/GA6-220501096-AA3-EV01_prototipado.docx"
+        download
+        >GA6-220501096-AA3-EV01_prototipado.docx</a
+      >. Completa la portada y pega tus capturas donde están los textos entre
+      corchetes.
+    </p>
+    <p>
+      Si prefieres, diseña las pantallas de tu proyecto formativo en lugar de
+      la tienda: el ejemplo solo muestra el método.
+    </p>
+  </section>
+</article>
