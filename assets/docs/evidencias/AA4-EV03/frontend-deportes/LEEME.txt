@@ -1,0 +1,23 @@
+GA6-220501096-AA4-EV03 · Diseño front-end · Tienda Deportes
+
+Abrir index.html (o login.html) con doble clic en Chrome, Edge o Firefox.
+
+Usuarios de prueba (tabla Users de la base deportes):
+  lg@mail.co / Lg#2026   (Laura Gómez, tiene el pedido N.º 1)
+  ar@mail.co / Ar#2026   (Andrés Rojas)
+También puedes crear una cuenta en registro.html.
+
+Estructura
+  *.html             5 páginas (login, registro, catálogo, carrito, pedidos)
+  css/base.css       variables de diseño, reinicio y tipografía
+  css/componentes.css botones, campos, tarjetas, tabla, modal…
+  css/layout.css     encabezado, menú y plantillas responsivas
+  js/api.js          capa de datos: simula el back-end con localStorage
+  js/validacion.js   validación accesible de formularios
+  js/carrito.js      estado del carrito
+  js/main.js         sesión y lógica de cada página
+  img/               logo e imágenes de productos (SVG)
+
+Los datos se guardan en el navegador (localStorage). Para volver a los
+datos iniciales borra los datos del sitio desde las herramientas del
+navegador (F12 > Application > Storage > Clear site data).

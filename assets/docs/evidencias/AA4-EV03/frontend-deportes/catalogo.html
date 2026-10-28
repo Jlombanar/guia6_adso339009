@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Catálogo de implementos deportivos con precio y disponibilidad." />
+    <title>Catálogo · Tienda Deportes</title>
+    <link rel="icon" href="img/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/componentes.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <script src="js/api.js" defer></script>
+    <script src="js/validacion.js" defer></script>
+    <script src="js/carrito.js" defer></script>
+    <script src="js/main.js" defer></script>
+  </head>
+  <body class="plantilla-tienda" data-pagina="catalogo">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <header class="encabezado">
+      <div class="encabezado__barra">
+        <a class="encabezado__marca" href="catalogo.html">
+          <img src="img/logo.svg" width="36" height="36" alt="" /> Tienda Deportes
+        </a>
+        <p class="encabezado__usuario">Hola, <strong id="usuario-nombre">Laura</strong></p>
+        <button class="btn btn--salir" id="btn-salir" type="button">Salir</button>
+      </div>
+      <nav class="menu" aria-label="Menú principal">
+        <ul class="menu__lista">
+          <li>
+            <a class="menu__enlace" href="catalogo.html" aria-current="page"><span class="menu__icono" aria-hidden="true">🏠</span> Catálogo</a>
+          </li>
+          <li>
+            <a class="menu__enlace" href="carrito.html" id="enlace-carrito"><span class="menu__icono" aria-hidden="true">🛒</span> Carrito <span class="contador" aria-hidden="true"></span></a>
+          </li>
+          <li>
+            <a class="menu__enlace" href="pedidos.html"><span class="menu__icono" aria-hidden="true">📦</span> Mis pedidos</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="principal" id="contenido">
+      <header class="principal__cabecera">
+        <h1>Catálogo</h1>
+        <p id="estado-catalogo" role="status"></p>
+      </header>
+      <form class="buscador" id="form-buscar" role="search">
+        <label class="sr-only" for="buscar">Buscar producto</label>
+        <input class="buscador__entrada" id="buscar" type="search" placeholder="Buscar producto…" autocomplete="off" />
+      </form>
+      <ul class="filtros" aria-label="Filtrar por categoría">
+          <li><button class="filtros__opcion" type="button" data-categoria="Todos" aria-pressed="true">Todos</button></li>
+          <li><button class="filtros__opcion" type="button" data-categoria="Balones" aria-pressed="false">Balones</button></li>
+          <li><button class="filtros__opcion" type="button" data-categoria="Ropa" aria-pressed="false">Ropa</button></li>
+          <li><button class="filtros__opcion" type="button" data-categoria="Accesorios" aria-pressed="false">Accesorios</button></li>
+      </ul>
+      <ul class="rejilla-productos" id="rejilla"></ul>
+      <section class="vacio" id="sin-resultados" hidden>
+        <p>No encontramos productos con esa búsqueda.</p>
+        <button class="btn btn--secundario" id="limpiar-busqueda" type="button">Ver todos los productos</button>
+      </section>
+    </main>
+    <p class="aviso" id="aviso" role="status" aria-live="polite"></p>
+    <footer class="pie">
+      <p>Tienda Deportes · Garzón, Huila · Proyecto formativo ADSO 228118</p>
+    </footer>
+  </body>
+</html>

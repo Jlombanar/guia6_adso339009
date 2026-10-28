@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Catálogo de implementos deportivos con precio y disponibilidad." />
+    <title>Catálogo · Tienda Deportes</title>
+    <link rel="icon" href="img/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/componentes.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+  </head>
+  <body class="plantilla-tienda" data-pagina="catalogo">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <header class="encabezado">
+      <div class="encabezado__barra">
+        <a class="encabezado__marca" href="catalogo.html">
+          <img src="img/logo.svg" width="36" height="36" alt="" /> Tienda Deportes
+        </a>
+        <p class="encabezado__usuario">Hola, <strong id="usuario-nombre">Laura</strong></p>
+        <a class="btn btn--salir" href="login.html">Salir</a>
+      </div>
+      <nav class="menu" aria-label="Menú principal">
+        <ul class="menu__lista">
+          <li>
+            <a class="menu__enlace" href="catalogo.html" aria-current="page"><span class="menu__icono" aria-hidden="true">🏠</span> Catálogo</a>
+          </li>
+          <li>
+            <a class="menu__enlace" href="carrito.html" id="enlace-carrito"><span class="menu__icono" aria-hidden="true">🛒</span> Carrito <span class="contador" aria-hidden="true" data-valor="3">3</span></a>
+          </li>
+          <li>
+            <a class="menu__enlace" href="pedidos.html"><span class="menu__icono" aria-hidden="true">📦</span> Mis pedidos</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="principal" id="contenido">
+      <header class="principal__cabecera">
+        <h1>Catálogo</h1>
+        <p id="estado-catalogo" role="status">8 productos</p>
+      </header>
+      <form class="buscador" id="form-buscar" role="search">
+        <label class="sr-only" for="buscar">Buscar producto</label>
+        <input class="buscador__entrada" id="buscar" type="search" placeholder="Buscar producto…" autocomplete="off" />
+      </form>
+      <ul class="filtros" aria-label="Filtrar por categoría">
+          <li><button class="filtros__opcion" type="button" data-categoria="Todos" aria-pressed="true">Todos</button></li>
+          <li><button class="filtros__opcion" type="button" data-categoria="Balones" aria-pressed="false">Balones</button></li>
+          <li><button class="filtros__opcion" type="button" data-categoria="Ropa" aria-pressed="false">Ropa</button></li>
+          <li><button class="filtros__opcion" type="button" data-categoria="Accesorios" aria-pressed="false">Accesorios</button></li>
+      </ul>
+      <ul class="rejilla-productos" id="rejilla">
+          <li>
+            <article class="tarjeta-producto" aria-labelledby="prod-1">
+              <img class="tarjeta-producto__imagen" src="img/balon.svg" width="160" height="120" alt="" />
+              <h2 class="tarjeta-producto__nombre" id="prod-1">Balón de fútbol N.º 5</h2>
+              <p class="tarjeta-producto__precio"><data value="89900">$ 89.900</data></p>
+              <span class="badge badge--ok">Stock: 30</span>
+              <div class="tarjeta-producto__pie">
+                <button class="btn btn--accion btn--bloque" type="button" aria-describedby="prod-1">Agregar</button>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="tarjeta-producto" aria-labelledby="prod-2">
+              <img class="tarjeta-producto__imagen" src="img/raqueta.svg" width="160" height="120" alt="" />
+              <h2 class="tarjeta-producto__nombre" id="prod-2">Raqueta de tenis</h2>
+              <p class="tarjeta-producto__precio"><data value="245000">$ 245.000</data></p>
+              <span class="badge badge--ok">Stock: 12</span>
+              <div class="tarjeta-producto__pie">
+                <button class="btn btn--accion btn--bloque" type="button" aria-describedby="prod-2">Agregar</button>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="tarjeta-producto" aria-labelledby="prod-3">
+              <img class="tarjeta-producto__imagen" src="img/camiseta.svg" width="160" height="120" alt="" />
+              <h2 class="tarjeta-producto__nombre" id="prod-3">Camiseta deportiva</h2>
+              <p class="tarjeta-producto__precio"><data value="59900">$ 59.900</data></p>
+              <span class="badge badge--ok">Stock: 50</span>
+              <div class="tarjeta-producto__pie">
+                <button class="btn btn--accion btn--bloque" type="button" aria-describedby="prod-3">Agregar</button>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="tarjeta-producto" aria-labelledby="prod-4">
+              <img class="tarjeta-producto__imagen" src="img/guayos.svg" width="160" height="120" alt="" />
+              <h2 class="tarjeta-producto__nombre" id="prod-4">Guayos de fútbol</h2>
+              <p class="tarjeta-producto__precio"><data value="210000">$ 210.000</data></p>
+              <span class="badge badge--bajo">Quedan 5</span>
+              <div class="tarjeta-producto__pie">
+                <button class="btn btn--accion btn--bloque" type="button" aria-describedby="prod-4">Agregar</button>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="tarjeta-producto" aria-labelledby="prod-5">
+              <img class="tarjeta-producto__imagen" src="img/baloncesto.svg" width="160" height="120" alt="" />
+              <h2 class="tarjeta-producto__nombre" id="prod-5">Balón de baloncesto</h2>
+              <p class="tarjeta-producto__precio"><data value="99900">$ 99.900</data></p>
+              <span class="badge badge--ok">Stock: 18</span>
+              <div class="tarjeta-producto__pie">
+                <button class="btn btn--accion btn--bloque" type="button" aria-describedby="prod-5">Agregar</button>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="tarjeta-producto" aria-labelledby="prod-6">
+              <img class="tarjeta-producto__imagen" src="img/rodilleras.svg" width="160" height="120" alt="" />
+              <h2 class="tarjeta-producto__nombre" id="prod-6">Rodilleras de voleibol</h2>
+              <p class="tarjeta-producto__precio"><data value="45000">$ 45.000</data></p>
+              <span class="badge badge--bajo">Quedan 3</span>
+              <div class="tarjeta-producto__pie">
+                <button class="btn btn--accion btn--bloque" type="button" aria-describedby="prod-6">Agregar</button>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="tarjeta-producto" aria-labelledby="prod-7">
+              <img class="tarjeta-producto__imagen" src="img/termo.svg" width="160" height="120" alt="" />
+              <h2 class="tarjeta-producto__nombre" id="prod-7">Termo deportivo</h2>
+              <p class="tarjeta-producto__precio"><data value="32000">$ 32.000</data></p>
+              <span class="badge badge--ok">Stock: 40</span>
+              <div class="tarjeta-producto__pie">
+                <button class="btn btn--accion btn--bloque" type="button" aria-describedby="prod-7">Agregar</button>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="tarjeta-producto" aria-labelledby="prod-8">
+              <img class="tarjeta-producto__imagen" src="img/pesas.svg" width="160" height="120" alt="" />
+              <h2 class="tarjeta-producto__nombre" id="prod-8">Juego de pesas 10 kg</h2>
+              <p class="tarjeta-producto__precio"><data value="120000">$ 120.000</data></p>
+              <span class="badge badge--agotado">Agotado</span>
+              <div class="tarjeta-producto__pie">
+                <button class="btn btn--accion btn--bloque" type="button" disabled>Agotado</button>
+              </div>
+            </article>
+          </li>
+        </ul>
+      <section class="vacio" id="sin-resultados" hidden>
+        <p>No encontramos productos con esa búsqueda.</p>
+        <button class="btn btn--secundario" id="limpiar-busqueda" type="button">Ver todos los productos</button>
+      </section>
+    </main>
+    <p class="aviso" id="aviso" role="status" aria-live="polite"></p>
+    <footer class="pie">
+      <p>Tienda Deportes · Garzón, Huila · Proyecto formativo ADSO 228118</p>
+    </footer>
+  </body>
+</html>

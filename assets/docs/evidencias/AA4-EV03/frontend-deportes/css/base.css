@@ -1,0 +1,134 @@
+/* =========================================================
+   base.css · Variables de diseño, reinicio y tipografía
+   Tienda Deportes · Guía de estilos definida en AA3-EV02
+   ========================================================= */
+:root {
+  /* Colores (todos con contraste ≥ 4.5:1 sobre blanco) */
+  --color-primario: #2b7a00;
+  --color-primario-oscuro: #1e5a00;
+  --color-marca: #39a900; /* solo acentos: con blanco da 3.1:1 */
+  --color-primario-suave: #e8f5e0;
+  --color-accion: #b84a00;
+  --color-accion-oscuro: #8f3900;
+  --color-accion-suave: #fdeee3;
+  --color-enlace: #0067ac;
+  --color-peligro: #b3261e;
+  --color-peligro-suave: #fbe9e7;
+  --color-texto: #1f2a24;
+  --color-texto-suave: #5c6a62;
+  --color-borde: #c9d3cc;
+  --color-borde-campo: #6b7a71;
+  --color-fondo: #f4f7f4;
+  --color-superficie: #ffffff;
+
+  /* Tipografía */
+  --fuente: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --texto-sm: 0.875rem; /* 14 px */
+  --texto-base: 1rem; /* 16 px */
+  --texto-lg: 1.25rem; /* 20 px */
+  --texto-xl: 1.5rem; /* 24 px */
+  --texto-2xl: 2rem; /* 32 px */
+
+  /* Espaciado (escala de 4 px) */
+  --esp-1: 0.25rem;
+  --esp-2: 0.5rem;
+  --esp-3: 0.75rem;
+  --esp-4: 1rem;
+  --esp-6: 1.5rem;
+  --esp-8: 2rem;
+
+  --radio: 10px;
+  --radio-pildora: 999px;
+  --sombra: 0 4px 16px rgb(31 42 36 / 0.1);
+  --alto-control: 44px; /* área táctil mínima */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--fuente);
+  font-size: var(--texto-base);
+  line-height: 1.5;
+  color: var(--color-texto);
+  background: var(--color-fondo);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 var(--esp-3);
+  line-height: 1.2;
+}
+h1 { font-size: var(--texto-xl); }
+h2 { font-size: var(--texto-lg); }
+h3 { font-size: var(--texto-base); }
+
+p { margin: 0 0 var(--esp-3); }
+
+a { color: var(--color-enlace); }
+a:hover { color: #004f85; }
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* Foco visible para quien navega con teclado */
+:focus-visible {
+  outline: 3px solid var(--color-enlace);
+  outline-offset: 2px;
+}
+
+/* hidden siempre gana sobre display de los componentes */
+[hidden] {
+  display: none !important;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.saltar {
+  position: absolute;
+  left: var(--esp-4);
+  top: -100px;
+  z-index: 100;
+  padding: var(--esp-2) var(--esp-4);
+  color: #fff;
+  background: var(--color-texto);
+  border-radius: var(--radio);
+}
+.saltar:focus { top: var(--esp-4); }
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

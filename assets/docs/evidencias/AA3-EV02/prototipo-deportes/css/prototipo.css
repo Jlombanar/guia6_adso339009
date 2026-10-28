@@ -1,0 +1,283 @@
+/* Prototipo navegable · Tienda Deportes · GA6-220501096-AA3-EV02 */
+:root {
+  --verde-marca: #39a900;
+  --verde: #2b7a00;
+  --verde-claro: #e8f5e0;
+  --azul: #0067ac;
+  --naranja: #b84a00;
+  --rojo: #b3261e;
+  --texto: #1f2a24;
+  --texto-suave: #5c6a62;
+  --borde: #c9d3cc;
+  --fondo: #f4f7f4;
+  --radio: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 16px;
+  color: var(--texto);
+  background: #dfe6e1;
+}
+
+a { color: var(--azul); }
+
+/* ---------- Mapa de navegación (vista inicial) ---------- */
+.mapa {
+  max-width: 2040px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+
+.mapa__titulo { margin: 0 0 4px; font-size: 24px; }
+.mapa__ayuda { margin: 0 0 20px; color: var(--texto-suave); }
+
+.flujo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flujo > li { display: grid; gap: 8px; justify-items: center; }
+
+.flujo__etiqueta {
+  font-size: 14px;
+  font-weight: 700;
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 99px;
+  padding: 2px 12px;
+}
+
+/* ---------- Marco del teléfono ---------- */
+.pantalla {
+  position: relative;
+  width: 360px;
+  height: 740px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--fondo);
+  border: 8px solid #1f2a24;
+  border-radius: 34px;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.18);
+}
+
+.pantalla__estado {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 18px;
+  font-size: 12px;
+  background: #fff;
+}
+
+/* Modo presentación: al abrir #p-… solo se ve esa pantalla */
+body:has(.pantalla:target) .mapa__titulo,
+body:has(.pantalla:target) .mapa__ayuda,
+body:has(.pantalla:target) .flujo__etiqueta,
+body:has(.pantalla:target) .flujo > li:not(:has(:target)) { display: none; }
+body:has(.pantalla:target) .mapa { padding: 20px; }
+body:has(.pantalla:target) .flujo { justify-content: center; }
+.salir {
+  display: none;
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  background: #fff;
+  border-radius: 99px;
+  padding: 6px 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+body:has(.pantalla:target) .salir { display: block; }
+/* En un teléfono real se vuelve al mapa con el botón Atrás */
+@media (max-width: 600px) {
+  body:has(.pantalla:target) .salir { display: none; }
+  body:has(.pantalla:target) .mapa { padding: 20px 0; }
+}
+
+/* ---------- Piezas de la interfaz ---------- */
+.barra {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--verde);
+  color: #fff;
+}
+.barra h2 { flex: 1; margin: 0; font-size: 18px; }
+.barra a { color: #fff; text-decoration: none; font-size: 22px; line-height: 1; }
+.barra .salir-sesion { font-size: 14px; font-weight: 700; text-decoration: underline; }
+
+.contenido { flex: 1; overflow: auto; padding: 16px; }
+.contenido--centro { display: grid; align-content: center; gap: 14px; padding: 24px; }
+.contenido--centro > * { margin: 0; }
+
+.logo { display: block; margin: 0 auto; }
+.titulo { margin: 0; font-size: 24px; text-align: center; }
+.subtitulo { margin: 0; color: var(--texto-suave); text-align: center; }
+
+.campo { display: grid; gap: 4px; font-size: 14px; font-weight: 600; }
+.campo span {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  font-weight: 400;
+  color: var(--texto-suave);
+  background: #fff;
+  border: 1px solid #6b7a71;
+  border-radius: 8px;
+}
+.campo--error span { border: 2px solid var(--rojo); }
+.campo small { color: var(--rojo); font-weight: 400; }
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #fff;
+  background: var(--verde);
+}
+.btn--accion { background: var(--naranja); min-height: 36px; font-size: 14px; }
+.btn--secundario { color: var(--verde); background: #fff; border: 2px solid var(--verde); }
+.btn--peligro { background: var(--rojo); }
+
+.enlace { text-align: center; font-size: 14px; }
+
+.buscador {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 14px;
+  margin: 0 0 12px;
+  color: var(--texto-suave);
+  background: #fff;
+  border: 1px solid #6b7a71;
+  border-radius: 99px;
+}
+
+.chips { display: flex; gap: 6px; margin: 0 0 12px; font-size: 13px; }
+.chips span { padding: 4px 10px; border-radius: 99px; background: #fff; border: 1px solid var(--borde); }
+.chips .activo { color: #fff; background: var(--azul); border-color: var(--azul); }
+
+.rejilla { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+.producto {
+  display: grid;
+  gap: 4px;
+  padding: 8px;
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  font-size: 14px;
+}
+.producto img { width: 100%; height: auto; border-radius: 6px; }
+.producto strong { font-size: 15px; }
+
+.badge { justify-self: start; padding: 1px 8px; border-radius: 99px; font-size: 12px; font-weight: 700; }
+.badge--ok { color: #1e5a00; background: var(--verde-claro); }
+.badge--bajo { color: #7a3100; background: #fdeee3; }
+
+.item {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  font-size: 14px;
+}
+.item img { width: 64px; height: auto; border-radius: 6px; }
+.cantidad { display: flex; align-items: center; gap: 6px; margin-top: 4px; }
+.cantidad b {
+  width: 28px; height: 28px; display: grid; place-items: center;
+  border: 1px solid #6b7a71; border-radius: 6px; font-weight: 400;
+}
+.quitar { color: var(--rojo); font-size: 20px; text-decoration: none; }
+
+.resumen {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  background: #fff;
+  border-top: 1px solid var(--borde);
+}
+.resumen p { display: flex; justify-content: space-between; margin: 0; }
+.resumen .total { font-size: 18px; font-weight: 700; }
+
+.tabla { width: 100%; border-collapse: collapse; font-size: 14px; background: #fff; }
+.tabla th, .tabla td { padding: 10px 8px; text-align: left; border-bottom: 1px solid var(--borde); }
+.tabla th { background: var(--verde-claro); }
+
+/* Barra de pestañas inferior (zona del pulgar) */
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: #fff;
+  border-top: 1px solid var(--borde);
+}
+.tabs a {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  padding: 8px 0 10px;
+  font-size: 12px;
+  color: var(--texto-suave);
+  text-decoration: none;
+}
+.tabs a .ico { font-size: 20px; }
+.tabs a[aria-current="page"] { color: var(--verde); font-weight: 700; }
+
+.contador {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  margin-left: 2px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--naranja);
+  border-radius: 99px;
+}
+
+/* Ventana modal simulada sobre la pantalla anterior */
+.velo {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-items: end;
+  background: rgb(31 42 36 / 0.55);
+}
+.modal {
+  display: grid;
+  gap: 12px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 18px 18px 0 0;
+}
+.modal h3 { margin: 0; font-size: 20px; }
+.modal p { margin: 0; }
+
+.exito {
+  width: 72px; height: 72px; margin: 0 auto;
+  display: grid; place-items: center;
+  font-size: 40px; color: #fff;
+  background: var(--verde); border-radius: 50%;
+}

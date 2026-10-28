@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Revisa los productos de tu carrito y confirma el pedido." />
+    <title>Mi carrito · Tienda Deportes</title>
+    <link rel="icon" href="img/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/componentes.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <script src="js/api.js" defer></script>
+    <script src="js/validacion.js" defer></script>
+    <script src="js/carrito.js" defer></script>
+    <script src="js/main.js" defer></script>
+  </head>
+  <body class="plantilla-tienda" data-pagina="carrito">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <header class="encabezado">
+      <div class="encabezado__barra">
+        <a class="encabezado__marca" href="catalogo.html">
+          <img src="img/logo.svg" width="36" height="36" alt="" /> Tienda Deportes
+        </a>
+        <p class="encabezado__usuario">Hola, <strong id="usuario-nombre">Laura</strong></p>
+        <button class="btn btn--salir" id="btn-salir" type="button">Salir</button>
+      </div>
+      <nav class="menu" aria-label="Menú principal">
+        <ul class="menu__lista">
+          <li>
+            <a class="menu__enlace" href="catalogo.html"><span class="menu__icono" aria-hidden="true">🏠</span> Catálogo</a>
+          </li>
+          <li>
+            <a class="menu__enlace" href="carrito.html" id="enlace-carrito" aria-current="page"><span class="menu__icono" aria-hidden="true">🛒</span> Carrito <span class="contador" aria-hidden="true"></span></a>
+          </li>
+          <li>
+            <a class="menu__enlace" href="pedidos.html"><span class="menu__icono" aria-hidden="true">📦</span> Mis pedidos</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="principal" id="contenido">
+      <header class="principal__cabecera">
+        <h1>Mi carrito</h1>
+      </header>
+      <section class="vacio" id="carrito-vacio" hidden>
+        <p>Tu carrito está vacío.</p>
+        <a class="btn" href="catalogo.html">Ir al catálogo</a>
+      </section>
+      <div class="distribucion-carrito" id="carrito-contenido">
+        <ul class="lista-carrito" id="lista-carrito"></ul>
+        <aside class="resumen" aria-labelledby="resumen-titulo">
+          <h2 id="resumen-titulo">Resumen</h2>
+          <p class="resumen__fila"><span id="res-unidades">Productos (0)</span><span id="res-subtotal"></span></p>
+          <p class="resumen__fila"><span>Envío</span><span>Gratis</span></p>
+          <p class="resumen__fila resumen__fila--total"><span>Total</span><output id="res-total"></output></p>
+          <button class="btn btn--bloque" id="btn-confirmar" type="button">Confirmar pedido</button>
+          <a class="btn btn--secundario btn--bloque" href="catalogo.html">Seguir comprando</a>
+        </aside>
+      </div>
+    </main>
+    <dialog class="modal" id="modal-confirmar" aria-labelledby="confirmar-titulo">
+      <form id="form-confirmar" method="dialog">
+        <h2 id="confirmar-titulo">¿Confirmar el pedido?</h2>
+        <p id="confirmar-texto"></p>
+        <div class="modal__acciones">
+          <button class="btn btn--secundario" id="btn-cancelar" type="button">Cancelar</button>
+          <button class="btn" type="submit">Sí, confirmar</button>
+        </div>
+      </form>
+    </dialog>
+    <p class="aviso" id="aviso" role="status" aria-live="polite"></p>
+    <footer class="pie">
+      <p>Tienda Deportes · Garzón, Huila · Proyecto formativo ADSO 228118</p>
+    </footer>
+  </body>
+</html>

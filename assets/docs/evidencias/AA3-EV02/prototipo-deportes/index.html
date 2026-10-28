@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prototipo navegable · Tienda Deportes</title>
+    <link rel="stylesheet" href="css/prototipo.css" />
+  </head>
+  <body>
+    <a class="salir" href="#">Ver mapa completo</a>
+    <main class="mapa">
+      <h1 class="mapa__titulo">Tienda Deportes · Mapa de navegación (móvil 360 × 740)</h1>
+      <p class="mapa__ayuda">
+        Pulsa cualquier botón o enlace de una pantalla para navegar como en el
+        modo presentación de Figma. «Ver mapa completo» vuelve a esta vista.
+      </p>
+
+      <ol class="flujo">
+        <!-- 1. Login -->
+        <li>
+          <span class="flujo__etiqueta">1 · Iniciar sesión (RF-02)</span>
+          <section class="pantalla" id="p-login" aria-label="Pantalla Iniciar sesión">
+            <p class="pantalla__estado"><span>9:41</span><span>4G ▮▮▮</span></p>
+            <div class="contenido contenido--centro">
+              <img class="logo" src="img/logo.svg" width="72" height="72" alt="Logo Tienda Deportes" />
+              <h2 class="titulo">Iniciar sesión</h2>
+              <p class="subtitulo">Compra tus implementos deportivos</p>
+              <p class="campo">Correo <span>lg@mail.co</span></p>
+              <p class="campo">Contraseña <span>••••••••</span></p>
+              <a class="btn" href="#p-catalogo">Ingresar</a>
+              <a class="enlace" href="#p-login-error">Probar con datos incorrectos</a>
+              <p class="enlace">¿No tienes cuenta? <a href="#p-registro">Regístrate</a></p>
+            </div>
+          </section>
+        </li>
+
+        <!-- 1b. Login con error -->
+        <li>
+          <span class="flujo__etiqueta">1b · Login con error</span>
+          <section class="pantalla" id="p-login-error" aria-label="Pantalla Iniciar sesión con error">
+            <p class="pantalla__estado"><span>9:41</span><span>4G ▮▮▮</span></p>
+            <div class="contenido contenido--centro">
+              <img class="logo" src="img/logo.svg" width="72" height="72" alt="Logo Tienda Deportes" />
+              <h2 class="titulo">Iniciar sesión</h2>
+              <p class="campo campo--error">Correo <span>laura@</span><small>⚠ Escribe un correo válido.</small></p>
+              <p class="campo campo--error">Contraseña <span></span><small>⚠ La contraseña es obligatoria.</small></p>
+              <a class="btn" href="#p-login">Corregir datos</a>
+              <p class="enlace">¿No tienes cuenta? <a href="#p-registro">Regístrate</a></p>
+            </div>
+          </section>
+        </li>
+
+        <!-- 2. Registro -->
+        <li>
+          <span class="flujo__etiqueta">2 · Registro (RF-01)</span>
+          <section class="pantalla" id="p-registro" aria-label="Pantalla Registro">
+            <p class="pantalla__estado"><span>9:41</span><span>4G ▮▮▮</span></p>
+            <header class="barra">
+              <a href="#p-login" aria-label="Volver">←</a>
+              <h2>Crear cuenta</h2>
+            </header>
+            <div class="contenido contenido--centro">
+              <p class="campo">Nombre completo <span>Laura Gómez</span></p>
+              <p class="campo">Edad <span>24</span></p>
+              <p class="campo">Correo (máx. 10 caracteres) <span>lg@mail.co</span></p>
+              <p class="campo">Contraseña <span>••••••••</span></p>
+              <p class="campo">Confirmar contraseña <span>••••••••</span></p>
+              <a class="btn" href="#p-login">Crear cuenta</a>
+              <p class="enlace">¿Ya tienes cuenta? <a href="#p-login">Inicia sesión</a></p>
+            </div>
+          </section>
+        </li>
+
+        <!-- 3. Catálogo -->
+        <li>
+          <span class="flujo__etiqueta">3 · Catálogo (RF-03, RF-04)</span>
+          <section class="pantalla" id="p-catalogo" aria-label="Pantalla Catálogo">
+            <p class="pantalla__estado"><span>9:41</span><span>4G ▮▮▮</span></p>
+            <header class="barra">
+              <h2>Hola, Laura</h2>
+              <a class="salir-sesion" href="#p-login">Salir</a>
+            </header>
+            <div class="contenido">
+              <p class="buscador">🔍 Buscar producto…</p>
+              <p class="chips"><span class="activo">Todos</span><span>Balones</span><span>Ropa</span><span>Accesorios</span></p>
+              <div class="rejilla">
+                <article class="producto">
+                  <img src="img/balon.svg" width="160" height="120" alt="Balón de fútbol" />
+                  <strong>Balón de fútbol N.º 5</strong>
+                  <span>$89.900</span>
+                  <span class="badge badge--ok">Stock: 30</span>
+                  <a class="btn btn--accion" href="#p-carrito">Agregar</a>
+                </article>
+                <article class="producto">
+                  <img src="img/raqueta.svg" width="160" height="120" alt="Raqueta de tenis" />
+                  <strong>Raqueta de tenis</strong>
+                  <span>$245.000</span>
+                  <span class="badge badge--ok">Stock: 12</span>
+                  <a class="btn btn--accion" href="#p-carrito">Agregar</a>
+                </article>
+                <article class="producto">
+                  <img src="img/camiseta.svg" width="160" height="120" alt="Camiseta deportiva" />
+                  <strong>Camiseta deportiva</strong>
+                  <span>$59.900</span>
+                  <span class="badge badge--ok">Stock: 50</span>
+                  <a class="btn btn--accion" href="#p-carrito">Agregar</a>
+                </article>
+                <article class="producto">
+                  <img src="img/guayos.svg" width="160" height="120" alt="Guayos de fútbol" />
+                  <strong>Guayos de fútbol</strong>
+                  <span>$210.000</span>
+                  <span class="badge badge--bajo">Quedan 5</span>
+                  <a class="btn btn--accion" href="#p-carrito">Agregar</a>
+                </article>
+              </div>
+            </div>
+            <nav class="tabs" aria-label="Menú principal">
+              <a href="#p-catalogo" aria-current="page"><span class="ico" aria-hidden="true">🏠</span>Catálogo</a>
+              <a href="#p-carrito"><span class="ico" aria-hidden="true">🛒</span><span>Carrito <b class="contador">3</b></span></a>
+              <a href="#p-pedidos"><span class="ico" aria-hidden="true">📦</span>Pedidos</a>
+            </nav>
+          </section>
+        </li>
+
+        <!-- 4. Carrito -->
+        <li>
+          <span class="flujo__etiqueta">4 · Carrito (RF-05)</span>
+          <section class="pantalla" id="p-carrito" aria-label="Pantalla Carrito">
+            <p class="pantalla__estado"><span>9:41</span><span>4G ▮▮▮</span></p>
+            <header class="barra">
+              <a href="#p-catalogo" aria-label="Volver al catálogo">←</a>
+              <h2>Mi carrito</h2>
+            </header>
+            <div class="contenido">
+              <article class="item">
+                <img src="img/raqueta.svg" width="160" height="120" alt="Raqueta de tenis" />
+                <div>
+                  <strong>Raqueta de tenis</strong><br />$245.000
+                  <p class="cantidad"><b>−</b> 1 <b>+</b></p>
+                </div>
+                <a class="quitar" href="#p-carrito" aria-label="Quitar Raqueta de tenis">🗑</a>
+              </article>
+              <article class="item">
+                <img src="img/termo.svg" width="160" height="120" alt="Termo deportivo" />
+                <div>
+                  <strong>Termo deportivo</strong><br />$32.000
+                  <p class="cantidad"><b>−</b> 2 <b>+</b></p>
+                </div>
+                <a class="quitar" href="#p-carrito" aria-label="Quitar Termo deportivo">🗑</a>
+              </article>
+            </div>
+            <section class="resumen" aria-label="Resumen del pedido">
+              <p><span>Productos (3)</span><span>$309.000</span></p>
+              <p><span>Envío</span><span>Gratis</span></p>
+              <p class="total"><span>Total</span><span>$309.000</span></p>
+              <a class="btn" href="#p-confirmar">Confirmar pedido</a>
+              <a class="btn btn--secundario" href="#p-catalogo">Seguir comprando</a>
+            </section>
+          </section>
+        </li>
+
+        <!-- 4b. Confirmar (modal) -->
+        <li>
+          <span class="flujo__etiqueta">4b · Confirmar pedido (modal)</span>
+          <section class="pantalla" id="p-confirmar" aria-label="Pantalla Confirmar pedido">
+            <p class="pantalla__estado"><span>9:41</span><span>4G ▮▮▮</span></p>
+            <header class="barra"><h2>Mi carrito</h2></header>
+            <div class="contenido"></div>
+            <div class="velo">
+              <section class="modal" aria-label="Confirmar pedido">
+                <h3>¿Confirmar el pedido?</h3>
+                <p>Se registrarán 3 productos por un total de <strong>$309.000</strong>.</p>
+                <a class="btn" href="#p-exito">Sí, confirmar</a>
+                <a class="btn btn--secundario" href="#p-carrito">Cancelar</a>
+              </section>
+            </div>
+          </section>
+        </li>
+
+        <!-- 5. Pedido confirmado -->
+        <li>
+          <span class="flujo__etiqueta">5 · Pedido confirmado</span>
+          <section class="pantalla" id="p-exito" aria-label="Pantalla Pedido confirmado">
+            <p class="pantalla__estado"><span>9:41</span><span>4G ▮▮▮</span></p>
+            <div class="contenido contenido--centro">
+              <p class="exito" aria-hidden="true">✓</p>
+              <h2 class="titulo">¡Pedido registrado!</h2>
+              <p class="subtitulo">Pedido N.º 3 · 28/10/2026<br />Total $309.000</p>
+              <a class="btn" href="#p-pedidos">Ver mis pedidos</a>
+              <a class="btn btn--secundario" href="#p-catalogo">Volver al catálogo</a>
+            </div>
+          </section>
+        </li>
+
+        <!-- 6. Mis pedidos -->
+        <li>
+          <span class="flujo__etiqueta">6 · Mis pedidos (RF-06)</span>
+          <section class="pantalla" id="p-pedidos" aria-label="Pantalla Mis pedidos">
+            <p class="pantalla__estado"><span>9:41</span><span>4G ▮▮▮</span></p>
+            <header class="barra"><h2>Mis pedidos</h2></header>
+            <div class="contenido">
+              <table class="tabla">
+                <tr><th>N.º</th><th>Fecha</th><th>Total</th><th></th></tr>
+                <tr><td>3</td><td>28/10/2026</td><td>$309.000</td><td><a href="#p-detalle">Ver</a></td></tr>
+                <tr><td>1</td><td>20/10/2026</td><td>$359.500</td><td><a href="#p-detalle">Ver</a></td></tr>
+              </table>
+            </div>
+            <nav class="tabs" aria-label="Menú principal">
+              <a href="#p-catalogo"><span class="ico" aria-hidden="true">🏠</span>Catálogo</a>
+              <a href="#p-carrito"><span class="ico" aria-hidden="true">🛒</span>Carrito</a>
+              <a href="#p-pedidos" aria-current="page"><span class="ico" aria-hidden="true">📦</span>Pedidos</a>
+            </nav>
+          </section>
+        </li>
+
+        <!-- 6b. Detalle del pedido (modal) -->
+        <li>
+          <span class="flujo__etiqueta">6b · Detalle del pedido (modal)</span>
+          <section class="pantalla" id="p-detalle" aria-label="Pantalla Detalle del pedido">
+            <p class="pantalla__estado"><span>9:41</span><span>4G ▮▮▮</span></p>
+            <header class="barra"><h2>Mis pedidos</h2></header>
+            <div class="contenido"></div>
+            <div class="velo">
+              <section class="modal" aria-label="Detalle del pedido">
+                <h3>Pedido N.º 1 · 20/10/2026</h3>
+                <table class="tabla">
+                  <tr><th>Producto</th><th>Cant.</th><th>Subtotal</th></tr>
+                  <tr><td>Balón de fútbol N.º 5</td><td>2</td><td>$179.800</td></tr>
+                  <tr><td>Camiseta deportiva</td><td>3</td><td>$179.700</td></tr>
+                </table>
+                <p><strong>Total: $359.500</strong></p>
+                <a class="btn" href="#p-pedidos">Cerrar</a>
+              </section>
+            </div>
+          </section>
+        </li>
+      </ol>
+    </main>
+  </body>
+</html>

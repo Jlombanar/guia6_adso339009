@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Inicia sesión para comprar implementos deportivos." />
+    <title>Iniciar sesión · Tienda Deportes</title>
+    <link rel="icon" href="img/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/componentes.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+  </head>
+  <body class="plantilla-auth" data-pagina="login">
+    <main class="panel-auth" id="contenido">
+      <img class="panel-auth__logo" src="img/logo.svg" width="72" height="72" alt="Logo de Tienda Deportes" />
+      <h1>Iniciar sesión</h1>
+      <p class="panel-auth__subtitulo">Compra tus implementos deportivos</p>
+      <p class="alerta alerta--error" id="alerta-login" role="alert" hidden></p>
+      <form id="form-login" action="catalogo.html">
+          <div class="campo">
+            <label class="campo__etiqueta" for="correo">Correo</label>
+            <input class="campo__entrada" id="correo" name="correo" type="email" autocomplete="email" required maxlength="10" data-nombre="tu correo" aria-describedby="correo-error" />
+            <p class="campo__error" id="correo-error" hidden></p>
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="clave">Contraseña</label>
+            <input class="campo__entrada" id="clave" name="clave" type="password" autocomplete="current-password" required data-nombre="tu contraseña" aria-describedby="clave-error" />
+            <p class="campo__error" id="clave-error" hidden></p>
+          </div>
+        <button class="btn btn--bloque" type="submit">Ingresar</button>
+      </form>
+      <p class="panel-auth__pie">¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
+    </main>
+  </body>
+</html>

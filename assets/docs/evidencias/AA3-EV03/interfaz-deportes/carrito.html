@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Revisa los productos de tu carrito y confirma el pedido." />
+    <title>Mi carrito · Tienda Deportes</title>
+    <link rel="icon" href="img/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/componentes.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+  </head>
+  <body class="plantilla-tienda" data-pagina="carrito">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <header class="encabezado">
+      <div class="encabezado__barra">
+        <a class="encabezado__marca" href="catalogo.html">
+          <img src="img/logo.svg" width="36" height="36" alt="" /> Tienda Deportes
+        </a>
+        <p class="encabezado__usuario">Hola, <strong id="usuario-nombre">Laura</strong></p>
+        <a class="btn btn--salir" href="login.html">Salir</a>
+      </div>
+      <nav class="menu" aria-label="Menú principal">
+        <ul class="menu__lista">
+          <li>
+            <a class="menu__enlace" href="catalogo.html"><span class="menu__icono" aria-hidden="true">🏠</span> Catálogo</a>
+          </li>
+          <li>
+            <a class="menu__enlace" href="carrito.html" id="enlace-carrito" aria-current="page"><span class="menu__icono" aria-hidden="true">🛒</span> Carrito <span class="contador" aria-hidden="true" data-valor="3">3</span></a>
+          </li>
+          <li>
+            <a class="menu__enlace" href="pedidos.html"><span class="menu__icono" aria-hidden="true">📦</span> Mis pedidos</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="principal" id="contenido">
+      <header class="principal__cabecera">
+        <h1>Mi carrito</h1>
+      </header>
+      <section class="vacio" id="carrito-vacio" hidden>
+        <p>Tu carrito está vacío.</p>
+        <a class="btn" href="catalogo.html">Ir al catálogo</a>
+      </section>
+      <div class="distribucion-carrito" id="carrito-contenido">
+        <ul class="lista-carrito" id="lista-carrito">
+          <li class="item-carrito">
+            <img class="item-carrito__imagen" src="img/raqueta.svg" width="160" height="120" alt="" />
+            <div>
+              <h2 class="item-carrito__nombre">Raqueta de tenis</h2>
+              <p class="item-carrito__precio">$ 245.000 c/u · Subtotal $ 245.000</p>
+              <div class="cantidad" role="group" aria-label="Cantidad de Raqueta de tenis">
+                <button class="cantidad__btn" type="button" aria-label="Quitar una unidad" disabled>−</button>
+                <input class="cantidad__valor" type="number" min="1" max="12" value="1" aria-label="Cantidad" />
+                <button class="cantidad__btn" type="button" aria-label="Agregar una unidad">+</button>
+              </div>
+            </div>
+            <button class="btn btn--icono" type="button" aria-label="Quitar Raqueta de tenis del carrito">🗑</button>
+          </li>
+          <li class="item-carrito">
+            <img class="item-carrito__imagen" src="img/termo.svg" width="160" height="120" alt="" />
+            <div>
+              <h2 class="item-carrito__nombre">Termo deportivo</h2>
+              <p class="item-carrito__precio">$ 32.000 c/u · Subtotal $ 64.000</p>
+              <div class="cantidad" role="group" aria-label="Cantidad de Termo deportivo">
+                <button class="cantidad__btn" type="button" aria-label="Quitar una unidad">−</button>
+                <input class="cantidad__valor" type="number" min="1" max="40" value="2" aria-label="Cantidad" />
+                <button class="cantidad__btn" type="button" aria-label="Agregar una unidad">+</button>
+              </div>
+            </div>
+            <button class="btn btn--icono" type="button" aria-label="Quitar Termo deportivo del carrito">🗑</button>
+          </li>
+        </ul>
+        <aside class="resumen" aria-labelledby="resumen-titulo">
+          <h2 id="resumen-titulo">Resumen</h2>
+          <p class="resumen__fila"><span id="res-unidades">Productos (3)</span><span id="res-subtotal">$ 309.000</span></p>
+          <p class="resumen__fila"><span>Envío</span><span>Gratis</span></p>
+          <p class="resumen__fila resumen__fila--total"><span>Total</span><output id="res-total">$ 309.000</output></p>
+          <a class="btn btn--bloque" href="pedidos.html">Confirmar pedido</a>
+          <a class="btn btn--secundario btn--bloque" href="catalogo.html">Seguir comprando</a>
+        </aside>
+      </div>
+    </main>
+    <p class="aviso" id="aviso" role="status" aria-live="polite"></p>
+    <footer class="pie">
+      <p>Tienda Deportes · Garzón, Huila · Proyecto formativo ADSO 228118</p>
+    </footer>
+  </body>
+</html>

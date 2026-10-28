@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Historial de pedidos realizados en la Tienda Deportes." />
+    <title>Mis pedidos · Tienda Deportes</title>
+    <link rel="icon" href="img/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/componentes.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <script src="js/api.js" defer></script>
+    <script src="js/validacion.js" defer></script>
+    <script src="js/carrito.js" defer></script>
+    <script src="js/main.js" defer></script>
+  </head>
+  <body class="plantilla-tienda" data-pagina="pedidos">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <header class="encabezado">
+      <div class="encabezado__barra">
+        <a class="encabezado__marca" href="catalogo.html">
+          <img src="img/logo.svg" width="36" height="36" alt="" /> Tienda Deportes
+        </a>
+        <p class="encabezado__usuario">Hola, <strong id="usuario-nombre">Laura</strong></p>
+        <button class="btn btn--salir" id="btn-salir" type="button">Salir</button>
+      </div>
+      <nav class="menu" aria-label="Menú principal">
+        <ul class="menu__lista">
+          <li>
+            <a class="menu__enlace" href="catalogo.html"><span class="menu__icono" aria-hidden="true">🏠</span> Catálogo</a>
+          </li>
+          <li>
+            <a class="menu__enlace" href="carrito.html" id="enlace-carrito"><span class="menu__icono" aria-hidden="true">🛒</span> Carrito <span class="contador" aria-hidden="true"></span></a>
+          </li>
+          <li>
+            <a class="menu__enlace" href="pedidos.html" aria-current="page"><span class="menu__icono" aria-hidden="true">📦</span> Mis pedidos</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="principal" id="contenido">
+      <header class="principal__cabecera">
+        <h1>Mis pedidos</h1>
+      </header>
+      <p class="alerta alerta--exito" id="alerta-pedido" role="status" hidden></p>
+      <section class="vacio" id="sin-pedidos" hidden>
+        <p>Aún no tienes pedidos.</p>
+        <a class="btn" href="catalogo.html">Ir al catálogo</a>
+      </section>
+      <div class="tabla-contenedor" id="tabla-pedidos">
+        <table class="tabla">
+          <caption class="sr-only">Historial de pedidos</caption>
+          <thead>
+            <tr>
+              <th scope="col">N.º</th>
+              <th scope="col">Fecha</th>
+              <th scope="col" class="num opcional">Unidades</th>
+              <th scope="col" class="num">Total</th>
+              <th scope="col"><span class="sr-only">Acciones</span></th>
+            </tr>
+          </thead>
+          <tbody id="cuerpo-pedidos"></tbody>
+        </table>
+      </div>
+    </main>
+    <dialog class="modal" id="modal-detalle" aria-labelledby="detalle-titulo">
+      <form method="dialog">
+        <h2 id="detalle-titulo"></h2>
+        <div class="tabla-contenedor">
+          <table class="tabla">
+            <caption class="sr-only">Productos del pedido</caption>
+            <thead>
+              <tr><th scope="col">Producto</th><th scope="col" class="num">Cant.</th><th scope="col" class="num">Subtotal</th></tr>
+            </thead>
+            <tbody id="detalle-cuerpo"></tbody>
+            <tfoot>
+              <tr><th scope="row" colspan="2">Total</th><td class="num"><strong id="detalle-total"></strong></td></tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="modal__acciones">
+          <button class="btn" type="submit">Cerrar</button>
+        </div>
+      </form>
+    </dialog>
+    <p class="aviso" id="aviso" role="status" aria-live="polite"></p>
+    <footer class="pie">
+      <p>Tienda Deportes · Garzón, Huila · Proyecto formativo ADSO 228118</p>
+    </footer>
+  </body>
+</html>

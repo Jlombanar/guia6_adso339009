@@ -1,0 +1,256 @@
+<article class="slide">
+  <header class="sec-header">
+    <span class="sec-tag naranja"
+      >GA6-220501096-AA4-EV03 · Evidencia de producto</span
+    >
+    <h2 class="sec-titulo">
+      Diseño front-end que cumpla con los requerimientos del proyecto
+    </h2>
+    <p class="sec-intro">
+      Es el cierre de la guía: se unen los mockups (AA3-EV02), la interfaz
+      (AA3-EV03) y los componentes definidos (AA4-EV02), y se agrega
+      <strong>JavaScript</strong> para que la aplicación funcione. El ejemplo
+      resuelto es el front-end completo de la tienda <code>deportes</code>:
+      inicio de sesión, registro, catálogo con búsqueda, carrito y pedidos.
+    </p>
+  </header>
+
+  <section class="explicacion azul" aria-labelledby="ev13-criterio">
+    <h3 id="ev13-criterio">Criterio de evaluación</h3>
+    <p>
+      Genera plantillas y estilos de acuerdo con el diseño establecido.
+      Instrumento: lista de chequeo <code>IE-GA6-220501096-AA4-EV03</code>.
+      El diseño debe aplicar los conceptos de usabilidad y diseño de las
+      evidencias anteriores, usando <strong>HTML, CSS y JS</strong>. El
+      producto es una carpeta con todos los archivos, comprimida en
+      <strong>ZIP</strong>.
+    </p>
+  </section>
+
+  <section aria-labelledby="ev13-capas">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 1</span>
+      <h3 class="sec-titulo" id="ev13-capas">Separar el JavaScript por responsabilidades</h3>
+      <p class="sec-intro">
+        Son los archivos que se definieron en la AA4-EV02. Cada uno tiene una
+        sola tarea, así un cambio no rompe lo demás.
+      </p>
+    </header>
+    <table class="comparativa">
+      <caption class="sr-only">Archivos JavaScript y su responsabilidad</caption>
+      <tr>
+        <th scope="col">Archivo</th>
+        <th scope="col">Responsabilidad</th>
+        <th scope="col">Funciones principales</th>
+      </tr>
+      <tr>
+        <td><code>api.js</code></td>
+        <td>
+          Capa de datos. Simula el back-end con <code>localStorage</code>
+          usando las tablas y columnas de la base <code>deportes</code>.
+        </td>
+        <td><code>iniciarSesion()</code> <code>registrar()</code> <code>crearPedido()</code> <code>pedidosDe()</code></td>
+      </tr>
+      <tr>
+        <td><code>validacion.js</code></td>
+        <td>Validación accesible de formularios con la API de HTML5.</td>
+        <td><code>validarCampo()</code> <code>validarFormulario()</code></td>
+      </tr>
+      <tr>
+        <td><code>carrito.js</code></td>
+        <td>Estado del carrito: agregar, cambiar cantidad, quitar, totales.</td>
+        <td><code>agregar()</code> <code>cambiarCantidad()</code> <code>totalPesos()</code></td>
+      </tr>
+      <tr>
+        <td><code>main.js</code></td>
+        <td>Sesión, encabezado común y la lógica de cada página.</td>
+        <td><code>paginaCatalogo()</code> <code>paginaCarrito()</code>…</td>
+      </tr>
+    </table>
+    <section class="explicacion morado" aria-labelledby="ev13-api">
+      <h4 id="ev13-api">¿Por qué una capa <code>api.js</code>?</h4>
+      <p>
+        Las páginas nunca leen <code>localStorage</code> directamente: le
+        piden los datos a <code>API</code>. Cuando construyas el back-end
+        (con PHP, Node o Java) solo cambias este archivo por llamadas
+        <code>fetch()</code> y el resto del front-end sigue igual.
+      </p>
+    </section>
+  </section>
+
+  <section aria-labelledby="ev13-dom">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 2</span>
+      <h3 class="sec-titulo" id="ev13-dom">Eventos, DOM y validación</h3>
+      <p class="sec-intro">
+        Tres técnicas que usa todo el ejemplo. Las tarjetas del catálogo se
+        crean desde los datos, no se escriben a mano en el HTML.
+      </p>
+    </header>
+    <div class="grid-2">
+      <article class="tarjeta">
+        <h4>Validar al enviar</h4>
+        <div class="bloque-codigo">
+          <div class="linea-codigo azul">
+            <pre class="codigo-texto"><code>form.addEventListener("submit", (e) =&gt; {
+  e.preventDefault();
+  if (!Validacion.validarFormulario(form)) return;
+  const usuario = API.iniciarSesion(
+    form.correo.value.trim(),
+    form.clave.value
+  );
+  if (!usuario) return mostrarAlerta();
+  Sesion.iniciar(usuario);
+  location.href = "catalogo.html";
+});</code></pre>
+          </div>
+        </div>
+      </article>
+      <article class="tarjeta">
+        <h4>Filtrar y volver a pintar</h4>
+        <div class="bloque-codigo">
+          <div class="linea-codigo naranja">
+            <pre class="codigo-texto"><code>const lista = API.productos().filter((p) =&gt;
+  (categoria === "Todos" || p.categoria === categoria) &amp;&amp;
+  p.Nombre.toLowerCase().includes(texto)
+);
+rejilla.replaceChildren(
+  ...lista.map(tarjetaProducto)
+);
+estado.textContent = `${lista.length} productos`;</code></pre>
+          </div>
+        </div>
+      </article>
+    </div>
+    <table class="propiedades">
+      <caption class="sr-only">Reglas de negocio implementadas</caption>
+      <tr>
+        <th scope="col">Regla</th>
+        <th scope="col">Cómo se cumple</th>
+      </tr>
+      <tr><td>El correo admite máximo 10 caracteres</td><td><code>maxlength="10"</code>, igual que <code>VARCHAR(10)</code> en la tabla <code>Users</code></td></tr>
+      <tr><td>No vender más que el stock</td><td>El carrito limita la cantidad y el botón cambia a «Máximo en carrito» o «Agotado»</td></tr>
+      <tr><td>Un pedido descuenta inventario</td><td><code>crearPedido()</code> inserta en <code>pedido</code> y <code>detalle_pedido</code> y resta <code>Stock</code></td></tr>
+      <tr><td>Solo usuarios con sesión compran</td><td>Catálogo, carrito y pedidos redirigen al login si no hay sesión</td></tr>
+      <tr><td>Confirmar antes de registrar</td><td><code>&lt;dialog&gt;</code> con <code>showModal()</code>: atrapa el foco y se cierra con <kbd>Esc</kbd></td></tr>
+    </table>
+  </section>
+
+  <section aria-labelledby="ev13-pasos">
+    <header class="sec-header">
+      <span class="sec-tag">Paso a paso</span>
+      <h3 class="sec-titulo" id="ev13-pasos">Cómo construir el front-end</h3>
+    </header>
+    <ol class="pasos">
+      <li class="paso">
+        <h4>Copia la interfaz de la AA3-EV03</h4>
+        <p>
+          El HTML y el CSS ya están listos. Borra los datos escritos a mano
+          (tarjetas, filas de la tabla): ahora los generará JavaScript.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Crea los datos semilla</h4>
+        <p>
+          En <code>api.js</code> copia los <code>INSERT</code> de tu script
+          SQL como arreglos de objetos, con los mismos nombres de columna.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Enlaza los scripts</h4>
+        <p>
+          Al final del <code>&lt;head&gt;</code> con <code>defer</code>, en
+          orden: <code>api</code>, <code>validacion</code>,
+          <code>carrito</code>, <code>main</code>. Se usan scripts clásicos y
+          no módulos para que la página abra con doble clic, sin servidor.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Programa los formularios</h4>
+        <p>
+          Login y registro: valida, muestra el error junto al campo con
+          <code>aria-invalid</code> y lleva el foco al primer error.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Programa el flujo principal</h4>
+        <p>
+          Catálogo (pintar, buscar, filtrar, agregar), carrito (cantidades,
+          totales, confirmar) y pedidos (tabla y modal de detalle).
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Prueba como lo haría el instructor</h4>
+        <p>
+          Recorre todo con mouse y con teclado, en móvil y escritorio. Prueba
+          errores a propósito: campos vacíos, contraseña incorrecta, más
+          unidades que el stock. Revisa que la consola (<kbd>F12</kbd>) no
+          tenga errores.
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="ev13-ejemplo">
+    <header class="sec-header">
+      <span class="sec-tag">Ejemplo resuelto</span>
+      <h3 class="sec-titulo" id="ev13-ejemplo">Front-end de la tienda deportes</h3>
+      <p class="sec-intro">
+        Entra con <code>lg@mail.co</code> / <code>Lg#2026</code> (Laura, que
+        ya tiene el pedido N.º 1 de la base de datos) o crea una cuenta
+        nueva. Los datos quedan guardados en tu navegador.
+      </p>
+    </header>
+
+    <div class="bloque-codigo">
+      <div class="linea-codigo morado">
+        <pre class="codigo-texto"><code>frontend-deportes/
+├── index.html  → redirige a login.html
+├── login.html · registro.html · catalogo.html · carrito.html · pedidos.html
+├── css/  base.css · componentes.css · layout.css
+├── js/   api.js · validacion.js · carrito.js · main.js
+├── img/  logo.svg y 8 imágenes de productos
+└── LEEME.txt   usuarios de prueba y estructura</code></pre>
+      </div>
+    </div>
+
+    <figure class="captura">
+      <iframe
+        src="assets/docs/evidencias/AA4-EV03/frontend-deportes/login.html"
+        title="Front-end funcional de la tienda deportes"
+        loading="lazy"
+        style="width: 100%; height: 620px; border: 1px solid #d8e2da; border-radius: 10px; background: #fff"
+      ></iframe>
+      <figcaption>Aplicación funcionando. Inicia sesión con lg@mail.co y Lg#2026.</figcaption>
+    </figure>
+
+    <div class="activity-actions">
+      <a
+        class="activity-explore"
+        href="assets/docs/evidencias/AA4-EV03/frontend-deportes/login.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Abrir la aplicación <span aria-hidden="true">↗</span></a
+      >
+      <a
+        class="activity-manual"
+        href="assets/docs/evidencias/AA4-EV03/GA6-220501096-AA4-EV03_frontend-deportes.zip"
+        download
+        >Descargar ZIP <span aria-hidden="true">↓</span></a
+      >
+    </div>
+  </section>
+
+  <section class="alert" aria-labelledby="ev13-entrega">
+    <h3 id="ev13-entrega">Antes de comprimir</h3>
+    <ul class="entrega-list">
+      <li>El front-end cubre todos los requerimientos funcionales de tu proyecto, no solo los de la tienda.</li>
+      <li>Usa los componentes, colores y menús definidos en la AA3-EV03 y la AA4-EV02.</li>
+      <li>HTML, CSS y JS en archivos separados, sin estilos ni scripts mezclados en el HTML.</li>
+      <li>Los formularios validan y explican cada error; todo se puede usar con teclado.</li>
+      <li>La consola del navegador no muestra errores.</li>
+      <li>Incluye un <code>LEEME.txt</code> con los usuarios de prueba.</li>
+      <li>Comprime la carpeta y nómbrala <code>GA6-220501096-AA4-EV03_TuNombre.zip</code>.</li>
+    </ul>
+  </section>
+</article>

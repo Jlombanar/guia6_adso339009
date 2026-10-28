@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Crea tu cuenta de cliente en la Tienda Deportes." />
+    <title>Crear cuenta · Tienda Deportes</title>
+    <link rel="icon" href="img/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/componentes.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <script src="js/api.js" defer></script>
+    <script src="js/validacion.js" defer></script>
+    <script src="js/carrito.js" defer></script>
+    <script src="js/main.js" defer></script>
+  </head>
+  <body class="plantilla-auth" data-pagina="registro">
+    <main class="panel-auth" id="contenido">
+      <img class="panel-auth__logo" src="img/logo.svg" width="72" height="72" alt="Logo de Tienda Deportes" />
+      <h1>Crear cuenta</h1>
+      <p class="panel-auth__subtitulo">Todos los campos son obligatorios</p>
+      <p class="alerta alerta--error" id="alerta-registro" role="alert" hidden></p>
+      <form id="form-registro">
+          <div class="campo">
+            <label class="campo__etiqueta" for="nombre">Nombre completo</label>
+            <input class="campo__entrada" id="nombre" name="nombre" type="text" autocomplete="name" required minlength="3" maxlength="100" data-nombre="tu nombre completo" aria-describedby="nombre-error" />
+            <p class="campo__error" id="nombre-error" hidden></p>
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="edad">Edad</label>
+            <input class="campo__entrada" id="edad" name="edad" type="number" inputmode="numeric" required min="14" max="99" step="1" data-nombre="tu edad" aria-describedby="edad-error edad-ayuda" />
+            <p class="campo__ayuda" id="edad-ayuda">Debes tener 14 años o más.</p>
+            <p class="campo__error" id="edad-error" hidden></p>
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="correo">Correo</label>
+            <input class="campo__entrada" id="correo" name="correo" type="email" autocomplete="email" required maxlength="10" data-nombre="tu correo" aria-describedby="correo-error correo-ayuda" />
+            <p class="campo__ayuda" id="correo-ayuda">Máximo 10 caracteres, por ejemplo lg@mail.co.</p>
+            <p class="campo__error" id="correo-error" hidden></p>
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="clave">Contraseña</label>
+            <input class="campo__entrada" id="clave" name="clave" type="password" autocomplete="new-password" required minlength="6" maxlength="100" data-nombre="una contraseña" aria-describedby="clave-error clave-ayuda" />
+            <p class="campo__ayuda" id="clave-ayuda">Mínimo 6 caracteres.</p>
+            <p class="campo__error" id="clave-error" hidden></p>
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="confirmar">Confirmar contraseña</label>
+            <input class="campo__entrada" id="confirmar" name="confirmar" type="password" autocomplete="new-password" required data-nombre="de nuevo la contraseña" aria-describedby="confirmar-error" />
+            <p class="campo__error" id="confirmar-error" hidden></p>
+          </div>
+        <button class="btn btn--bloque" type="submit">Crear cuenta</button>
+      </form>
+      <p class="panel-auth__pie">¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+    </main>
+  </body>
+</html>

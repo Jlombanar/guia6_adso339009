@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Guía de estilos e interfaz gráfica de la Tienda Deportes." />
+    <title>Guía de estilos · Tienda Deportes</title>
+    <link rel="icon" href="img/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/componentes.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+  </head>
+  <body class="plantilla-tienda">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <header class="encabezado">
+      <div class="encabezado__barra">
+        <a class="encabezado__marca" href="index.html">
+          <img src="img/logo.svg" width="36" height="36" alt="" /> Tienda Deportes
+        </a>
+        <p class="encabezado__usuario">Guía de estilos</p>
+      </div>
+      <nav class="menu" aria-label="Pantallas de la interfaz">
+        <ul class="menu__lista">
+          <li>
+            <a class="menu__enlace" href="login.html"><span class="menu__icono" aria-hidden="true">🔑</span> Login</a>
+          </li>
+          <li>
+            <a class="menu__enlace" href="catalogo.html"><span class="menu__icono" aria-hidden="true">🏠</span> Catálogo</a>
+          </li>
+          <li>
+            <a class="menu__enlace" href="pedidos.html"><span class="menu__icono" aria-hidden="true">📦</span> Pedidos</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="principal" id="contenido">
+      <header class="principal__cabecera">
+        <h1>Interfaz gráfica · Tienda Deportes</h1>
+        <p>GA6-220501096-AA3-EV03</p>
+      </header>
+      <p>
+        Esta guía reúne las decisiones visuales tomadas a partir de los mockups de la
+        AA3-EV02: colores, tipografía, componentes, estados y menús. Todas las
+        pantallas usan las mismas tres hojas de estilo.
+      </p>
+
+      <section class="seccion-guia" aria-labelledby="g-pantallas">
+        <h2 id="g-pantallas">Pantallas</h2>
+        <ul class="filtros">
+          <li><a class="btn btn--secundario" href="login.html">Iniciar sesión</a></li>
+          <li><a class="btn btn--secundario" href="registro.html">Registro</a></li>
+          <li><a class="btn btn--secundario" href="catalogo.html">Catálogo</a></li>
+          <li><a class="btn btn--secundario" href="carrito.html">Carrito</a></li>
+          <li><a class="btn btn--secundario" href="pedidos.html">Mis pedidos</a></li>
+        </ul>
+      </section>
+
+      <section class="seccion-guia" aria-labelledby="g-colores">
+        <h2 id="g-colores">1. Colores</h2>
+        <p>Cada color de texto o botón tiene contraste de 4.5:1 o más (WCAG 2.1 AA).</p>
+        <ul class="muestras">
+          <li class="muestra"><div class="muestra__color" style="background: #2b7a00"></div><p><strong>Primario</strong></p><p>#2B7A00 · 5.4:1</p></li>
+          <li class="muestra"><div class="muestra__color" style="background: #39a900"></div><p><strong>Marca SENA</strong></p><p>#39A900 · solo acentos</p></li>
+          <li class="muestra"><div class="muestra__color" style="background: #b84a00"></div><p><strong>Acción</strong></p><p>#B84A00 · 5.2:1</p></li>
+          <li class="muestra"><div class="muestra__color" style="background: #0067ac"></div><p><strong>Enlace</strong></p><p>#0067AC · 5.9:1</p></li>
+          <li class="muestra"><div class="muestra__color" style="background: #b3261e"></div><p><strong>Peligro</strong></p><p>#B3261E · 6.5:1</p></li>
+          <li class="muestra"><div class="muestra__color" style="background: #1f2a24"></div><p><strong>Texto</strong></p><p>#1F2A24 · 14.8:1</p></li>
+          <li class="muestra"><div class="muestra__color" style="background: #5c6a62"></div><p><strong>Texto suave</strong></p><p>#5C6A62 · 5.7:1</p></li>
+          <li class="muestra"><div class="muestra__color" style="background: #f4f7f4; border-bottom: 1px solid #c9d3cc"></div><p><strong>Fondo</strong></p><p>#F4F7F4</p></li>
+        </ul>
+      </section>
+
+      <section class="seccion-guia" aria-labelledby="g-tipo">
+        <h2 id="g-tipo">2. Tipografía</h2>
+        <div class="fila-ejemplos" style="display: block">
+          <p style="font-size: 2rem; font-weight: 700; margin: 0">Título 1 · 32 px (24 px en móvil)</p>
+          <p style="font-size: 1.25rem; font-weight: 700; margin: 0">Título 2 · 20 px</p>
+          <p style="margin: 0">Cuerpo · 16 px, interlineado 1.5. Fuente del sistema: Segoe UI, Roboto o Arial.</p>
+          <p style="font-size: 0.875rem; color: #5c6a62; margin: 0">Texto pequeño · 14 px para ayudas y etiquetas</p>
+        </div>
+      </section>
+
+      <section class="seccion-guia" aria-labelledby="g-botones">
+        <h2 id="g-botones">3. Botones</h2>
+        <p>Alto mínimo de 44 px. Un solo botón primario por pantalla.</p>
+        <div class="fila-ejemplos">
+          <button class="btn" type="button">Primario</button>
+          <button class="btn btn--secundario" type="button">Secundario</button>
+          <button class="btn btn--accion" type="button">Acción</button>
+          <button class="btn btn--peligro" type="button">Peligro</button>
+          <button class="btn" type="button" disabled>Deshabilitado</button>
+          <button class="btn btn--texto" type="button">Texto</button>
+        </div>
+      </section>
+
+      <section class="seccion-guia" aria-labelledby="g-campos">
+        <h2 id="g-campos">4. Campos de formulario</h2>
+        <p>Etiqueta siempre visible encima; el error combina borde, ícono y texto.</p>
+        <div class="fila-ejemplos" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))">
+          <div class="campo">
+            <label class="campo__etiqueta" for="g-normal">Normal</label>
+            <input class="campo__entrada" id="g-normal" type="text" placeholder="Laura Gómez" />
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="g-ayuda">Con ayuda</label>
+            <input class="campo__entrada" id="g-ayuda" type="email" value="lg@mail.co" aria-describedby="g-ayuda-txt" />
+            <p class="campo__ayuda" id="g-ayuda-txt">Máximo 10 caracteres.</p>
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="g-error">Con error</label>
+            <input class="campo__entrada" id="g-error" type="email" value="laura@" aria-invalid="true" aria-describedby="g-error-txt" />
+            <p class="campo__error" id="g-error-txt">Escribe un correo válido.</p>
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="g-off">Deshabilitado</label>
+            <input class="campo__entrada" id="g-off" type="text" value="No editable" disabled />
+          </div>
+        </div>
+      </section>
+
+      <section class="seccion-guia" aria-labelledby="g-estado">
+        <h2 id="g-estado">5. Insignias y mensajes</h2>
+        <div class="fila-ejemplos">
+          <span class="badge badge--ok">Stock: 30</span>
+          <span class="badge badge--bajo">Quedan 5</span>
+          <span class="badge badge--agotado">Agotado</span>
+          <span class="contador" data-valor="3">3</span>
+        </div>
+        <p class="alerta alerta--exito" style="margin-top: 1rem">Cuenta creada. Ya puedes iniciar sesión.</p>
+        <p class="alerta alerta--error">Correo o contraseña incorrectos.</p>
+      </section>
+
+      <section class="seccion-guia" aria-labelledby="g-menu">
+        <h2 id="g-menu">6. Menús</h2>
+        <p>
+          <strong>Móvil (menos de 768 px):</strong> barra de pestañas fija en la parte
+          inferior, al alcance del pulgar, con ícono y texto. <strong>Tableta y
+          escritorio:</strong> la misma lista sube al encabezado como menú horizontal.
+          La página activa se marca con <code>aria-current="page"</code>, en negrita y
+          con una línea. Cambia el ancho de la ventana para ver el cambio.
+        </p>
+      </section>
+
+      <section class="seccion-guia" aria-labelledby="g-tarjeta">
+        <h2 id="g-tarjeta">7. Tarjeta de producto</h2>
+        <ul class="rejilla-productos">
+          <li>
+            <article class="tarjeta-producto" aria-labelledby="g-prod">
+              <img class="tarjeta-producto__imagen" src="img/balon.svg" width="160" height="120" alt="" />
+              <h3 class="tarjeta-producto__nombre" id="g-prod">Balón de fútbol N.º 5</h3>
+              <p class="tarjeta-producto__precio"><data value="89900">$&nbsp;89.900</data></p>
+              <span class="badge badge--ok">Stock: 30</span>
+              <div class="tarjeta-producto__pie">
+                <button class="btn btn--accion btn--bloque" type="button">Agregar</button>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="pie">
+      <p>Tienda Deportes · Garzón, Huila · Proyecto formativo ADSO 228118</p>
+    </footer>
+  </body>
+</html>

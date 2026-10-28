@@ -1,0 +1,12 @@
+GA6-220501096-AA3-EV03 · Interfaz gráfica · Tienda Deportes
+
+Abrir index.html: es la guía de estilos (colores, tipografía, botones,
+campos, insignias, menús y tarjeta) con enlaces a las cinco pantallas.
+
+Pantallas: login.html, registro.html, catalogo.html, carrito.html, pedidos.html
+Estilos:   css/base.css (variables) · css/componentes.css · css/layout.css
+Imágenes:  img/
+
+Es la interfaz visual sin lógica: los datos están escritos en el HTML.
+Cambia el ancho de la ventana para ver el menú inferior (móvil) y el
+menú superior (desde 768 px).

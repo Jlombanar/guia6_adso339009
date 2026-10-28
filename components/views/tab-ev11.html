@@ -1,0 +1,314 @@
+<article class="slide">
+  <header class="sec-header">
+    <span class="sec-tag naranja"
+      >GA6-220501096-AA3-EV02 · Evidencia de desempeño</span
+    >
+    <h2 class="sec-titulo">
+      Crear el diseño del sitio web y/o móviles utilizando sus componentes y
+      tecnologías respectivas
+    </h2>
+    <p class="sec-intro">
+      En la AA3-EV01 probaste la herramienta con dos pantallas. Ahora diseñas
+      <strong>todas</strong> las pantallas del software y las conectas para que
+      el prototipo muestre la funcionalidad completa. El ejemplo resuelto son
+      los mockups móviles de la tienda <code>deportes</code>: nueve pantallas,
+      del inicio de sesión al detalle de un pedido.
+    </p>
+  </header>
+
+  <section class="explicacion azul" aria-labelledby="ev11-criterio">
+    <h3 id="ev11-criterio">Criterio de evaluación</h3>
+    <p>
+      Crea interfaces de usuario aplicando buenas prácticas de usabilidad y
+      accesibilidad. Instrumento: lista de chequeo
+      <code>IE-GA6-220501096-AA3-EV02</code>. El producto es un
+      <strong>archivo ZIP</strong> con el documento en Word (portada,
+      introducción, objetivo, pantallazos de los mockups y descripción de cada
+      interfaz) y el archivo donde se realizó el prototipo. El prototipo debe
+      tener <strong>navegación</strong> que muestre la funcionalidad.
+    </p>
+  </section>
+
+  <section aria-labelledby="ev11-mockup">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 1</span>
+      <h3 class="sec-titulo" id="ev11-mockup">Mockup de navegación</h3>
+      <p class="sec-intro">
+        Un mockup es el diseño visual final de una pantalla. Un mockup
+        <em>de navegación</em> agrega las conexiones: qué botón lleva a qué
+        pantalla. Así se prueba el recorrido del usuario antes de programar.
+      </p>
+    </header>
+    <div class="grid-2">
+      <article class="tarjeta">
+        <h4>Alta fidelidad</h4>
+        <p>
+          Colores, tipografía, imágenes y textos reales. Los datos salen de tu
+          base de datos: nombres de productos, precios, fechas.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Todas las pantallas</h4>
+        <p>
+          Cada requerimiento funcional tiene al menos una pantalla. No olvides
+          los estados: error, vacío, confirmación y éxito.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Mapa de navegación</h4>
+        <p>
+          Diagrama de pantallas unidas por flechas. Muestra el flujo principal
+          y los caminos de regreso.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Web y/o móvil</h4>
+        <p>
+          Elige el formato según el usuario. Diseñar primero para móvil
+          (360 px) obliga a priorizar; luego se amplía a escritorio.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="ev11-patrones">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 2</span>
+      <h3 class="sec-titulo" id="ev11-patrones">Patrones de navegación</h3>
+      <p class="sec-intro">
+        Usa patrones que el usuario ya conoce. Estos son los más comunes y
+        dónde se usaron en el ejemplo:
+      </p>
+    </header>
+    <table class="comparativa">
+      <caption class="sr-only">Patrones de navegación y su uso en la tienda</caption>
+      <tr>
+        <th scope="col">Patrón</th>
+        <th scope="col">Cuándo usarlo</th>
+        <th scope="col">En la tienda</th>
+      </tr>
+      <tr>
+        <td><strong>Barra de pestañas inferior</strong></td>
+        <td>De 3 a 5 secciones principales en móvil; queda al alcance del pulgar.</td>
+        <td>Catálogo · Carrito · Pedidos</td>
+      </tr>
+      <tr>
+        <td><strong>Menú superior</strong></td>
+        <td>Sitios web en escritorio.</td>
+        <td>La misma barra sube al encabezado desde 768 px (AA3-EV03)</td>
+      </tr>
+      <tr>
+        <td><strong>Flecha de regreso</strong></td>
+        <td>Pantallas secundarias que dependen de otra.</td>
+        <td>Registro y Carrito</td>
+      </tr>
+      <tr>
+        <td><strong>Ventana modal</strong></td>
+        <td>Confirmar una acción o ver un detalle sin perder el contexto.</td>
+        <td>Confirmar pedido y Detalle del pedido</td>
+      </tr>
+      <tr>
+        <td><strong>Pantalla de éxito</strong></td>
+        <td>Cerrar un proceso importante y ofrecer el siguiente paso.</td>
+        <td>Pedido confirmado</td>
+      </tr>
+    </table>
+  </section>
+
+  <section aria-labelledby="ev11-pasos">
+    <header class="sec-header">
+      <span class="sec-tag">Paso a paso</span>
+      <h3 class="sec-titulo" id="ev11-pasos">Cómo hacer los mockups en Figma</h3>
+      <p class="sec-intro">
+        Parte del archivo de la AA3-EV01: ya tiene los estilos y los
+        componentes. Los atajos son de Windows; en macOS usa
+        <kbd>Cmd</kbd>.
+      </p>
+    </header>
+    <ol class="pasos">
+      <li class="paso">
+        <h4>Lista pantallas y requerimientos</h4>
+        <p>
+          Haz una tabla: requerimiento → pantalla → tablas de la base de
+          datos. En la tienda: RF-01 Registro (<code>Users</code>), RF-03
+          Catálogo (<code>productos</code>), RF-05 Carrito
+          (<code>pedido</code>, <code>detalle_pedido</code>)…
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Dibuja el mapa de navegación</h4>
+        <p>
+          En papel o en FigJam: una caja por pantalla y una flecha por cada
+          botón o enlace. Marca el flujo principal (el de compra).
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Crea un frame por pantalla</h4>
+        <p>
+          Duplica un frame con <kbd>Ctrl</kbd> + <kbd>D</kbd> para conservar
+          el tamaño. Nómbralos con número: <code>01 Login</code>,
+          <code>02 Registro</code>, <code>03 Catálogo</code>… Ordénalos de
+          izquierda a derecha según el flujo.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Arma cada pantalla con componentes</h4>
+        <p>
+          Usa instancias de <em>Botón</em>, <em>Campo</em>, <em>Tarjeta
+          producto</em> y <em>Barra de pestañas</em> desde el panel Assets.
+          Con variantes (<em>Add variant</em>) creas los estados normal,
+          error y deshabilitado.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Diseña los estados y modales</h4>
+        <p>
+          Duplica la pantalla de login y cambia los campos a la variante
+          error. Para un modal crea un frame pequeño y en Prototype elige
+          <em>Open overlay › Bottom center</em> con fondo oscuro.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Conecta todo en Prototype</h4>
+        <p>
+          Cada botón y enlace del mapa necesita su conexión
+          <em>On click › Navigate to</em>. Para las flechas de regreso usa
+          <em>Back</em>. Define <code>01 Login</code> como
+          <em>Flow starting point</em>.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Prueba, captura y comparte</h4>
+        <p>
+          Recorre el flujo en <strong>Present</strong>. Exporta cada frame en
+          PNG (panel Export, ×2) para el documento, copia el enlace de
+          Share y descarga el <code>.fig</code> con
+          <strong>File › Save local copy</strong>.
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="ev11-ejemplo">
+    <header class="sec-header">
+      <span class="sec-tag">Ejemplo resuelto</span>
+      <h3 class="sec-titulo" id="ev11-ejemplo">Mockups de la tienda deportes</h3>
+      <p class="sec-intro">
+        Nueve pantallas móviles de 360 × 740 px. El prototipo está exportado
+        en HTML y CSS para abrirlo sin cuenta de Figma: pulsa los botones de
+        cada teléfono para navegar como en el modo presentación.
+      </p>
+    </header>
+
+    <table class="propiedades">
+      <caption class="sr-only">Pantallas del prototipo y requerimiento que cubren</caption>
+      <tr>
+        <th scope="col">Pantalla</th>
+        <th scope="col">Requerimiento</th>
+        <th scope="col">Lleva a</th>
+      </tr>
+      <tr><td>1 · Iniciar sesión (y 1b con error)</td><td>RF-02</td><td>Catálogo · Registro</td></tr>
+      <tr><td>2 · Registro</td><td>RF-01</td><td>Iniciar sesión</td></tr>
+      <tr><td>3 · Catálogo con buscador y filtros</td><td>RF-03, RF-04</td><td>Carrito · Pedidos</td></tr>
+      <tr><td>4 · Carrito (y 4b modal Confirmar)</td><td>RF-05</td><td>Pedido confirmado</td></tr>
+      <tr><td>5 · Pedido confirmado</td><td>RF-05</td><td>Mis pedidos · Catálogo</td></tr>
+      <tr><td>6 · Mis pedidos (y 6b modal Detalle)</td><td>RF-06</td><td>Detalle del pedido</td></tr>
+    </table>
+
+    <figure class="captura">
+      <iframe
+        src="assets/docs/evidencias/AA3-EV02/prototipo-deportes/index.html"
+        title="Prototipo navegable de la tienda deportes"
+        loading="lazy"
+        style="width: 100%; height: 560px; border: 1px solid #d8e2da; border-radius: 10px; background: #fff"
+      ></iframe>
+      <figcaption>Mapa de navegación. Desplázate para ver todas las pantallas.</figcaption>
+    </figure>
+
+    <section class="explicacion morado" aria-labelledby="ev11-doc">
+      <h4 id="ev11-doc">Contenido del documento de ejemplo</h4>
+      <p>
+        Portada · Contenido · 1. Introducción · 2. Objetivos · 3. Descripción
+        del software y requerimientos · 4. Herramienta y tecnologías (con la
+        guía visual) · 5. Mapa de navegación · 6. Mockups y descripción de
+        cada interfaz (propósito, elementos, datos y navegación) · 7.
+        Usabilidad y accesibilidad · 8. Prototipo navegable · 9.
+        Conclusiones · 10. Referencias. Ya trae los pantallazos de las nueve
+        pantallas.
+      </p>
+    </section>
+
+    <div class="activity-actions">
+      <a
+        class="activity-explore"
+        href="assets/docs/evidencias/AA3-EV02/prototipo-deportes/index.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Abrir el prototipo <span aria-hidden="true">↗</span></a
+      >
+      <a
+        class="activity-manual"
+        href="assets/docs/evidencias/AA3-EV02/GA6-220501096-AA3-EV02_mockups-navegacion.docx"
+        download
+        >Documento Word <span aria-hidden="true">↓</span></a
+      >
+      <a
+        class="activity-manual"
+        href="assets/docs/evidencias/AA3-EV02/GA6-220501096-AA3-EV02_mockups-navegacion.zip"
+        download
+        >Descargar ZIP <span aria-hidden="true">↓</span></a
+      >
+    </div>
+  </section>
+
+  <section aria-labelledby="ev11-usabilidad">
+    <header class="sec-header">
+      <span class="sec-tag morado">Lo que evalúa la lista de chequeo</span>
+      <h3 class="sec-titulo" id="ev11-usabilidad">Usabilidad y accesibilidad en los mockups</h3>
+    </header>
+    <div class="grid-2">
+      <article class="tarjeta">
+        <h4>Contraste real</h4>
+        <p>
+          El verde SENA <code>#39A900</code> con texto blanco da 3.1:1 y no
+          cumple WCAG AA. Para botones y barras se usó
+          <code>#2B7A00</code> (5.4:1) y el verde claro quedó para acentos.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Errores comprensibles</h4>
+        <p>
+          Borde rojo, ícono y un texto que dice cómo corregir. El color nunca
+          es la única señal.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Ubicación clara</h4>
+        <p>
+          La pestaña activa va en negrita y color; cada pantalla tiene un
+          título que dice dónde está el usuario.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Prevenir errores</h4>
+        <p>
+          Confirmación antes de registrar el pedido y límite visible en los
+          campos (el correo admite 10 caracteres por la columna
+          <code>VARCHAR(10)</code>).
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="alert" aria-labelledby="ev11-entrega">
+    <h3 id="ev11-entrega">Antes de comprimir</h3>
+    <ul class="entrega-list">
+      <li>Diseña las pantallas de tu proyecto formativo: la tienda deportes es solo el ejemplo.</li>
+      <li>Cada requerimiento funcional aparece en al menos una pantalla.</li>
+      <li>Todos los botones del mapa tienen conexión en Prototype y el recorrido funciona en Present.</li>
+      <li>El documento tiene portada, introducción, objetivo, pantallazos y la descripción de cada interfaz.</li>
+      <li>Incluye el <code>.fig</code> (o <code>.penpot</code>) y el enlace de visualización en el documento.</li>
+      <li>Comprime todo y nómbralo <code>GA6-220501096-AA3-EV02_TuNombre.zip</code>.</li>
+    </ul>
+  </section>
+</article>

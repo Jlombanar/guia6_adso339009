@@ -1,0 +1,247 @@
+<article class="slide">
+  <header class="sec-header">
+    <span class="sec-tag naranja"
+      >GA6-220501096-AA3-EV03 · Evidencia de producto</span
+    >
+    <h2 class="sec-titulo">Interfaces gráficas según requerimientos del proyecto</h2>
+    <p class="sec-intro">
+      Los mockups de la AA3-EV02 se convierten en una interfaz real con HTML y
+      CSS. Aquí defines colores, tipografía, estilos de cada componente,
+      menús y comportamiento en distintos tamaños de pantalla. El ejemplo
+      resuelto es la interfaz web adaptable de la tienda <code>deportes</code>
+      con su guía de estilos.
+    </p>
+  </header>
+
+  <section class="explicacion azul" aria-labelledby="ev12-criterio">
+    <h3 id="ev12-criterio">Criterio de evaluación</h3>
+    <p>
+      Crea interfaces de usuario aplicando buenas prácticas de usabilidad y
+      accesibilidad. Instrumento: lista de chequeo
+      <code>IE-GA6-220501096-AA3-EV03</code>. El producto es la
+      <strong>interfaz gráfica</strong> del software en una carpeta
+      comprimida <strong>ZIP</strong> con sus archivos.
+    </p>
+  </section>
+
+  <section aria-labelledby="ev12-decisiones">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 1</span>
+      <h3 class="sec-titulo" id="ev12-decisiones">Lo que la guía pide definir</h3>
+      <p class="sec-intro">
+        Cada decisión se guarda una sola vez en CSS y se reutiliza en todas
+        las pantallas.
+      </p>
+    </header>
+    <div class="grid-2">
+      <article class="tarjeta">
+        <h4>Colores</h4>
+        <p>
+          Variables en <code>:root</code>: <code>--color-primario</code>,
+          <code>--color-accion</code>, <code>--color-peligro</code>… Cada una
+          con contraste comprobado.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Estilos</h4>
+        <p>
+          Tipografía, espaciado en escala de 4 px, bordes y sombras. Cada
+          componente con sus estados: hover, foco, error, deshabilitado.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Menús</h4>
+        <p>
+          Barra de pestañas inferior en móvil y menú horizontal en
+          escritorio. La página activa se marca con
+          <code>aria-current="page"</code>.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Usabilidad</h4>
+        <p>
+          Áreas táctiles de 44 px, etiquetas visibles, foco visible al
+          navegar con teclado y enlace «Saltar al contenido».
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="ev12-css">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 2</span>
+      <h3 class="sec-titulo" id="ev12-css">Variables CSS y diseño móvil primero</h3>
+      <p class="sec-intro">
+        Las variables guardan la guía de estilos; las consultas de medios
+        cambian la distribución según el ancho. Se escribe primero el estilo
+        para móvil y se agregan cambios con <code>min-width</code>.
+      </p>
+    </header>
+    <div class="grid-2">
+      <article class="tarjeta">
+        <h4>css/base.css</h4>
+        <div class="bloque-codigo">
+          <div class="linea-codigo azul">
+            <pre class="codigo-texto"><code>:root {
+  --color-primario: #2b7a00; /* 5.4:1 */
+  --color-accion: #b84a00;   /* 5.2:1 */
+  --color-enlace: #0067ac;   /* 5.9:1 */
+  --texto-base: 1rem;        /* 16 px */
+  --alto-control: 44px;
+}
+
+.btn {
+  min-height: var(--alto-control);
+  background: var(--color-primario);
+}</code></pre>
+          </div>
+        </div>
+      </article>
+      <article class="tarjeta">
+        <h4>css/layout.css</h4>
+        <div class="bloque-codigo">
+          <div class="linea-codigo naranja">
+            <pre class="codigo-texto"><code>/* Móvil: menú fijo abajo */
+.menu {
+  position: fixed;
+  inset: auto 0 0 0;
+}
+.rejilla-productos {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Desde 768 px: menú arriba */
+@media (min-width: 768px) {
+  .menu { position: static; }
+}</code></pre>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="ev12-pasos">
+    <header class="sec-header">
+      <span class="sec-tag">Paso a paso</span>
+      <h3 class="sec-titulo" id="ev12-pasos">Cómo construir la interfaz</h3>
+    </header>
+    <ol class="pasos">
+      <li class="paso">
+        <h4>Crea la estructura de carpetas</h4>
+        <p>
+          Una página HTML por pantalla del prototipo, y las carpetas
+          <code>css/</code> e <code>img/</code>. Usa rutas relativas.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Pasa la guía visual a variables</h4>
+        <p>
+          En Figma, el modo desarrollador (<kbd>Shift</kbd> + <kbd>D</kbd>)
+          muestra colores, tamaños y espacios. Cópialos a
+          <code>:root</code> en <code>base.css</code>.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Escribe el HTML semántico de cada pantalla</h4>
+        <p>
+          <code>&lt;header&gt;</code> con <code>&lt;nav&gt;</code>,
+          <code>&lt;main&gt;</code>, <code>&lt;form&gt;</code> con
+          <code>&lt;label&gt;</code>, <code>&lt;article&gt;</code> para cada
+          producto, <code>&lt;table&gt;</code> para los pedidos.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Estiliza los componentes</h4>
+        <p>
+          En <code>componentes.css</code>: botón, campo, insignia, tarjeta,
+          tabla. Usa nombres BEM (<code>.campo__entrada</code>,
+          <code>.btn--secundario</code>) y define cada estado.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Diseña los menús y la distribución</h4>
+        <p>
+          En <code>layout.css</code>: encabezado, menú y rejillas. Prueba con
+          las herramientas del navegador (<kbd>F12</kbd> › modo dispositivo)
+          en 360, 768 y 1280 px.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Arma la guía de estilos</h4>
+        <p>
+          Una página <code>index.html</code> que muestre colores, tipografía,
+          botones, campos y menús, con enlaces a todas las pantallas. Es la
+          prueba de que los estilos son coherentes.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Revisa la accesibilidad</h4>
+        <p>
+          Recorre todo con <kbd>Tab</kbd>: el foco debe verse siempre. Pasa
+          Lighthouse (<kbd>F12</kbd> › Lighthouse › Accessibility) y corrige
+          lo que marque.
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="ev12-ejemplo">
+    <header class="sec-header">
+      <span class="sec-tag">Ejemplo resuelto</span>
+      <h3 class="sec-titulo" id="ev12-ejemplo">Interfaz web de la tienda deportes</h3>
+      <p class="sec-intro">
+        Cinco pantallas y la guía de estilos, solo con HTML y CSS. Los datos
+        están escritos en el HTML; la lógica se agrega en la AA4-EV03.
+      </p>
+    </header>
+
+    <div class="bloque-codigo">
+      <div class="linea-codigo morado">
+        <pre class="codigo-texto"><code>interfaz-deportes/
+├── index.html      guía de estilos con enlaces a las pantallas
+├── login.html · registro.html · catalogo.html · carrito.html · pedidos.html
+├── css/  base.css (variables) · componentes.css · layout.css
+├── img/  logo.svg y 8 imágenes de productos
+└── LEEME.txt</code></pre>
+      </div>
+    </div>
+
+    <figure class="captura">
+      <iframe
+        src="assets/docs/evidencias/AA3-EV03/interfaz-deportes/index.html"
+        title="Guía de estilos de la interfaz de la tienda deportes"
+        loading="lazy"
+        style="width: 100%; height: 560px; border: 1px solid #d8e2da; border-radius: 10px; background: #fff"
+      ></iframe>
+      <figcaption>Guía de estilos. Usa el menú para recorrer las pantallas.</figcaption>
+    </figure>
+
+    <div class="activity-actions">
+      <a
+        class="activity-explore"
+        href="assets/docs/evidencias/AA3-EV03/interfaz-deportes/index.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Abrir la interfaz <span aria-hidden="true">↗</span></a
+      >
+      <a
+        class="activity-manual"
+        href="assets/docs/evidencias/AA3-EV03/GA6-220501096-AA3-EV03_interfaz-deportes.zip"
+        download
+        >Descargar ZIP <span aria-hidden="true">↓</span></a
+      >
+    </div>
+  </section>
+
+  <section class="alert" aria-labelledby="ev12-entrega">
+    <h3 id="ev12-entrega">Antes de comprimir</h3>
+    <ul class="entrega-list">
+      <li>La interfaz corresponde a las pantallas de tus mockups de la AA3-EV02.</li>
+      <li>Colores y fuentes están en variables y coinciden con el prototipo.</li>
+      <li>El menú funciona en móvil y escritorio, y marca la página activa.</li>
+      <li>Cada campo tiene <code>&lt;label&gt;</code> y cada imagen su <code>alt</code> (vacío si es decorativa).</li>
+      <li>Todos los enlaces llevan a una página que existe; rutas relativas.</li>
+      <li>Comprime la carpeta y nómbrala <code>GA6-220501096-AA3-EV03_TuNombre.zip</code>.</li>
+    </ul>
+  </section>
+</article>
