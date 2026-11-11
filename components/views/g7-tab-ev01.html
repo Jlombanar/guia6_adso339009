@@ -1,0 +1,400 @@
+<article class="slide">
+  <header class="sec-header">
+    <span class="sec-tag naranja"
+      >GA7-220501096-AA1-EV01 · Evidencia de conocimiento</span
+    >
+    <h2 class="sec-titulo">
+      Informe técnico de plan de trabajo para construcción de software
+    </h2>
+    <p class="sec-intro">
+      Antes de escribir código se decide cómo se va a construir el software y
+      con qué herramientas se controlarán sus versiones. En esta evidencia
+      elaboras un informe técnico con el plan de trabajo de la Guía 7 y la
+      selección de las herramientas de versionamiento. El ejemplo resuelto es
+      el plan de la tienda <code>deportes</code> que se viene trabajando desde
+      la Guía 6, con <strong>Node.js y Express</strong> en el back-end y React
+      en el front-end.
+    </p>
+  </header>
+
+  <section class="explicacion azul" aria-labelledby="g7ev01-criterio">
+    <h3 id="g7ev01-criterio">Criterio de evaluación</h3>
+    <p>
+      Interpreta el informe de diseño para definir el plan de trabajo,
+      selecciona y configura herramientas de desarrollo según el software a
+      construir y define estándares de acuerdo con la plataforma. Instrumento:
+      lista de chequeo <code>IE-GA7-220501096-AA1-EV01</code>. El producto es
+      un <strong>informe técnico en PDF</strong> con, como mínimo, portada,
+      introducción, objetivo y la selección de herramientas de versionamiento.
+    </p>
+  </section>
+
+  <section aria-labelledby="g7ev01-plan">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 1</span>
+      <h3 class="sec-titulo" id="g7ev01-plan">¿Qué lleva un plan de trabajo?</h3>
+      <p class="sec-intro">
+        Es la hoja de ruta de la construcción. Responde qué se construye, en
+        qué orden, con qué tecnologías y cómo se va a controlar el código.
+      </p>
+    </header>
+    <div class="grid-2">
+      <article class="tarjeta">
+        <h4>Qué se construye</h4>
+        <p>
+          Los módulos del software, sacados de los requerimientos y de los
+          artefactos de diseño: casos de uso, diagrama de clases, base de
+          datos y prototipos.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>En qué orden</h4>
+        <p>
+          Un cronograma por sprints que sigue las actividades de la guía:
+          acceso a datos y formularios (AA2), módulos en capas (AA3), React
+          (AA4) y API (AA5).
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Con qué herramientas</h4>
+        <p>
+          Lenguaje, framework, base de datos, IDE y herramientas de prueba,
+          con el uso que tendrá cada una en el proyecto.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Cómo se versiona</h4>
+        <p>
+          La parte central de esta evidencia: sistema de control de
+          versiones, plataforma remota, ramas, commits y etiquetas.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="g7ev01-vcs">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 2</span>
+      <h3 class="sec-titulo" id="g7ev01-vcs">Sistemas de control de versiones</h3>
+      <p class="sec-intro">
+        Registran cada cambio del código: quién lo hizo, cuándo y por qué.
+        Permiten volver atrás, trabajar en paralelo y tener una copia en la
+        nube. Hay dos tipos:
+      </p>
+    </header>
+    <table class="comparativa">
+      <caption class="sr-only">Sistemas centralizados frente a distribuidos</caption>
+      <tr>
+        <th scope="col">Criterio</th>
+        <th scope="col">Centralizado (Subversion)</th>
+        <th scope="col">Distribuido (Git)</th>
+      </tr>
+      <tr>
+        <td>Dónde está el historial</td>
+        <td>Solo en el servidor</td>
+        <td>Copia completa en cada equipo</td>
+      </tr>
+      <tr>
+        <td>Trabajo sin internet</td>
+        <td>No permite hacer commits</td>
+        <td>Permite commits, ramas e historial</td>
+      </tr>
+      <tr>
+        <td>Ramas</td>
+        <td>Costosas; se usan poco</td>
+        <td>Rápidas y livianas; una por funcionalidad</td>
+      </tr>
+      <tr>
+        <td>Si falla el servidor</td>
+        <td>Se puede perder el historial</td>
+        <td>Cualquier copia restaura el proyecto</td>
+      </tr>
+    </table>
+    <p class="sec-intro">
+      Git es el sistema; el repositorio remoto vive en una plataforma. Estas
+      son las tres más usadas:
+    </p>
+    <table class="propiedades">
+      <caption class="sr-only">Comparativa de plataformas para el repositorio remoto</caption>
+      <tr>
+        <th scope="col">Criterio</th>
+        <th scope="col">GitHub</th>
+        <th scope="col">GitLab</th>
+        <th scope="col">Bitbucket</th>
+      </tr>
+      <tr>
+        <td>Repositorios privados gratis</td>
+        <td>Sí, ilimitados</td>
+        <td>Sí, ilimitados</td>
+        <td>Sí, hasta 5 usuarios</td>
+      </tr>
+      <tr>
+        <td>Integración continua</td>
+        <td>GitHub Actions</td>
+        <td>GitLab CI/CD</td>
+        <td>Bitbucket Pipelines</td>
+      </tr>
+      <tr>
+        <td>Gestión de tareas</td>
+        <td>Issues y Projects</td>
+        <td>Issues y tableros</td>
+        <td>Integración con Jira</td>
+      </tr>
+      <tr>
+        <td>Comunidad y portafolio</td>
+        <td>La más grande</td>
+        <td>Grande</td>
+        <td>Menor</td>
+      </tr>
+    </table>
+    <section class="explicacion morado" aria-labelledby="g7ev01-seleccion">
+      <h4 id="g7ev01-seleccion">Selección del ejemplo: Git + GitHub</h4>
+      <p>
+        Git porque es distribuido, gratuito y el estándar de la industria, y
+        porque lo piden las evidencias AA1-EV03 a EV05. GitHub porque en un
+        solo lugar reúne el código, las tareas (Issues y Projects) y la
+        integración continua (Actions), y el repositorio queda como portafolio.
+        GitLab es igual de válido si tu instructor lo prefiere.
+      </p>
+    </section>
+  </section>
+
+  <section aria-labelledby="g7ev01-estrategia">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 3</span>
+      <h3 class="sec-titulo" id="g7ev01-estrategia">Estrategia de versionamiento</h3>
+      <p class="sec-intro">
+        Elegir la herramienta no basta: el informe debe decir cómo se va a
+        usar. Son cuatro decisiones:
+      </p>
+    </header>
+    <div class="grid-2">
+      <article class="tarjeta">
+        <h4>Modelo de ramas</h4>
+        <p>
+          <code>main</code> estable, <code>develop</code> para integrar y una
+          rama <code>feature/…</code> o <code>fix/…</code> por cada tarea, que
+          entra con pull request.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Mensajes de commit</h4>
+        <p>
+          Conventional Commits: <code>feat: agregar registro de productos</code>,
+          <code>fix: validar stock</code>, <code>docs: actualizar README</code>.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Versiones y etiquetas</h4>
+        <p>
+          Versionado semántico: cada actividad terminada se marca con una
+          etiqueta, de <code>v0.1.0</code> (AA1) a <code>v1.0.0</code> (AA5).
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Archivos del repositorio</h4>
+        <p>
+          <code>.gitignore</code> para no subir <code>target/</code>,
+          <code>node_modules/</code> ni contraseñas, y un
+          <code>README.md</code> que explique el proyecto.
+        </p>
+      </article>
+    </div>
+    <figure class="captura">
+      <img
+        src="assets/docs/evidencias/GA7/AA1-EV01/modelo-ramas.svg"
+        width="880"
+        height="300"
+        alt="Modelo de ramas: main recibe versiones v0.2.0 y v0.3.0 desde develop; de develop salen las ramas feature/crud-productos, feature/login y fix/validar-stock, que vuelven a develop con pull request."
+        style="max-width: 100%; height: auto; border: 1px solid #d8e2da; border-radius: 10px"
+      />
+      <figcaption>Modelo de ramas del ejemplo.</figcaption>
+    </figure>
+  </section>
+
+  <section aria-labelledby="g7ev01-pasos">
+    <header class="sec-header">
+      <span class="sec-tag">Paso a paso</span>
+      <h3 class="sec-titulo" id="g7ev01-pasos">Cómo elaborar el informe</h3>
+      <p class="sec-intro">
+        Ten a la mano los artefactos de tu proyecto formativo: requerimientos,
+        casos de uso, diagrama de clases, base de datos y prototipos.
+      </p>
+    </header>
+    <ol class="pasos">
+      <li class="paso">
+        <h4>Describe el software</h4>
+        <p>
+          Qué problema resuelve, para quién y la tabla de requerimientos
+          funcionales con las tablas de la base de datos que usa cada uno.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Define los módulos y el cronograma</h4>
+        <p>
+          Relaciona cada actividad de la guía con el módulo que construirás y
+          su tecnología. Reparte las 498 horas en sprints de dos semanas, con
+          un resultado concreto por sprint.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Lista las herramientas de desarrollo</h4>
+        <p>
+          Una tabla con categoría, herramienta y uso: Node.js y npm, Express,
+          mysql2, EJS, MySQL, React, ESLint, VS Code y Postman. Consulta la
+          versión estable vigente en el sitio de cada una.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Compara y selecciona el versionamiento</h4>
+        <p>
+          Haz las dos tablas del Concepto 2 (tipos de sistema y plataformas) y
+          justifica tu elección con las necesidades de tu proyecto. Es el
+          contenido mínimo que pide la guía.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Escribe la estrategia de versionamiento</h4>
+        <p>
+          Estructura del repositorio, modelo de ramas con su diagrama,
+          convención de commits, etiquetas, <code>.gitignore</code> y el flujo
+          de comandos de un día de trabajo.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Agrega integración continua y seguridad</h4>
+        <p>
+          Un workflow de GitHub Actions que compile el proyecto en cada push,
+          y las reglas para proteger ramas y no subir credenciales.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Arma y exporta el documento</h4>
+        <p>
+          Portada, contenido, introducción, objetivos, los apartados anteriores,
+          conclusiones y referencias. En Word usa los estilos
+          <strong>Título 1</strong> y <strong>Título 2</strong> y exporta con
+          <strong>Archivo › Guardar como › PDF</strong>.
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="g7ev01-ejemplo">
+    <header class="sec-header">
+      <span class="sec-tag">Ejemplo resuelto</span>
+      <h3 class="sec-titulo" id="g7ev01-ejemplo">Plan de trabajo de la tienda deportes</h3>
+      <p class="sec-intro">
+        Un solo repositorio con una carpeta por módulo, para que todas las
+        evidencias de la guía entreguen el mismo enlace y el historial muestre
+        la evolución completa.
+      </p>
+    </header>
+
+    <div class="bloque-codigo">
+      <div class="linea-codigo azul">
+        <pre class="codigo-texto"><code>tienda-deportes/
+├── database/   script deportes.sql (Guía 6)
+├── backend/    Node.js + Express (AA2, AA3, AA5)
+│   └── src/    config · rutas · controladores · servicios · modelos · middlewares · vistas
+├── frontend/   React (AA4)
+├── docs/       informes, pruebas y colección de Postman
+├── .github/workflows/ci.yml
+├── .gitignore
+└── README.md</code></pre>
+      </div>
+    </div>
+
+    <section class="explicacion morado" aria-labelledby="g7ev01-equivalencia">
+      <h4 id="g7ev01-equivalencia">La guía pide Java: equivalentes en Node.js</h4>
+      <p>
+        La guía propone JDBC, Servlets, JSP y un framework de Java para la AA2 y
+        la AA3. El ejemplo usa Node.js con Express y lo justifica en el informe
+        con esta tabla. Si haces lo mismo, confírmalo antes con tu instructor.
+      </p>
+    </section>
+    <table class="propiedades">
+      <caption class="sr-only">Equivalencia entre las tecnologías de la guía y las del proyecto</caption>
+      <tr>
+        <th scope="col">Tecnología de la guía</th>
+        <th scope="col">Equivalente en el proyecto</th>
+        <th scope="col">Qué hace</th>
+      </tr>
+      <tr><td>JDBC</td><td><code>mysql2</code> con consultas parametrizadas</td><td>Conectar con MySQL y ejecutar el CRUD</td></tr>
+      <tr><td>Servlets</td><td>Rutas y controladores de Express</td><td>Recibir peticiones GET y POST y responder</td></tr>
+      <tr><td>JSP</td><td>Plantillas EJS</td><td>Generar páginas HTML con datos en el servidor</td></tr>
+      <tr><td>Framework Java (Spring Boot)</td><td>Express organizado en capas</td><td>Estructurar los módulos del software</td></tr>
+      <tr><td>Maven y Tomcat</td><td>npm y el servidor HTTP de Node.js</td><td>Dependencias y ejecución de la aplicación</td></tr>
+    </table>
+
+    <table class="comparativa">
+      <caption class="sr-only">Cronograma por sprints del ejemplo</caption>
+      <tr>
+        <th scope="col">Sprint</th>
+        <th scope="col">Actividades</th>
+        <th scope="col">Resultado</th>
+      </tr>
+      <tr><td>S1</td><td>Plan, estándares, instalación de Git y GitHub</td><td>Repositorio configurado (v0.1.0)</td></tr>
+      <tr><td>S2-S3</td><td>CRUD con mysql2; formularios EJS con GET y POST</td><td>Módulos AA2 (v0.2.0)</td></tr>
+      <tr><td>S4-S5</td><td>Express en capas: usuarios, catálogo y pedidos; pruebas</td><td>Módulos AA3 (v0.3.0)</td></tr>
+      <tr><td>S6-S7</td><td>Taller, componentes y front-end en React</td><td>Front-end (v0.4.0)</td></tr>
+      <tr><td>S8-S10</td><td>API de autenticación y del proyecto; Postman</td><td>Versión 1.0.0</td></tr>
+    </table>
+
+    <div class="bloque-codigo">
+      <div class="linea-codigo naranja">
+        <pre class="codigo-texto"><code># Flujo de un día de trabajo
+git switch develop
+git pull origin develop
+git switch -c feature/crud-productos
+# ... programar y probar ...
+git add .
+git commit -m "feat: agregar CRUD de productos con mysql2"
+git push -u origin feature/crud-productos
+# En GitHub: pull request hacia develop</code></pre>
+      </div>
+    </div>
+
+    <section class="explicacion morado" aria-labelledby="g7ev01-doc">
+      <h4 id="g7ev01-doc">Contenido del informe de ejemplo</h4>
+      <p>
+        Portada · Contenido · 1. Introducción · 2. Objetivos · 3. Descripción
+        del software · 4. Plan de trabajo (metodología, módulos y cronograma) ·
+        5. Herramientas de desarrollo · 6. Selección de herramientas de
+        versionamiento · 7. Estrategia de versionamiento · 8. Integración
+        continua · 9. Buenas prácticas de seguridad · 10. Conclusiones · 11.
+        Referencias. Incluye la tabla de equivalencias con las tecnologías de
+        la guía. Viene en PDF (formato de entrega) y en Word para que lo
+        adaptes a tu proyecto.
+      </p>
+    </section>
+
+    <div class="activity-actions">
+      <a
+        class="activity-explore"
+        href="assets/docs/evidencias/GA7/AA1-EV01/GA7-220501096-AA1-EV01_plan-trabajo.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Ver informe PDF <span aria-hidden="true">↗</span></a
+      >
+      <a
+        class="activity-manual"
+        href="assets/docs/evidencias/GA7/AA1-EV01/GA7-220501096-AA1-EV01_plan-trabajo.docx"
+        download
+        >Descargar Word editable <span aria-hidden="true">↓</span></a
+      >
+    </div>
+  </section>
+
+  <section class="alert" aria-labelledby="g7ev01-entrega">
+    <h3 id="g7ev01-entrega">Antes de entregar</h3>
+    <ul class="entrega-list">
+      <li>Usa tu proyecto formativo: la tienda deportes es solo el ejemplo.</li>
+      <li>El informe tiene portada, introducción, objetivo y la selección de herramientas de versionamiento.</li>
+      <li>La selección está justificada con una comparación, no solo nombrada.</li>
+      <li>El cronograma cubre las cinco actividades de la guía.</li>
+      <li>Las versiones de las herramientas son las vigentes cuando haces el informe.</li>
+      <li>Exporta a PDF y nómbralo <code>GA7-220501096-AA1-EV01_TuNombre.pdf</code>.</li>
+    </ul>
+  </section>
+</article>

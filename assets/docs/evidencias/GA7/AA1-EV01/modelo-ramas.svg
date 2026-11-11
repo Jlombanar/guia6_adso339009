@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 300" width="880" height="300" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13">
+  <title>Modelo de ramas: main, develop y ramas feature y fix</title>
+  <rect width="880" height="300" fill="#ffffff"/>
+  <!-- etiquetas -->
+  <text x="20" y="54" font-weight="700" fill="#1f2a24">main</text>
+  <text x="20" y="134" font-weight="700" fill="#1f2a24">develop</text>
+  <text x="20" y="214" font-weight="700" fill="#1f2a24">feature/*</text>
+  <text x="20" y="264" font-weight="700" fill="#1f2a24">fix/*</text>
+  <!-- líneas -->
+  <line x1="110" y1="50" x2="860" y2="50" stroke="#2b7a00" stroke-width="4"/>
+  <line x1="150" y1="130" x2="860" y2="130" stroke="#0067ac" stroke-width="4"/>
+  <path d="M130 50 C 140 50, 140 130, 150 130" fill="none" stroke="#0067ac" stroke-width="3"/>
+  <!-- feature 1 -->
+  <path d="M200 130 C 215 130, 215 210, 230 210 L 360 210 C 375 210, 375 130, 390 130" fill="none" stroke="#b84a00" stroke-width="3"/>
+  <!-- feature 2 -->
+  <path d="M430 130 C 445 130, 445 210, 460 210 L 560 210 C 575 210, 575 130, 590 130" fill="none" stroke="#b84a00" stroke-width="3"/>
+  <!-- fix -->
+  <path d="M630 130 C 645 130, 645 260, 660 260 L 700 260 C 715 260, 715 130, 730 130" fill="none" stroke="#b3261e" stroke-width="3"/>
+  <!-- merges a main -->
+  <path d="M410 130 C 425 130, 425 50, 440 50" fill="none" stroke="#2b7a00" stroke-width="3" stroke-dasharray="6 4"/>
+  <path d="M760 130 C 775 130, 775 50, 790 50" fill="none" stroke="#2b7a00" stroke-width="3" stroke-dasharray="6 4"/>
+  <!-- commits -->
+  <g stroke="#fff" stroke-width="2">
+    <circle cx="120" cy="50" r="8" fill="#2b7a00"/>
+    <circle cx="440" cy="50" r="9" fill="#2b7a00"/>
+    <circle cx="790" cy="50" r="9" fill="#2b7a00"/>
+    <circle cx="170" cy="130" r="7" fill="#0067ac"/>
+    <circle cx="390" cy="130" r="7" fill="#0067ac"/>
+    <circle cx="590" cy="130" r="7" fill="#0067ac"/>
+    <circle cx="730" cy="130" r="7" fill="#0067ac"/>
+    <circle cx="260" cy="210" r="7" fill="#b84a00"/>
+    <circle cx="310" cy="210" r="7" fill="#b84a00"/>
+    <circle cx="490" cy="210" r="7" fill="#b84a00"/>
+    <circle cx="535" cy="210" r="7" fill="#b84a00"/>
+    <circle cx="680" cy="260" r="7" fill="#b3261e"/>
+  </g>
+  <!-- textos -->
+  <g fill="#1f2a24" font-size="12">
+    <rect x="452" y="18" width="64" height="20" rx="10" fill="#e8f5e0"/>
+    <text x="484" y="32" text-anchor="middle" fill="#1e5a00" font-weight="700">v0.2.0</text>
+    <rect x="802" y="18" width="64" height="20" rx="10" fill="#e8f5e0"/>
+    <text x="834" y="32" text-anchor="middle" fill="#1e5a00" font-weight="700">v0.3.0</text>
+    <text x="285" y="238" text-anchor="middle">feature/crud-productos</text>
+    <text x="512" y="238" text-anchor="middle">feature/login</text>
+    <text x="690" y="286" text-anchor="middle">fix/validar-stock</text>
+    <text x="300" y="118" text-anchor="middle" fill="#5c6a62">Pull request + revisión</text>
+    <text x="600" y="80" text-anchor="middle" fill="#5c6a62">merge a main al cerrar cada AA (release)</text>
+  </g>
+</svg>

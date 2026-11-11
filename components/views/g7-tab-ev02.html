@@ -1,0 +1,378 @@
+<article class="slide">
+  <header class="sec-header">
+    <span class="sec-tag naranja"
+      >GA7-220501096-AA1-EV02 · Evidencia de desempeño</span
+    >
+    <h2 class="sec-titulo">
+      Definir estándares de codificación, de acuerdo con la plataforma de
+      desarrollo elegida
+    </h2>
+    <p class="sec-intro">
+      Un estándar de codificación son las reglas que todo el equipo sigue al
+      escribir código, para que se lea como si lo hubiera hecho una sola
+      persona. En esta evidencia defines esas reglas para las tecnologías que
+      elegiste en la AA1-EV01. El ejemplo resuelto son los estándares de la
+      tienda <code>deportes</code>: <strong>Node.js con Express</strong>,
+      React y MySQL. Como todo es JavaScript, un solo conjunto de reglas
+      cubre el servidor y el cliente.
+    </p>
+  </header>
+
+  <section class="explicacion azul" aria-labelledby="g7ev02-criterio">
+    <h3 id="g7ev02-criterio">Criterio de evaluación</h3>
+    <p>
+      Define estándares de codificación de acuerdo con las reglas de la
+      plataforma de desarrollo seleccionada. Instrumento: lista de chequeo
+      <code>IE-GA7-220501096-AA1-EV02</code>. El producto es un
+      <strong>informe técnico en PDF</strong> con portada, introducción,
+      objetivo y los estándares de codificación: nombramiento de variables,
+      declaración de clases, declaración de métodos, etc.
+    </p>
+  </section>
+
+  <section aria-labelledby="g7ev02-estilos">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 1</span>
+      <h3 class="sec-titulo" id="g7ev02-estilos">Estilos de escritura de nombres</h3>
+      <p class="sec-intro">
+        Cada tipo de identificador tiene su propio estilo. Mezclarlos es el
+        error más común y el primero que revisa el instructor.
+      </p>
+    </header>
+    <table class="comparativa">
+      <caption class="sr-only">Estilos de escritura y su uso</caption>
+      <tr>
+        <th scope="col">Estilo</th>
+        <th scope="col">Se usa para</th>
+        <th scope="col">Ejemplo</th>
+      </tr>
+      <tr><td><strong>camelCase</strong></td><td>Variables, funciones, métodos, props de React</td><td><code>precioUnitario</code>, <code>buscarPorId()</code></td></tr>
+      <tr><td><strong>PascalCase</strong></td><td>Clases y componentes de React</td><td><code>Producto</code>, <code>TarjetaProducto</code></td></tr>
+      <tr><td><strong>UPPER_SNAKE_CASE</strong></td><td>Constantes y variables de entorno</td><td><code>STOCK_BAJO</code>, <code>DB_HOST</code></td></tr>
+      <tr><td><strong>recurso.capa.js</strong></td><td>Archivos del back-end, en minúsculas</td><td><code>producto.controlador.js</code></td></tr>
+      <tr><td><strong>snake_case</strong></td><td>Tablas y columnas de la base de datos</td><td><code>detalle_pedido</code>, <code>id_pedido</code></td></tr>
+      <tr><td><strong>kebab-case</strong></td><td>URL de la API y ramas de Git</td><td><code>/api/detalle-pedidos</code></td></tr>
+    </table>
+    <section class="explicacion morado" aria-labelledby="g7ev02-idioma">
+      <h4 id="g7ev02-idioma">Decide el idioma y escríbelo</h4>
+      <p>
+        El ejemplo nombra en <strong>español sin tildes ni ñ</strong>
+        (<code>anio</code>, <code>descripcion</code>), igual que la base de
+        datos y los requerimientos. Inglés también es válido; lo que no se
+        permite es mezclar los dos en el mismo proyecto. Las palabras de
+        Express (<code>req</code>, <code>res</code>, <code>next</code>,
+        <code>Router</code>) se dejan como son.
+      </p>
+    </section>
+  </section>
+
+  <section aria-labelledby="g7ev02-node">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 2</span>
+      <h3 class="sec-titulo" id="g7ev02-node">Lo que pide la guía, en Node.js</h3>
+      <p class="sec-intro">
+        La AA2-EV01 evaluará el código por el nombramiento de variables,
+        métodos, clases y paquetes. En Node.js los «paquetes» son las carpetas
+        y módulos del proyecto.
+      </p>
+    </header>
+    <div class="grid-2">
+      <article class="tarjeta">
+        <h4>Carpetas y módulos (paquetes)</h4>
+        <p>
+          Una carpeta por capa: <code>rutas/</code>,
+          <code>controladores/</code>, <code>servicios/</code>,
+          <code>modelos/</code>. Cada archivo dice recurso y capa:
+          <code>producto.servicio.js</code>.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Clases</h4>
+        <p>
+          PascalCase y sustantivo en singular, para entidades y errores:
+          <code>Producto</code>, <code>StockInsuficienteError extends Error</code>.
+          Una clase por archivo.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Funciones y métodos</h4>
+        <p>
+          camelCase con verbo: <code>insertar</code>, <code>buscarPorId</code>,
+          <code>listarTodos</code>, <code>actualizar</code>,
+          <code>eliminar</code>. Los controladores: verbo + recurso
+          (<code>obtenerProducto</code>).
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Variables y constantes</h4>
+        <p>
+          <code>const</code> por defecto, <code>let</code> si cambia, nunca
+          <code>var</code>. Arreglos en plural (<code>productos</code>) y sin
+          números mágicos: <code>if (stock &lt;= STOCK_BAJO)</code>.
+        </p>
+      </article>
+    </div>
+    <table class="propiedades">
+      <caption class="sr-only">Ejemplos incorrectos y correctos</caption>
+      <tr>
+        <th scope="col">Incorrecto</th>
+        <th scope="col">Correcto</th>
+        <th scope="col">Por qué</th>
+      </tr>
+      <tr><td><code>var x = 5;</code></td><td><code>const cantidad = 5;</code></td><td><code>const</code> y un nombre que dice qué guarda</td></tr>
+      <tr><td><code>let NombreProd;</code></td><td><code>let nombreProducto;</code></td><td>camelCase y sin abreviar</td></tr>
+      <tr><td><code>if (stock &lt; 5)</code></td><td><code>if (stock &lt; STOCK_BAJO)</code></td><td>Sin números mágicos</td></tr>
+      <tr><td><code>if (stock == "0")</code></td><td><code>if (stock === 0)</code></td><td>Comparación estricta</td></tr>
+      <tr><td><code>ProductosController.js</code></td><td><code>producto.controlador.js</code></td><td>recurso.capa.js, en minúsculas y en el idioma elegido</td></tr>
+    </table>
+  </section>
+
+  <section aria-labelledby="g7ev02-declaracion">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 3</span>
+      <h3 class="sec-titulo" id="g7ev02-declaracion">Declaración de clases y funciones</h3>
+      <p class="sec-intro">
+        En una clase, el orden es: constantes estáticas, campos privados,
+        constructor, métodos estáticos, métodos públicos y métodos privados.
+        Toda clase y función exportada lleva JSDoc.
+      </p>
+    </header>
+    <div class="grid-2">
+      <article class="tarjeta">
+        <h4>Clase de la entidad</h4>
+        <div class="bloque-codigo">
+          <div class="linea-codigo azul">
+            <pre class="codigo-texto"><code>/** Producto de la tabla productos. */
+export class Producto {
+  static STOCK_BAJO = 5;
+
+  constructor({ idProducto, nombre, precio, stock }) {
+    this.idProducto = idProducto;
+    this.nombre = nombre;
+    this.precio = precio;
+    this.stock = stock;
+  }
+
+  /** Crea un producto desde una fila de MySQL. */
+  static desdeFila(fila) {
+    return new Producto({
+      idProducto: fila.Id_producto,
+      nombre: fila.Nombre,
+      precio: Number(fila.Precio),
+      stock: fila.Stock,
+    });
+  }
+
+  tieneStockBajo() {
+    return this.stock &gt; 0 &amp;&amp; this.stock &lt;= Producto.STOCK_BAJO;
+  }
+}</code></pre>
+          </div>
+        </div>
+      </article>
+      <article class="tarjeta">
+        <h4>Función del modelo (acceso a datos)</h4>
+        <div class="bloque-codigo">
+          <div class="linea-codigo naranja">
+            <pre class="codigo-texto"><code>// src/modelos/producto.modelo.js
+import { pool } from "../config/baseDatos.js";
+import { Producto } from "./Producto.js";
+
+const SQL_BUSCAR_POR_ID =
+  "SELECT Id_producto, Nombre, Precio, Stock " +
+  "FROM productos WHERE Id_producto = ?";
+
+/**
+ * Busca un producto por su identificador.
+ * @param {number} idProducto - Identificador.
+ * @returns {Promise&lt;Producto|null&gt;}
+ */
+export async function buscarPorId(idProducto) {
+  const [filas] = await pool.execute(
+    SQL_BUSCAR_POR_ID, [idProducto]);
+  if (filas.length === 0) {
+    return null;
+  }
+  return Producto.desdeFila(filas[0]);
+}</code></pre>
+          </div>
+        </div>
+      </article>
+    </div>
+    <p class="sec-intro">
+      Los parámetros <code>?</code> de <code>mysql2</code> evitan la inyección
+      SQL. En Express 5 los errores de las funciones <code>async</code> llegan
+      solos al middleware de errores, así que los controladores no necesitan
+      <code>try/catch</code>: basta un único <code>manejarErrores</code> al
+      final de <code>app.js</code>.
+    </p>
+  </section>
+
+  <section aria-labelledby="g7ev02-pasos">
+    <header class="sec-header">
+      <span class="sec-tag">Paso a paso</span>
+      <h3 class="sec-titulo" id="g7ev02-pasos">Cómo elaborar el informe</h3>
+    </header>
+    <ol class="pasos">
+      <li class="paso">
+        <h4>Parte de la plataforma de la AA1-EV01</h4>
+        <p>
+          Lista las tecnologías elegidas y la guía de estilo de referencia de
+          cada una: Airbnb JavaScript Style Guide, Node.js Best Practices, la
+          documentación de Express y React, y una guía SQL.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Fija las reglas generales</h4>
+        <p>
+          Idioma de los identificadores, tabla de estilos de escritura y
+          formato: 2 espacios, 100 caracteres por línea, comillas, punto y
+          coma, <code>===</code>, <code>const</code>/<code>let</code> y
+          módulos ES (<code>import</code>/<code>export</code>).
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Define la organización en capas</h4>
+        <p>
+          Carpetas del back-end y la regla <code>recurso.capa.js</code> para
+          los archivos. Es el equivalente a los paquetes que pide la guía.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Escribe las reglas de nombramiento</h4>
+        <p>
+          Clases, funciones, variables y constantes. Para cada una: regla,
+          ejemplo correcto y ejemplo incorrecto.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Define la declaración de clases y funciones</h4>
+        <p>
+          Orden de los miembros, JSDoc, consultas con parámetros, rutas,
+          controladores y el middleware de errores. Incluye código de tu
+          proyecto como ejemplo.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Agrega las otras capas y las herramientas</h4>
+        <p>
+          React, base de datos y rutas de la API. Luego EditorConfig, ESLint,
+          Prettier y Jest, con los scripts de <code>package.json</code> y una
+          lista de verificación antes de cada commit.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Arma y exporta el documento</h4>
+        <p>
+          Portada, contenido, introducción, objetivos, los apartados,
+          conclusiones y referencias. Exporta con
+          <strong>Archivo › Guardar como › PDF</strong>.
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="g7ev02-ejemplo">
+    <header class="sec-header">
+      <span class="sec-tag">Ejemplo resuelto</span>
+      <h3 class="sec-titulo" id="g7ev02-ejemplo">Estándares de la tienda deportes</h3>
+      <p class="sec-intro">
+        El back-end se organiza por capas y cada archivo dice qué contiene con
+        solo ver su nombre.
+      </p>
+    </header>
+
+    <div class="bloque-codigo">
+      <div class="linea-codigo morado">
+        <pre class="codigo-texto"><code>backend/
+├── app.js                  crea la aplicación de Express
+├── servidor.js             arranca el servidor
+└── src/
+    ├── config/baseDatos.js
+    ├── rutas/producto.rutas.js
+    ├── controladores/producto.controlador.js
+    ├── servicios/producto.servicio.js
+    ├── modelos/Producto.js           clase de la entidad
+    ├── modelos/producto.modelo.js    consultas SQL
+    ├── middlewares/manejarErrores.js
+    ├── errores/StockInsuficienteError.js
+    └── vistas/productos/lista.ejs</code></pre>
+      </div>
+    </div>
+
+    <p class="sec-intro">
+      La base de datos de la Guía 6 mezcla estilos. El ejemplo lo resuelve sin
+      romper lo construido: el código usa siempre nombres estándar y solo los
+      modelos conocen los nombres actuales, hasta migrarlos en la AA3.
+    </p>
+    <table class="comparativa">
+      <caption class="sr-only">Nombres actuales de la base de datos y su nombre estándar</caption>
+      <tr>
+        <th scope="col">Nombre actual</th>
+        <th scope="col">Nombre estándar</th>
+        <th scope="col">Propiedad en JavaScript</th>
+      </tr>
+      <tr><td><code>Users</code></td><td><code>usuarios</code></td><td><code>Usuario</code> (clase)</td></tr>
+      <tr><td><code>NOmnbre</code></td><td><code>nombre</code></td><td><code>nombre</code></td></tr>
+      <tr><td><code>Passwords</code></td><td><code>contrasena_hash</code></td><td><code>contrasenaHash</code></td></tr>
+      <tr><td><code>Id_pedido</code></td><td><code>id_pedido</code></td><td><code>idPedido</code></td></tr>
+    </table>
+
+    <div class="bloque-codigo">
+      <div class="linea-codigo azul">
+        <pre class="codigo-texto"><code>// backend/package.json
+{
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch --env-file=.env servidor.js",
+    "start": "node --env-file=.env servidor.js",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  }
+}</code></pre>
+      </div>
+    </div>
+
+    <section class="explicacion morado" aria-labelledby="g7ev02-doc">
+      <h4 id="g7ev02-doc">Contenido del informe de ejemplo</h4>
+      <p>
+        Portada · Contenido · 1. Introducción · 2. Objetivos · 3. Plataforma y
+        guías de referencia · 4. Reglas generales (idioma, estilos, formato) ·
+        5. Estándares para Node.js y Express (carpetas y módulos, clases,
+        funciones, variables, declaración de clases y funciones, rutas,
+        controladores y errores, comentarios) · 6. React · 7. Base de datos ·
+        8. API REST · 9. Herramientas de verificación · 10. Lista de
+        verificación · 11. Conclusiones · 12. Referencias.
+      </p>
+    </section>
+
+    <div class="activity-actions">
+      <a
+        class="activity-explore"
+        href="assets/docs/evidencias/GA7/AA1-EV02/GA7-220501096-AA1-EV02_estandares-codificacion.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Ver informe PDF <span aria-hidden="true">↗</span></a
+      >
+      <a
+        class="activity-manual"
+        href="assets/docs/evidencias/GA7/AA1-EV02/GA7-220501096-AA1-EV02_estandares-codificacion.docx"
+        download
+        >Descargar Word editable <span aria-hidden="true">↓</span></a
+      >
+    </div>
+  </section>
+
+  <section class="alert" aria-labelledby="g7ev02-entrega">
+    <h3 id="g7ev02-entrega">Antes de entregar</h3>
+    <ul class="entrega-list">
+      <li>Los estándares corresponden a las tecnologías que elegiste en tu AA1-EV01.</li>
+      <li>Hay regla y ejemplo para variables, funciones (métodos), clases y carpetas o módulos (paquetes).</li>
+      <li>Se explica cómo se declaran las clases (orden de miembros) y las funciones (JSDoc, async, errores).</li>
+      <li>Los ejemplos de código son de tu proyecto formativo y cumplen las reglas que tú mismo escribiste.</li>
+      <li>Guarda estas reglas: tu código de la AA2 en adelante se evaluará con ellas.</li>
+      <li>Exporta a PDF y nómbralo <code>GA7-220501096-AA1-EV02_TuNombre.pdf</code>.</li>
+    </ul>
+  </section>
+</article>
