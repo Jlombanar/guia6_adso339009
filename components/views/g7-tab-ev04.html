@@ -1,0 +1,349 @@
+<article class="slide">
+  <header class="sec-header">
+    <span class="sec-tag naranja"
+      >GA7-220501096-AA1-EV04 · Evidencia de desempeño</span
+    >
+    <h2 class="sec-titulo">
+      Instalación y configuración de herramienta de versionamiento (local/web)
+    </h2>
+    <p class="sec-intro">
+      En esta evidencia instalas y configuras las dos herramientas elegidas en
+      la AA1-EV01: <strong>Git</strong>, que trabaja en tu computador, y
+      <strong>GitHub</strong>, que guarda el repositorio en internet. El
+      producto es un manual paso a paso con tus pantallazos. Al terminar, el
+      proyecto <code>tienda-deportes</code> queda conectado y con su primer
+      cambio publicado.
+    </p>
+  </header>
+
+  <section class="explicacion azul" aria-labelledby="g7ev04-criterio">
+    <h3 id="g7ev04-criterio">Criterio de evaluación</h3>
+    <p>
+      Selecciona y configura herramientas de versionamiento para el control de
+      cambios en el código. Instrumento: lista de chequeo
+      <code>IE-GA7-220501096-AA1-EV04</code>. El producto es un
+      <strong>documento de instalación en PDF</strong> con portada,
+      introducción, objetivo y el <strong>paso a paso con pantallazos</strong>
+      de la instalación de la herramienta local y de la remota.
+    </p>
+  </section>
+
+  <section aria-labelledby="g7ev04-que-es">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 1</span>
+      <h3 class="sec-titulo" id="g7ev04-que-es">
+        ¿Qué es una herramienta de repositorio?
+      </h3>
+      <p class="sec-intro">
+        Una herramienta de control de versiones guarda la
+        <strong>historia completa</strong> de un proyecto. Cada vez que
+        confirmas un cambio (un <em>commit</em>) registra qué archivos
+        cambiaron, quién lo hizo, cuándo y por qué. El
+        <strong>repositorio</strong> es la carpeta del proyecto más ese
+        historial.
+      </p>
+    </header>
+    <table class="comparativa">
+      <caption class="sr-only">Repositorio local frente a repositorio remoto</caption>
+      <tr>
+        <th scope="col">Característica</th>
+        <th scope="col">Repositorio local · Git</th>
+        <th scope="col">Repositorio remoto · GitHub</th>
+      </tr>
+      <tr><td>Dónde está</td><td>En tu computador, en la carpeta oculta <code>.git</code></td><td>En un servidor en internet</td></tr>
+      <tr><td>Para qué sirve</td><td>Trabajar, hacer commits y ramas, incluso sin internet</td><td>Copia de seguridad, compartir y colaborar</td></tr>
+      <tr><td>Quién lo ve</td><td>Solo tú</td><td>Tú y quien tenga permiso (o todos, si es público)</td></tr>
+      <tr><td>Cómo se sincroniza</td><td><code>git push</code> envía tus commits</td><td><code>git pull</code> y <code>git clone</code> traen los cambios</td></tr>
+    </table>
+    <figure class="captura">
+      <img
+        src="assets/docs/evidencias/GA7/AA1-EV04/flujo-git.svg"
+        width="880"
+        height="300"
+        alt="Flujo de Git: los archivos pasan del directorio de trabajo al área de preparación con git add, al repositorio local con git commit y a GitHub con git push; de vuelta llegan con git pull o git clone."
+        style="max-width: 100%; height: auto; border: 1px solid #d8e2da; border-radius: 10px"
+      />
+      <figcaption>Cómo viaja el código entre tu computador y GitHub.</figcaption>
+    </figure>
+    <section class="explicacion morado" aria-labelledby="g7ev04-diferencia">
+      <h4 id="g7ev04-diferencia">Git y GitHub no son lo mismo</h4>
+      <p>
+        <strong>Git</strong> es el programa que instalas: lo creó Linus
+        Torvalds en 2005, es gratuito y funciona sin internet.
+        <strong>GitHub</strong> es la página web donde publicas tus
+        repositorios de Git; existe desde 2008, es de Microsoft desde 2018 y
+        agrega pull requests, Issues, Projects y Actions.
+      </p>
+    </section>
+  </section>
+
+  <section aria-labelledby="g7ev04-importancia">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 2</span>
+      <h3 class="sec-titulo" id="g7ev04-importancia">¿Por qué es importante?</h3>
+    </header>
+    <div class="grid-2">
+      <article class="tarjeta">
+        <h4>Nada se pierde y se puede volver atrás</h4>
+        <p>
+          Cada versión queda guardada. Si un cambio daña el programa, regresas
+          a la versión que funcionaba.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Trabajo en equipo sin pisarse</h4>
+        <p>
+          Cada persona trabaja en su rama y luego se integran los cambios con
+          un pull request que otro revisa.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Copia de seguridad en la nube</h4>
+        <p>
+          Si se daña o se pierde el computador, el proyecto completo está en
+          GitHub.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Portafolio profesional</h4>
+        <p>
+          Tu perfil de GitHub muestra a las empresas lo que sabes hacer, y
+          GitHub Actions prueba tu código automáticamente.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="g7ev04-numero-uno">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 3</span>
+      <h3 class="sec-titulo" id="g7ev04-numero-uno">
+        La herramienta número uno de los desarrolladores
+      </h3>
+      <p class="sec-intro">
+        En la encuesta de Stack Overflow de 2022, más del
+        <strong>93&nbsp;%</strong> de los desarrolladores dijo usar Git, muy
+        por encima de cualquier otro sistema. GitHub superó en 2023 los
+        <strong>100 millones de desarrolladores</strong>. Casi toda oferta de
+        trabajo de desarrollo pide saber usar Git.
+      </p>
+    </header>
+    <table class="propiedades">
+      <caption class="sr-only">Proyectos reconocidos que se gestionan con Git y GitHub</caption>
+      <tr>
+        <th scope="col">Proyecto</th>
+        <th scope="col">Repositorio en GitHub</th>
+        <th scope="col">Qué es</th>
+      </tr>
+      <tr><td>Linux</td><td><code>torvalds/linux</code></td><td>El sistema para el que se creó Git</td></tr>
+      <tr><td>Visual Studio Code</td><td><code>microsoft/vscode</code></td><td>El editor del proyecto</td></tr>
+      <tr><td>React</td><td><code>facebook/react</code></td><td>El front-end de la tienda (AA4)</td></tr>
+      <tr><td>Node.js</td><td><code>nodejs/node</code></td><td>El entorno del back-end de la tienda</td></tr>
+      <tr><td>Express</td><td><code>expressjs/express</code></td><td>El framework del back-end de la tienda</td></tr>
+    </table>
+  </section>
+
+  <section aria-labelledby="g7ev04-git">
+    <header class="sec-header">
+      <span class="sec-tag">Manual · Parte A</span>
+      <h3 class="sec-titulo" id="g7ev04-git">Instalar y configurar Git (local)</h3>
+      <p class="sec-intro">
+        Toma un pantallazo en cada paso: son los que pide la guía. Necesitas
+        permisos de administrador y Visual Studio Code instalado.
+      </p>
+    </header>
+    <ol class="pasos">
+      <li class="paso">
+        <h4>Descarga el instalador</h4>
+        <p>
+          En Windows entra a <strong>git-scm.com/downloads/win</strong> y
+          descarga Git for Windows de 64 bits. En macOS ejecuta
+          <code>xcode-select --install</code> en la Terminal; en Ubuntu,
+          <code>sudo apt install git</code>.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Recorre el asistente de Windows</h4>
+        <p>
+          Deja las opciones por defecto salvo las de la tabla de abajo. Captura
+          al menos el editor, la rama inicial y el PATH.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Instala y abre Git Bash</h4>
+        <p>
+          Pulsa <strong>Install</strong>, marca <em>Launch Git Bash</em> y
+          pulsa <strong>Finish</strong>.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Verifica la instalación</h4>
+        <p>
+          Escribe <code>git --version</code>. Debe responder
+          <code>git version 2.x.x</code>.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Configura tu identidad</h4>
+        <p>
+          Nombre y correo con <code>git config --global</code>. Usa el mismo
+          correo de tu cuenta de GitHub para que los commits aparezcan en tu
+          perfil.
+        </p>
+      </li>
+    </ol>
+    <table class="comparativa">
+      <caption class="sr-only">Opciones recomendadas del instalador de Git para Windows</caption>
+      <tr>
+        <th scope="col">Pantalla del instalador</th>
+        <th scope="col">Opción a elegir</th>
+      </tr>
+      <tr><td>Choosing the default editor</td><td>Use Visual Studio Code as Git's default editor</td></tr>
+      <tr><td>Adjusting the name of the initial branch</td><td>Override… y escribir <code>main</code></td></tr>
+      <tr><td>Adjusting your PATH environment</td><td>Git from the command line and also from 3rd-party software</td></tr>
+      <tr><td>Choosing the SSH executable</td><td>Use bundled OpenSSH</td></tr>
+      <tr><td>Configuring the line ending conversions</td><td>Checkout Windows-style, commit Unix-style line endings</td></tr>
+      <tr><td>Choose a credential helper</td><td>Git Credential Manager</td></tr>
+    </table>
+    <div class="bloque-codigo">
+      <div class="linea-codigo azul">
+        <pre class="codigo-texto"><code>git --version
+
+git config --global user.name "Nombre Apellido"
+git config --global user.email "tu-correo@ejemplo.com"
+git config --global init.defaultBranch main
+git config --global core.editor "code --wait"
+git config --global core.autocrlf true     # Windows (input en macOS y Linux)
+
+git config --global --list</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="g7ev04-github">
+    <header class="sec-header">
+      <span class="sec-tag">Manual · Parte B</span>
+      <h3 class="sec-titulo" id="g7ev04-github">Configurar GitHub (remoto) y conectarlo</h3>
+    </header>
+    <ol class="pasos">
+      <li class="paso">
+        <h4>Crea la cuenta</h4>
+        <p>
+          En <strong>github.com/signup</strong>, con un usuario profesional
+          (<code>nombre-apellido</code>) y el plan <strong>Free</strong>. Como
+          aprendiz puedes pedir GitHub Education.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Activa la verificación en dos pasos</h4>
+        <p>
+          <strong>Settings › Password and authentication › Enable
+          two-factor authentication</strong>, con una app autenticadora.
+          GitHub la exige para contribuir código.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Crea el repositorio</h4>
+        <p>
+          <strong>+ › New repository</strong>, nombre
+          <code>tienda-deportes</code>, público y <strong>sin</strong> marcar
+          «Add a README file». Copia la dirección HTTPS.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Autentica tu equipo</h4>
+        <p>
+          GitHub ya no acepta la contraseña en la terminal. En Windows, Git
+          Credential Manager abre el navegador en el primer push. En macOS o
+          Linux puedes usar una llave SSH (ver el manual de ejemplo).
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Conecta y sube el primer commit</h4>
+        <p>
+          Con los comandos de abajo. Captura el resultado del
+          <code>git push</code> y el repositorio en GitHub con el README.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Revisa la integración con VS Code</h4>
+        <p>
+          Abre la carpeta del proyecto: el panel <strong>Control de código
+          fuente</strong> (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>G</kbd>)
+          muestra los cambios y permite hacer commit y sincronizar.
+        </p>
+      </li>
+    </ol>
+    <div class="bloque-codigo">
+      <div class="linea-codigo naranja">
+        <pre class="codigo-texto"><code>mkdir tienda-deportes
+cd tienda-deportes
+git init
+echo "# Tienda Deportes" &gt; README.md
+git add README.md
+git commit -m "docs: agregar README inicial"
+git remote add origin https://github.com/usuario/tienda-deportes.git
+git remote -v
+git push -u origin main</code></pre>
+      </div>
+    </div>
+    <table class="propiedades">
+      <caption class="sr-only">Problemas frecuentes y su solución</caption>
+      <tr>
+        <th scope="col">Si aparece…</th>
+        <th scope="col">Solución</th>
+      </tr>
+      <tr><td><code>git no se reconoce como un comando</code></td><td>Cierra y abre la terminal; si sigue, reinstala con la opción recomendada del PATH</td></tr>
+      <tr><td><code>Author identity unknown</code></td><td>Configura <code>user.name</code> y <code>user.email</code></td></tr>
+      <tr><td><code>Support for password authentication was removed</code></td><td>Usa Git Credential Manager o SSH, no la contraseña</td></tr>
+      <tr><td><code>Updates were rejected</code></td><td>Ejecuta <code>git pull</code> y luego <code>git push</code></td></tr>
+    </table>
+  </section>
+
+  <section aria-labelledby="g7ev04-ejemplo">
+    <header class="sec-header">
+      <span class="sec-tag">Ejemplo resuelto</span>
+      <h3 class="sec-titulo" id="g7ev04-ejemplo">Manual de instalación de Git y GitHub</h3>
+    </header>
+    <section class="explicacion morado" aria-labelledby="g7ev04-doc">
+      <h4 id="g7ev04-doc">Contenido del manual de ejemplo</h4>
+      <p>
+        Portada · Contenido · 1. Introducción · 2. Objetivos · 3. ¿Qué es una
+        herramienta de control de versiones? · 4. ¿Por qué es importante? ·
+        5. La herramienta número uno de los desarrolladores · 6. Requisitos ·
+        7. Instalación de Git (Windows, macOS, Linux) · 8. Configuración de
+        Git · 9. Configuración de GitHub · 10. Conectar el repositorio local
+        con GitHub · 11. Integración con VS Code · 12. Problemas frecuentes ·
+        13. Conclusiones · 14. Referencias. Los recuadros punteados marcan
+        dónde pegar cada pantallazo tuyo.
+      </p>
+    </section>
+    <div class="activity-actions">
+      <a
+        class="activity-explore"
+        href="assets/docs/evidencias/GA7/AA1-EV04/GA7-220501096-AA1-EV04_manual-instalacion-git-github.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Ver manual PDF <span aria-hidden="true">↗</span></a
+      >
+      <a
+        class="activity-manual"
+        href="assets/docs/evidencias/GA7/AA1-EV04/GA7-220501096-AA1-EV04_manual-instalacion-git-github.docx"
+        download
+        >Descargar Word editable <span aria-hidden="true">↓</span></a
+      >
+    </div>
+  </section>
+
+  <section class="alert" aria-labelledby="g7ev04-entrega">
+    <h3 id="g7ev04-entrega">Antes de entregar</h3>
+    <ul class="entrega-list">
+      <li>Cada recuadro del manual tiene tu pantallazo real; no dejes ninguno vacío.</li>
+      <li>Hay pantallazos de las dos herramientas: Git (local) y GitHub (remota).</li>
+      <li>En los pantallazos se ven tu nombre de usuario y tu correo configurados.</li>
+      <li>El documento tiene portada, introducción y objetivo.</li>
+      <li>Incluye el enlace de tu repositorio de GitHub.</li>
+      <li>Exporta a PDF y nómbralo <code>GA7-220501096-AA1-EV04_TuNombre.pdf</code>.</li>
+    </ul>
+  </section>
+</article>

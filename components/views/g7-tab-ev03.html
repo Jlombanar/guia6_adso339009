@@ -1,0 +1,300 @@
+<article class="slide">
+  <header class="sec-header">
+    <span class="sec-tag naranja"
+      >GA7-220501096-AA1-EV03 · Evidencia de conocimiento</span
+    >
+    <h2 class="sec-titulo">Identifica herramientas de versionamiento</h2>
+    <p class="sec-intro">
+      Git trabaja en dos niveles: un repositorio <strong>local</strong>, en tu
+      computador, y uno <strong>remoto</strong>, en un servidor como GitHub
+      que comparte el equipo. En esta evidencia comparas los dos en tablas de
+      diferencias y características, y describes sus comandos básicos. Es la
+      base teórica de la instalación (AA1-EV04) y del video (AA1-EV05).
+    </p>
+  </header>
+
+  <section class="explicacion azul" aria-labelledby="g7ev03-criterio">
+    <h3 id="g7ev03-criterio">Criterio de evaluación</h3>
+    <p>
+      Selecciona y configura herramientas de versionamiento para el control de
+      cambios en el código. Instrumento: lista de chequeo
+      <code>IE-GA7-220501096-AA1-EV03</code>. El producto es un
+      <strong>informe técnico en PDF</strong> con portada, introducción,
+      objetivo, <strong>tablas con diferencias y características</strong> de
+      Git local y Git remoto, y una <strong>tabla con la descripción de sus
+      comandos básicos</strong>.
+    </p>
+  </section>
+
+  <section aria-labelledby="g7ev03-conceptos">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 1</span>
+      <h3 class="sec-titulo" id="g7ev03-conceptos">Git local y Git remoto</h3>
+      <p class="sec-intro">
+        No compiten: se complementan. En el local trabajas rápido y sin
+        internet; en el remoto integras el trabajo del equipo y lo respaldas.
+      </p>
+    </header>
+    <figure class="captura">
+      <img
+        src="assets/docs/evidencias/GA7/AA1-EV04/flujo-git.svg"
+        width="880"
+        height="300"
+        alt="Git local agrupa el directorio de trabajo, el área de preparación y el repositorio local; git push envía los commits al repositorio remoto en GitHub y git pull, git fetch y git clone los traen de vuelta."
+        style="max-width: 100%; height: auto; border: 1px solid #d8e2da; border-radius: 10px"
+      />
+      <figcaption>A la izquierda, Git local; a la derecha, Git remoto.</figcaption>
+    </figure>
+    <div class="grid-2">
+      <article class="tarjeta">
+        <h4>Repositorio</h4>
+        <p>
+          La carpeta del proyecto más su historial, que Git guarda en la
+          carpeta oculta <code>.git</code>.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Commit</h4>
+        <p>Fotografía de los archivos en un momento, con autor, fecha y mensaje.</p>
+      </article>
+      <article class="tarjeta">
+        <h4>Rama</h4>
+        <p>
+          Línea de trabajo independiente para desarrollar una funcionalidad sin
+          afectar la principal.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>origin</h4>
+        <p>Nombre que Git da por convención al repositorio remoto principal.</p>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="g7ev03-diferencias">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 2</span>
+      <h3 class="sec-titulo" id="g7ev03-diferencias">Tabla de diferencias</h3>
+      <p class="sec-intro">Es la tabla central que pide la guía.</p>
+    </header>
+    <table class="comparativa">
+      <caption class="sr-only">Diferencias entre Git local y Git remoto</caption>
+      <tr>
+        <th scope="col">Criterio</th>
+        <th scope="col">Git local</th>
+        <th scope="col">Git remoto</th>
+      </tr>
+      <tr><td>Ubicación</td><td>En el computador (carpeta <code>.git</code>)</td><td>En un servidor en internet</td></tr>
+      <tr><td>Herramienta</td><td>Git instalado: Git Bash, terminal, VS Code</td><td>GitHub, GitLab o Bitbucket</td></tr>
+      <tr><td>Internet</td><td>No lo necesita</td><td>Lo necesita para enviar y recibir</td></tr>
+      <tr><td>Usuarios</td><td>Un solo desarrollador</td><td>Todo el equipo, según permisos</td></tr>
+      <tr><td>Propósito</td><td>Commits, ramas e historial</td><td>Compartir, colaborar, respaldar</td></tr>
+      <tr><td>Respaldo</td><td>Si se daña el equipo, se pierde</td><td>Copia segura en la nube</td></tr>
+      <tr><td>Colaboración</td><td>No permite trabajar con otros</td><td>Pull requests, revisiones, issues</td></tr>
+      <tr><td>Automatización</td><td>Hooks locales</td><td>Integración continua (GitHub Actions)</td></tr>
+      <tr><td>Comandos típicos</td><td><code>init</code> <code>add</code> <code>commit</code> <code>status</code> <code>log</code> <code>branch</code> <code>merge</code></td><td><code>clone</code> <code>remote</code> <code>push</code> <code>pull</code> <code>fetch</code></td></tr>
+    </table>
+  </section>
+
+  <section aria-labelledby="g7ev03-caracteristicas">
+    <header class="sec-header">
+      <span class="sec-tag azul">Concepto 3</span>
+      <h3 class="sec-titulo" id="g7ev03-caracteristicas">Características de cada uno</h3>
+    </header>
+    <div class="grid-2">
+      <article class="tarjeta">
+        <h4>Git local</h4>
+        <p>
+          <strong>Distribuido:</strong> cada copia tiene el historial completo.
+          <strong>Tres áreas:</strong> directorio de trabajo, preparación y
+          repositorio. <strong>Ramas livianas</strong>,
+          <strong>integridad</strong> con códigos SHA y trabajo
+          <strong>sin conexión</strong>.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Git remoto</h4>
+        <p>
+          <strong>Repositorio compartido</strong> del equipo,
+          <strong>copia de seguridad</strong>, <strong>control de
+          acceso</strong> y ramas protegidas, <strong>revisión de
+          código</strong>, issues y tableros, e <strong>integración
+          continua</strong>.
+        </p>
+      </article>
+    </div>
+    <table class="propiedades">
+      <caption class="sr-only">Plataformas de Git remoto</caption>
+      <tr>
+        <th scope="col">Característica</th>
+        <th scope="col">GitHub</th>
+        <th scope="col">GitLab</th>
+        <th scope="col">Bitbucket</th>
+      </tr>
+      <tr><td>Empresa</td><td>Microsoft</td><td>GitLab Inc.</td><td>Atlassian</td></tr>
+      <tr><td>Privados gratis</td><td>Ilimitados</td><td>Ilimitados</td><td>Hasta 5 usuarios</td></tr>
+      <tr><td>Revisión de código</td><td>Pull requests</td><td>Merge requests</td><td>Pull requests</td></tr>
+      <tr><td>Integración continua</td><td>GitHub Actions</td><td>GitLab CI/CD</td><td>Bitbucket Pipelines</td></tr>
+    </table>
+  </section>
+
+  <section aria-labelledby="g7ev03-comandos">
+    <header class="sec-header">
+      <span class="sec-tag">Tabla de comandos</span>
+      <h3 class="sec-titulo" id="g7ev03-comandos">Comandos básicos de Git local y remoto</h3>
+      <p class="sec-intro">
+        Los locales funcionan sin internet; los remotos comunican tu
+        repositorio con GitHub. El informe de ejemplo trae la tabla completa
+        con un ejemplo de cada uno.
+      </p>
+    </header>
+    <h4>Git local</h4>
+    <table class="comparativa">
+      <caption class="sr-only">Comandos de Git local</caption>
+      <tr><th scope="col">Comando</th><th scope="col">Qué hace</th></tr>
+      <tr><td><code>git init</code></td><td>Crea el repositorio</td></tr>
+      <tr><td><code>git status</code></td><td>Muestra qué cambió</td></tr>
+      <tr><td><code>git add</code></td><td>Prepara los cambios</td></tr>
+      <tr><td><code>git commit -m</code></td><td>Guarda en el historial</td></tr>
+      <tr><td><code>git log</code></td><td>Muestra el historial</td></tr>
+      <tr><td><code>git branch</code></td><td>Lista o crea ramas</td></tr>
+      <tr><td><code>git switch</code></td><td>Cambia de rama</td></tr>
+      <tr><td><code>git merge</code></td><td>Une una rama a la actual</td></tr>
+      <tr><td><code>git restore</code></td><td>Descarta cambios</td></tr>
+      <tr><td><code>git tag</code></td><td>Marca una versión</td></tr>
+    </table>
+    <h4>Git remoto</h4>
+    <table class="comparativa">
+      <caption class="sr-only">Comandos de Git remoto</caption>
+      <tr><th scope="col">Comando</th><th scope="col">Qué hace</th></tr>
+      <tr><td><code>git clone</code></td><td>Descarga un repositorio</td></tr>
+      <tr><td><code>git remote add</code></td><td>Registra un remoto</td></tr>
+      <tr><td><code>git remote -v</code></td><td>Lista los remotos</td></tr>
+      <tr><td><code>git push</code></td><td>Envía tus commits</td></tr>
+      <tr><td><code>git push -u</code></td><td>Envía y enlaza la rama</td></tr>
+      <tr><td><code>git fetch</code></td><td>Descarga sin aplicar</td></tr>
+      <tr><td><code>git pull</code></td><td>Descarga y une</td></tr>
+      <tr><td><code>git branch -r</code></td><td>Ramas del remoto</td></tr>
+      <tr><td><code>git push --tags</code></td><td>Envía las versiones</td></tr>
+      <tr><td><code>git push --delete</code></td><td>Borra una rama remota</td></tr>
+    </table>
+    <div class="bloque-codigo">
+      <div class="linea-codigo azul">
+        <pre class="codigo-texto"><code># --- Git local ---
+git init
+git add README.md
+git commit -m "docs: agregar README inicial"
+git switch -c feature/catalogo
+git add .
+git commit -m "feat: agregar catálogo de productos"
+git switch main
+git merge feature/catalogo
+git log --oneline
+
+# --- Git remoto ---
+git remote add origin https://github.com/usuario/tienda-deportes.git
+git remote -v
+git push -u origin main
+git pull origin main</code></pre>
+      </div>
+    </div>
+    <section class="explicacion morado" aria-labelledby="g7ev03-pull">
+      <h4 id="g7ev03-pull">pull = fetch + merge</h4>
+      <p>
+        <code>git pull</code> descarga y une en un solo paso. Si quieres
+        revisar antes lo que cambió en GitHub, usa <code>git fetch</code> y
+        luego <code>git merge</code>.
+      </p>
+    </section>
+  </section>
+
+  <section aria-labelledby="g7ev03-pasos">
+    <header class="sec-header">
+      <span class="sec-tag">Paso a paso</span>
+      <h3 class="sec-titulo" id="g7ev03-pasos">Cómo elaborar el informe</h3>
+    </header>
+    <ol class="pasos">
+      <li class="paso">
+        <h4>Repasa el componente «Integración continua»</h4>
+        <p>
+          Anota qué es control de versiones, repositorio, commit, rama y
+          remoto. Con eso escribes la introducción y una tabla de conceptos.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Haz la tabla de diferencias</h4>
+        <p>
+          Al menos ocho criterios: ubicación, herramienta, internet, usuarios,
+          propósito, respaldo, colaboración y comandos.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Describe las características</h4>
+        <p>
+          Las de Git local, las de Git remoto y una comparación de GitHub,
+          GitLab y Bitbucket.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Arma las tablas de comandos</h4>
+        <p>
+          Una para Git local y otra para Git remoto, con columnas comando,
+          descripción y ejemplo. Prueba cada ejemplo en tu terminal antes de
+          escribirlo.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Cierra y exporta</h4>
+        <p>
+          Un ejemplo de flujo completo, conclusiones y referencias. Exporta con
+          <strong>Archivo › Guardar como › PDF</strong>.
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="g7ev03-ejemplo">
+    <header class="sec-header">
+      <span class="sec-tag">Ejemplo resuelto</span>
+      <h3 class="sec-titulo" id="g7ev03-ejemplo">Informe Git local y Git remoto</h3>
+    </header>
+    <section class="explicacion morado" aria-labelledby="g7ev03-doc">
+      <h4 id="g7ev03-doc">Contenido del informe de ejemplo</h4>
+      <p>
+        Portada · Contenido · 1. Introducción · 2. Objetivos · 3. Conceptos
+        básicos · 4. Diferencias entre Git local y Git remoto · 5.
+        Características (local, remoto y plataformas) · 6. Comandos básicos de
+        Git local (16 comandos) · 7. Comandos básicos de Git remoto (12
+        comandos) · 8. Ejemplo de flujo completo · 9. Conclusiones · 10.
+        Referencias.
+      </p>
+    </section>
+    <div class="activity-actions">
+      <a
+        class="activity-explore"
+        href="assets/docs/evidencias/GA7/AA1-EV03/GA7-220501096-AA1-EV03_git-local-y-remoto.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Ver informe PDF <span aria-hidden="true">↗</span></a
+      >
+      <a
+        class="activity-manual"
+        href="assets/docs/evidencias/GA7/AA1-EV03/GA7-220501096-AA1-EV03_git-local-y-remoto.docx"
+        download
+        >Descargar Word editable <span aria-hidden="true">↓</span></a
+      >
+    </div>
+  </section>
+
+  <section class="alert" aria-labelledby="g7ev03-entrega">
+    <h3 id="g7ev03-entrega">Antes de entregar</h3>
+    <ul class="entrega-list">
+      <li>El informe tiene portada, introducción y objetivo.</li>
+      <li>Hay una tabla de diferencias entre Git local y Git remoto.</li>
+      <li>Se describen las características de cada uno.</li>
+      <li>Hay tabla de comandos de Git local y de Git remoto, con descripción.</li>
+      <li>Los ejemplos de comandos los probaste en tu propia terminal.</li>
+      <li>Exporta a PDF y nómbralo <code>GA7-220501096-AA1-EV03_TuNombre.pdf</code>.</li>
+    </ul>
+  </section>
+</article>
