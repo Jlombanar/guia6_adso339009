@@ -1,0 +1,315 @@
+<article class="slide">
+  <header class="sec-header">
+    <span class="sec-tag naranja"
+      >GA7-220501096-AA1-EV05 · Evidencia de producto</span
+    >
+    <h2 class="sec-titulo">
+      Herramientas de versionamiento (GIT) instalada y configurada
+    </h2>
+    <p class="sec-intro">
+      En la AA1-EV04 instalaste Git y creaste tu cuenta de GitHub. Ahora lo
+      <strong>demuestras en video</strong>: conectas un repositorio de tu
+      computador con uno nuevo en GitHub llamado <code>Programa-Git</code>,
+      subes los cambios, agregas el archivo <code>kotlin.txt</code> con tu
+      nombre y tu correo, y compruebas en GitHub que todo llegó. Mientras
+      escribes cada comando, explicas en voz alta qué hace.
+    </p>
+  </header>
+
+  <section class="explicacion azul" aria-labelledby="g7ev05-criterio">
+    <h3 id="g7ev05-criterio">Criterio de evaluación</h3>
+    <p>
+      Selecciona y configura herramientas de versionamiento para el control de
+      cambios en el código. Instrumento: lista de chequeo
+      <code>IE-GA7-220501096-AA1-EV05</code>. El producto es un
+      <strong>video en formato MP4</strong> que empieza con una presentación
+      (tu nombre y los ejercicios que vas a hacer) y muestra la ejecución de
+      los tres pasos, explicando cada requerimiento.
+    </p>
+  </section>
+
+  <section aria-labelledby="g7ev05-analisis">
+    <header class="sec-header">
+      <span class="sec-tag azul">Análisis</span>
+      <h3 class="sec-titulo" id="g7ev05-analisis">¿Qué pide exactamente la guía?</h3>
+      <p class="sec-intro">
+        El ejercicio tiene tres pasos. Cada uno practica un grupo de comandos
+        de Git local y de Git remoto que ya describiste en la AA1-EV03.
+      </p>
+    </header>
+    <table class="comparativa">
+      <caption class="sr-only">Requerimientos del ejercicio y comandos que los cumplen</caption>
+      <tr>
+        <th scope="col">Paso</th>
+        <th scope="col">Requerimiento</th>
+        <th scope="col">Comando</th>
+      </tr>
+      <tr><td><strong>1.1</strong></td><td>Crear un repositorio <strong>público</strong> llamado <code>Programa-Git</code> en GitHub y copiar su URL HTTPS</td><td>Se hace en la web de GitHub</td></tr>
+      <tr><td><strong>1.2</strong></td><td>Añadir ese repositorio remoto al repositorio local</td><td><code>git remote add github URL</code></td></tr>
+      <tr><td><strong>1.3</strong></td><td>Mostrar todos los repositorios remotos configurados</td><td><code>git remote -v</code></td></tr>
+      <tr><td><strong>2.1</strong></td><td>Subir los cambios del repositorio local a GitHub</td><td><code>git push -u github main</code></td></tr>
+      <tr><td><strong>2.2</strong></td><td>Comprobar en GitHub que se subieron, mostrando el historial de versiones</td><td>Pestaña <strong>Commits</strong> en GitHub y <code>git log --oneline</code></td></tr>
+      <tr><td><strong>3.1</strong></td><td>Crear <code>kotlin.txt</code> con tu nombre de usuario y tu correo</td><td><code>cat &gt; kotlin.txt</code></td></tr>
+      <tr><td><strong>3.2</strong></td><td>Agregar los cambios al área de preparación</td><td><code>git add .</code></td></tr>
+      <tr><td><strong>3.3</strong></td><td>Hacer un commit con el mensaje «Añadido datos»</td><td><code>git commit -m "Añadido datos."</code></td></tr>
+      <tr><td><strong>3.4</strong></td><td>Cargar los cambios al repositorio remoto</td><td><code>git push github main</code></td></tr>
+    </table>
+  </section>
+
+  <section aria-labelledby="g7ev05-ojo">
+    <header class="sec-header">
+      <span class="sec-tag azul">Antes de grabar</span>
+      <h3 class="sec-titulo" id="g7ev05-ojo">Tres detalles de la guía que debes saber</h3>
+      <p class="sec-intro">
+        Si copias los comandos de la guía tal cual, dos de ellos fallan.
+        Explicar por qué en el video demuestra que entiendes Git.
+      </p>
+    </header>
+    <div class="grid-2">
+      <article class="tarjeta">
+        <h4>1. <code>master</code> o <code>main</code></h4>
+        <p>
+          La guía usa <code>master</code>, el nombre antiguo de la rama
+          principal. Desde 2020 GitHub usa <code>main</code>, y en la AA1-EV04
+          configuraste <code>init.defaultBranch main</code>. Revisa tu rama con
+          <code>git branch</code> y usa ese nombre en el <code>push</code>. Si
+          escribes una rama que no existe, Git responde
+          <code>src refspec master does not match any</code>.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>2. <code>github</code> u <code>origin</code></h4>
+        <p>
+          En el paso 1 la guía llama al remoto <code>github</code>, pero en el
+          paso 3 hace <code>push origin</code>. Ese nombre es solo un apodo
+          para la URL: si solo agregaste <code>github</code>, el remoto
+          <code>origin</code> no existe y el push falla. Usa
+          <code>github</code> en los dos pasos.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>3. Se necesita al menos un commit</h4>
+        <p>
+          No se puede subir un repositorio vacío. Antes del paso 2, el
+          repositorio local debe tener un commit (un <code>README.md</code>
+          basta). Crea también el repositorio de GitHub
+          <strong>sin</strong> README, para que no haya conflicto en el
+          primer push.
+        </p>
+      </article>
+      <article class="tarjeta">
+        <h4>Cómo terminar <code>cat &gt; kotlin.txt</code></h4>
+        <p>
+          El comando espera que escribas el contenido del archivo. Escribe tu
+          nombre, pulsa <kbd>Enter</kbd>, escribe tu correo, pulsa
+          <kbd>Enter</kbd> y termina con <kbd>Ctrl</kbd> + <kbd>D</kbd>.
+          Funciona en Git Bash, en la Terminal de macOS y en Linux; no en
+          PowerShell ni en CMD.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="g7ev05-preparar">
+    <header class="sec-header">
+      <span class="sec-tag">Paso 0 · Preparación</span>
+      <h3 class="sec-titulo" id="g7ev05-preparar">El repositorio local del programa</h3>
+      <p class="sec-intro">
+        Abre Git Bash (o la Terminal) y crea la carpeta del programa con un
+        primer commit. Puedes hacerlo antes de grabar o al comienzo del video.
+      </p>
+    </header>
+    <div class="bloque-codigo">
+      <div class="linea-codigo azul">
+        <pre class="codigo-texto"><code>git --version                          # Git está instalado
+git config --global user.name          # muestra tu nombre configurado
+git config --global user.email         # muestra tu correo configurado
+
+mkdir Programa-Git
+cd Programa-Git
+git init                               # crea el repositorio local (.git)
+echo "# Programa-Git" &gt; README.md
+git add README.md
+git commit -m "Commit inicial"
+git branch                             # muestra el nombre de tu rama: main</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="g7ev05-paso1">
+    <header class="sec-header">
+      <span class="sec-tag">Paso 1</span>
+      <h3 class="sec-titulo" id="g7ev05-paso1">Crear el repositorio remoto y conectarlo</h3>
+    </header>
+    <ol class="pasos">
+      <li class="paso">
+        <h4>Crea el repositorio en GitHub</h4>
+        <p>
+          En github.com pulsa <strong>+ › New repository</strong>. Nombre:
+          <code>Programa-Git</code>. Visibilidad: <strong>Public</strong>. No
+          marques «Add a README file», ni .gitignore, ni licencia. Pulsa
+          <strong>Create repository</strong>.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Copia la URL HTTPS</h4>
+        <p>
+          En la página del repositorio nuevo, con la opción
+          <strong>HTTPS</strong> seleccionada, copia una dirección como
+          <code>https://github.com/tu-usuario/Programa-Git.git</code>.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Agrega el remoto y muéstralo</h4>
+        <p>
+          <code>git remote add</code> guarda la URL con el apodo
+          <code>github</code>. <code>git remote -v</code> lista los remotos:
+          cada uno aparece dos veces, una para traer (<em>fetch</em>) y otra
+          para enviar (<em>push</em>).
+        </p>
+      </li>
+    </ol>
+    <div class="bloque-codigo">
+      <div class="linea-codigo naranja">
+        <pre class="codigo-texto"><code>git remote add github https://github.com/tu-usuario/Programa-Git.git
+git remote -v
+
+# Resultado esperado:
+# github  https://github.com/tu-usuario/Programa-Git.git (fetch)
+# github  https://github.com/tu-usuario/Programa-Git.git (push)</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="g7ev05-paso2">
+    <header class="sec-header">
+      <span class="sec-tag">Paso 2</span>
+      <h3 class="sec-titulo" id="g7ev05-paso2">Subir los cambios y ver el historial</h3>
+    </header>
+    <ol class="pasos">
+      <li class="paso">
+        <h4>Envía los commits</h4>
+        <p>
+          <code>git push</code> envía los commits de la rama local al remoto.
+          La opción <code>-u</code> deja enlazada tu rama con la de GitHub,
+          para que después baste escribir <code>git push</code>. La primera
+          vez, Git Credential Manager abre el navegador para iniciar sesión.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Comprueba en GitHub</h4>
+        <p>
+          Recarga la página del repositorio: aparece el
+          <code>README.md</code>. Pulsa el enlace <strong>Commits</strong>
+          (el ícono de reloj junto al número de commits) para mostrar el
+          historial de versiones, con autor, mensaje y fecha.
+        </p>
+      </li>
+      <li class="paso">
+        <h4>Compara con el historial local</h4>
+        <p>
+          <code>git log --oneline</code> muestra los mismos commits en la
+          terminal. Si los identificadores coinciden con los de GitHub, el
+          local y el remoto están sincronizados.
+        </p>
+      </li>
+    </ol>
+    <div class="bloque-codigo">
+      <div class="linea-codigo naranja">
+        <pre class="codigo-texto"><code>git push -u github main     # la guía escribe: git push github master
+git log --oneline</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="g7ev05-paso3">
+    <header class="sec-header">
+      <span class="sec-tag">Paso 3</span>
+      <h3 class="sec-titulo" id="g7ev05-paso3">Agregar kotlin.txt y subirlo</h3>
+      <p class="sec-intro">
+        Este paso recorre el ciclo completo de Git: crear un cambio,
+        prepararlo, confirmarlo y publicarlo.
+      </p>
+    </header>
+    <div class="bloque-codigo">
+      <div class="linea-codigo azul">
+        <pre class="codigo-texto"><code>cat &gt; kotlin.txt
+Nombre Apellido                # escribe tu nombre de usuario y pulsa Enter
+tu-correo@ejemplo.com          # escribe tu correo, Enter y luego Ctrl + D
+
+cat kotlin.txt                 # muestra el contenido del archivo
+git status                     # kotlin.txt aparece en rojo: sin seguimiento
+git add .                      # lo pasa al área de preparación
+git status                     # ahora aparece en verde: listo para el commit
+git commit -m "Añadido datos."
+git push github main           # la guía escribe: git push origin master
+git log --oneline</code></pre>
+      </div>
+    </div>
+    <p>
+      Termina el video en GitHub: abre <code>kotlin.txt</code> para que se vea
+      tu nombre y tu correo, y vuelve a <strong>Commits</strong> para mostrar
+      que ahora hay dos versiones: «Commit inicial» y «Añadido datos.».
+    </p>
+    <table class="propiedades">
+      <caption class="sr-only">Errores frecuentes durante el ejercicio y su solución</caption>
+      <tr>
+        <th scope="col">Si aparece…</th>
+        <th scope="col">Solución</th>
+      </tr>
+      <tr><td><code>error: remote github already exists</code></td><td>Ya lo agregaste. Cámbialo con <code>git remote set-url github URL</code> o bórralo con <code>git remote remove github</code></td></tr>
+      <tr><td><code>src refspec master does not match any</code></td><td>Tu rama se llama <code>main</code>: revisa con <code>git branch</code> y usa ese nombre</td></tr>
+      <tr><td><code>'origin' does not appear to be a git repository</code></td><td>El remoto se llama <code>github</code>: usa <code>git push github main</code></td></tr>
+      <tr><td><code>Updates were rejected</code></td><td>Creaste el repositorio con README. Ejecuta <code>git pull github main --allow-unrelated-histories</code> y repite el push</td></tr>
+      <tr><td><code>Support for password authentication was removed</code></td><td>No uses tu contraseña: inicia sesión con Git Credential Manager (navegador) o con una llave SSH</td></tr>
+    </table>
+  </section>
+
+  <section aria-labelledby="g7ev05-guion">
+    <header class="sec-header">
+      <span class="sec-tag">Guion del video</span>
+      <h3 class="sec-titulo" id="g7ev05-guion">Qué mostrar y qué decir</h3>
+      <p class="sec-intro">
+        Entre 6 y 10 minutos es suficiente. Graba la pantalla completa con
+        micrófono y usa letra grande en la terminal (<kbd>Ctrl</kbd> +
+        <kbd>+</kbd>) para que se lean los comandos.
+      </p>
+    </header>
+    <table class="comparativa">
+      <caption class="sr-only">Guion del video por bloques de tiempo</caption>
+      <tr>
+        <th scope="col">Tiempo</th>
+        <th scope="col">En pantalla</th>
+        <th scope="col">Qué explicar</th>
+      </tr>
+      <tr><td>0:00 – 0:45</td><td>Diapositiva de presentación</td><td>Tu nombre, ficha, programa ADSO, código de la evidencia y los tres ejercicios que vas a hacer</td></tr>
+      <tr><td>0:45 – 2:00</td><td>Terminal: <code>git --version</code>, <code>git config</code>, preparación</td><td>Que Git está instalado y configurado con tu identidad, y que <code>git init</code> crea el repositorio local</td></tr>
+      <tr><td>2:00 – 4:00</td><td>GitHub y terminal: paso 1</td><td>Por qué el repositorio es público y sin README, qué es un remoto y qué significan <em>fetch</em> y <em>push</em> en <code>git remote -v</code></td></tr>
+      <tr><td>4:00 – 6:00</td><td>Terminal y GitHub: paso 2</td><td>Qué hace <code>push</code> y la opción <code>-u</code>, por qué la rama es <code>main</code> y no <code>master</code>; mostrar el historial de commits</td></tr>
+      <tr><td>6:00 – 8:30</td><td>Terminal y GitHub: paso 3</td><td>Los tres estados de un archivo (modificado, preparado, confirmado) con <code>git status</code>; por qué se usa el remoto <code>github</code> y no <code>origin</code></td></tr>
+      <tr><td>8:30 – 9:30</td><td>GitHub: <code>kotlin.txt</code> y Commits</td><td>Cierre: el equipo local quedó conectado con el remoto y cada cambio queda registrado</td></tr>
+    </table>
+    <table class="propiedades">
+      <caption class="sr-only">Programas gratuitos para grabar la pantalla</caption>
+      <tr>
+        <th scope="col">Sistema</th>
+        <th scope="col">Cómo grabar y obtener el MP4</th>
+      </tr>
+      <tr><td>Windows</td><td>Xbox Game Bar (<kbd>Win</kbd> + <kbd>Alt</kbd> + <kbd>R</kbd>) graba una ventana en MP4; para cambiar de ventana usa OBS Studio o la Herramienta Recortes (modo video)</td></tr>
+      <tr><td>macOS</td><td><kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>5</kbd> graba en .mov; expórtalo desde QuickTime o iMovie como MP4. OBS Studio graba en MP4 directamente</td></tr>
+      <tr><td>Cualquiera</td><td>OBS Studio (gratuito): en <strong>Ajustes › Salida</strong> elige el formato MP4</td></tr>
+    </table>
+  </section>
+
+  <section class="alert" aria-labelledby="g7ev05-entrega">
+    <h3 id="g7ev05-entrega">Antes de entregar</h3>
+    <ul class="entrega-list">
+      <li>El video empieza con una presentación con tu nombre y los ejercicios a realizar.</li>
+      <li>Se ven y se explican los tres pasos completos: remoto agregado, push con historial y <code>kotlin.txt</code> subido.</li>
+      <li>El repositorio <code>Programa-Git</code> es público y tiene dos commits, el último «Añadido datos.».</li>
+      <li><code>kotlin.txt</code> contiene tu nombre de usuario y tu correo, y se abre en GitHub dentro del video.</li>
+      <li>El audio se escucha claro y los comandos se leen en pantalla.</li>
+      <li>El archivo está en MP4; nómbralo <code>GA7-220501096-AA1-EV05_TuNombre.mp4</code>. Si pesa demasiado para la plataforma, súbelo a Drive o YouTube (no listado) y entrega el enlace como indique tu instructor.</li>
+    </ul>
+  </section>
+</article>
